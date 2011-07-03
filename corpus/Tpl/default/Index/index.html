@@ -1,0 +1,14 @@
+<div class="row main">
+	<div class="column grid_9">
+		<table width="100%">
+			<tr>
+				<th>作品コード</th><th>執筆者コード</th><th>題目</th><th>学期</th><th>執筆日</th>
+			</tr>
+			<volist name='articles' id='a'>
+				<tr>
+					<td>{$a.aid}</td><td>{$a.uid}</td><td><a href="{:U('Index/view')}?id={$a.id}&txtid={$a.semester},{$a.aid},{$a.uid}">{$a.title}</td><td>{$a.semester}</td><td>{$a.time}</td>
+				</tr>
+			</volist>
+		</table>
+	</div>
+</div>
