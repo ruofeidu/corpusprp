@@ -1,0 +1,281 @@
+[ 2011-07-02T14:16:54+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:16:54+08:00 ] SQL:  RunTime:0.003801s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:16:54+08:00 ] SQL:  RunTime:0.005861s SQL = SELECT * FROM `corpus_article`
+[ 2011-07-02T14:16:55+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:16:55+08:00 ] SQL:  RunTime:0.004666s SQL = SHOW COLUMNS FROM corpus_text
+[ 2011-07-02T14:16:55+08:00 ] SQL:  RunTime:0.000811s SQL = SELECT * FROM `corpus_text` WHERE index="x3,d0002,d32" LIMIT 1 
+[ 2011-07-02T14:16:57+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:16:57+08:00 ] SQL:  RunTime:0.004689s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:16:57+08:00 ] SQL:  RunTime:0.005880s SQL = SELECT * FROM `corpus_article`
+[ 2011-07-02T14:16:58+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:16:58+08:00 ] SQL:  RunTime:0.005237s SQL = SHOW COLUMNS FROM corpus_text
+[ 2011-07-02T14:16:58+08:00 ] SQL:  RunTime:0.000940s SQL = SELECT * FROM `corpus_text` WHERE index="x3,d0002,d32" LIMIT 1 
+[ 2011-07-02T14:17:00+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:17:00+08:00 ] SQL:  RunTime:0.005136s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:17:00+08:00 ] SQL:  RunTime:0.005265s SQL = SELECT * FROM `corpus_article`
+[ 2011-07-02T14:17:01+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:17:01+08:00 ] SQL:  RunTime:0.003608s SQL = SHOW COLUMNS FROM corpus_text
+[ 2011-07-02T14:17:01+08:00 ] SQL:  RunTime:0.001027s SQL = SELECT * FROM `corpus_text` WHERE index="x3,d0012,d9" LIMIT 1 
+[ 2011-07-02T14:17:03+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:17:03+08:00 ] SQL:  RunTime:0.004505s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:17:03+08:00 ] SQL:  RunTime:0.008349s SQL = SELECT * FROM `corpus_article`
+[ 2011-07-02T14:17:47+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:17:48+08:00 ] SQL:  RunTime:0.003736s SQL = SHOW COLUMNS FROM corpus_text
+[ 2011-07-02T14:17:48+08:00 ] SQL:  RunTime:0.000724s SQL = SELECT * FROM `corpus_text` WHERE `index="x3,d0003,d31" LIMIT 1 
+[ 2011-07-02T14:17:50+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:17:50+08:00 ] SQL:  RunTime:0.005146s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:17:50+08:00 ] SQL:  RunTime:0.006252s SQL = SELECT * FROM `corpus_article`
+[ 2011-07-02T14:18:36+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:18:36+08:00 ] SQL:  RunTime:0.005432s SQL = SHOW COLUMNS FROM corpus_text
+[ 2011-07-02T14:18:36+08:00 ] SQL:  RunTime:0.001128s SQL = SELECT * FROM `corpus_text` WHERE index="x3,d0004,d3" LIMIT 1 
+[ 2011-07-02T14:18:37+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:18:37+08:00 ] SQL:  RunTime:0.005553s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:18:37+08:00 ] SQL:  RunTime:0.006401s SQL = SELECT * FROM `corpus_article`
+[ 2011-07-02T14:18:45+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:18:45+08:00 ] SQL:  RunTime:0.005549s SQL = SHOW COLUMNS FROM corpus_text
+[ 2011-07-02T14:18:45+08:00 ] SQL:  RunTime:0.001297s SQL = SELECT * FROM `corpus_text` WHERE index="x3,d0006,d2" LIMIT 1 
+[ 2011-07-02T14:18:47+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:18:47+08:00 ] SQL:  RunTime:0.005102s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:18:47+08:00 ] SQL:  RunTime:0.012498s SQL = SELECT * FROM `corpus_article`
+[ 2011-07-02T14:19:06+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:19:06+08:00 ] SQL:  RunTime:0.003806s SQL = SHOW COLUMNS FROM corpus_text
+[ 2011-07-02T14:19:06+08:00 ] SQL:  RunTime:0.000742s SQL = SELECT * FROM `corpus_text` WHERE index="x3,d0008,d5" LIMIT 1 
+[ 2011-07-02T14:19:08+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:19:08+08:00 ] SQL:  RunTime:0.005304s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:19:08+08:00 ] SQL:  RunTime:0.008296s SQL = SELECT * FROM `corpus_article`
+[ 2011-07-02T14:19:11+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:19:11+08:00 ] SQL:  RunTime:0.005613s SQL = SHOW COLUMNS FROM corpus_text
+[ 2011-07-02T14:19:11+08:00 ] SQL:  RunTime:0.001620s SQL = SELECT * FROM `corpus_text` WHERE index="x3,d0006,d2" LIMIT 1 
+[ 2011-07-02T14:19:13+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:19:13+08:00 ] SQL:  RunTime:0.005372s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:19:13+08:00 ] SQL:  RunTime:0.006724s SQL = SELECT * FROM `corpus_article`
+[ 2011-07-02T14:19:20+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:19:20+08:00 ] SQL:  RunTime:0.003452s SQL = SHOW COLUMNS FROM corpus_text
+[ 2011-07-02T14:19:20+08:00 ] SQL:  RunTime:0.000527s SQL = SELECT * FROM `corpus_text` WHERE index="x3,d0006,d2" LIMIT 1 
+[ 2011-07-02T14:19:23+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:19:23+08:00 ] SQL:  RunTime:0.005751s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:19:23+08:00 ] SQL:  RunTime:0.009479s SQL = SELECT * FROM `corpus_article`
+[ 2011-07-02T14:21:23+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:21:23+08:00 ] SQL:  RunTime:0.006986s SQL = SHOW COLUMNS FROM corpus_text
+[ 2011-07-02T14:21:23+08:00 ] SQL:  RunTime:0.001122s SQL = SELECT * FROM `corpus_text` WHERE index='x3,d0003,d31' LIMIT 1 
+[ 2011-07-02T14:21:25+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:21:25+08:00 ] SQL:  RunTime:0.004790s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:21:25+08:00 ] SQL:  RunTime:0.009445s SQL = SELECT * FROM `corpus_article`
+[ 2011-07-02T14:21:26+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:21:26+08:00 ] SQL:  RunTime:0.004592s SQL = SHOW COLUMNS FROM corpus_text
+[ 2011-07-02T14:21:26+08:00 ] SQL:  RunTime:0.001735s SQL = SELECT * FROM `corpus_text` WHERE index='x3,d0001,d33' LIMIT 1 
+[ 2011-07-02T14:21:28+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:21:28+08:00 ] SQL:  RunTime:0.004280s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:21:28+08:00 ] SQL:  RunTime:0.006399s SQL = SELECT * FROM `corpus_article`
+[ 2011-07-02T14:22:37+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:22:37+08:00 ] SQL:  RunTime:0.003854s SQL = SHOW COLUMNS FROM corpus_text
+[ 2011-07-02T14:22:37+08:00 ] SQL:  RunTime:0.000637s SQL = SELECT * FROM `corpus_text` WHERE index='x3,d0003,d31' LIMIT 1 
+[ 2011-07-02T14:22:39+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:22:39+08:00 ] SQL:  RunTime:0.005604s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:22:39+08:00 ] SQL:  RunTime:0.010374s SQL = SELECT * FROM `corpus_article`
+[ 2011-07-02T14:22:45+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:22:45+08:00 ] SQL:  RunTime:0.044962s SQL = SHOW COLUMNS FROM corpus_text
+[ 2011-07-02T14:22:45+08:00 ] SQL:  RunTime:0.000842s SQL = SELECT * FROM `corpus_text` WHERE index='x3,d0003,d31' LIMIT 1 
+[ 2011-07-02T14:22:47+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:22:47+08:00 ] SQL:  RunTime:0.003468s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:22:47+08:00 ] SQL:  RunTime:0.005639s SQL = SELECT * FROM `corpus_article`
+[ 2011-07-02T14:22:51+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:22:51+08:00 ] SQL:  RunTime:0.004122s SQL = SHOW COLUMNS FROM corpus_text
+[ 2011-07-02T14:22:51+08:00 ] SQL:  RunTime:0.000586s SQL = SELECT * FROM `corpus_text` WHERE index='x3,d0001,d33' LIMIT 1 
+[ 2011-07-02T14:22:53+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:22:53+08:00 ] SQL:  RunTime:0.006007s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:22:53+08:00 ] SQL:  RunTime:0.009924s SQL = SELECT * FROM `corpus_article`
+[ 2011-07-02T14:25:14+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:25:14+08:00 ] SQL:  RunTime:0.003944s SQL = SHOW COLUMNS FROM corpus_text
+[ 2011-07-02T14:25:14+08:00 ] SQL:  RunTime:0.000802s SQL = SELECT * FROM `corpus_text` WHERE txtid='x3,d0002,d32' LIMIT 1 
+[ 2011-07-02T14:25:14+08:00 ] SQL:  RunTime:0.003494s SQL = SHOW COLUMNS FROM corpus_error
+[ 2011-07-02T14:25:14+08:00 ] SQL:  RunTime:0.000837s SQL = SELECT * FROM `corpus_error` WHERE eid="F" LIMIT 1 
+[ 2011-07-02T14:25:14+08:00 ] SQL:  RunTime:0.000445s SQL = SELECT * FROM `corpus_error` WHERE eid="W2" LIMIT 1 
+[ 2011-07-02T14:25:14+08:00 ] SQL:  RunTime:0.000320s SQL = SELECT * FROM `corpus_error` WHERE eid="B8" LIMIT 1 
+[ 2011-07-02T14:25:14+08:00 ] SQL:  RunTime:0.000169s SQL = SELECT * FROM `corpus_error` WHERE eid="Hj3" LIMIT 1 
+[ 2011-07-02T14:25:14+08:00 ] SQL:  RunTime:0.000270s SQL = SELECT * FROM `corpus_error` WHERE eid="Js1" LIMIT 1 
+[ 2011-07-02T14:25:14+08:00 ] SQL:  RunTime:0.000205s SQL = SELECT * FROM `corpus_error` WHERE eid="B7" LIMIT 1 
+[ 2011-07-02T14:25:14+08:00 ] SQL:  RunTime:0.000203s SQL = SELECT * FROM `corpus_error` WHERE eid="Hj3" LIMIT 1 
+[ 2011-07-02T14:25:14+08:00 ] SQL:  RunTime:0.000336s SQL = SELECT * FROM `corpus_error` WHERE eid="W2" LIMIT 1 
+[ 2011-07-02T14:25:14+08:00 ] SQL:  RunTime:0.000320s SQL = SELECT * FROM `corpus_error` WHERE eid="Jd" LIMIT 1 
+[ 2011-07-02T14:25:14+08:00 ] SQL:  RunTime:0.000314s SQL = SELECT * FROM `corpus_error` WHERE eid="W1" LIMIT 1 
+[ 2011-07-02T14:25:14+08:00 ] SQL:  RunTime:0.000305s SQL = SELECT * FROM `corpus_error` WHERE eid="Ss" LIMIT 1 
+[ 2011-07-02T14:25:16+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:25:16+08:00 ] SQL:  RunTime:0.005614s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:25:16+08:00 ] SQL:  RunTime:0.005304s SQL = SELECT * FROM `corpus_article`
+[ 2011-07-02T14:25:17+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.003734s SQL = SHOW COLUMNS FROM corpus_text
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000915s SQL = SELECT * FROM `corpus_text` WHERE txtid='x3,d0001,d33' LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.003367s SQL = SHOW COLUMNS FROM corpus_error
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000815s SQL = SELECT * FROM `corpus_error` WHERE eid="Ds7" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000253s SQL = SELECT * FROM `corpus_error` WHERE eid="W2" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000238s SQL = SELECT * FROM `corpus_error` WHERE eid="Ds2" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000246s SQL = SELECT * FROM `corpus_error` WHERE eid="Fk" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000238s SQL = SELECT * FROM `corpus_error` WHERE eid="W2" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000231s SQL = SELECT * FROM `corpus_error` WHERE eid="Js1" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000225s SQL = SELECT * FROM `corpus_error` WHERE eid="Ds8" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000227s SQL = SELECT * FROM `corpus_error` WHERE eid="W5" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000230s SQL = SELECT * FROM `corpus_error` WHERE eid="Hj3" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000237s SQL = SELECT * FROM `corpus_error` WHERE eid="W2" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000263s SQL = SELECT * FROM `corpus_error` WHERE eid="KY" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000245s SQL = SELECT * FROM `corpus_error` WHERE eid="W5" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000223s SQL = SELECT * FROM `corpus_error` WHERE eid="Ds2" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000236s SQL = SELECT * FROM `corpus_error` WHERE eid="W5" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000252s SQL = SELECT * FROM `corpus_error` WHERE eid="JS1" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000293s SQL = SELECT * FROM `corpus_error` WHERE eid="W2" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000274s SQL = SELECT * FROM `corpus_error` WHERE eid="Hk2" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000254s SQL = SELECT * FROM `corpus_error` WHERE eid="F" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000288s SQL = SELECT * FROM `corpus_error` WHERE eid="W1" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000245s SQL = SELECT * FROM `corpus_error` WHERE eid="B2" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000322s SQL = SELECT * FROM `corpus_error` WHERE eid="SJ" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000289s SQL = SELECT * FROM `corpus_error` WHERE eid="W2" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000248s SQL = SELECT * FROM `corpus_error` WHERE eid="Js" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000237s SQL = SELECT * FROM `corpus_error` WHERE eid="W2" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000237s SQL = SELECT * FROM `corpus_error` WHERE eid="Js3" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000243s SQL = SELECT * FROM `corpus_error` WHERE eid="Jd" LIMIT 1 
+[ 2011-07-02T14:25:17+08:00 ] SQL:  RunTime:0.000238s SQL = SELECT * FROM `corpus_error` WHERE eid="W2" LIMIT 1 
+[ 2011-07-02T14:25:21+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:25:21+08:00 ] SQL:  RunTime:0.004736s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:25:21+08:00 ] SQL:  RunTime:0.008529s SQL = SELECT * FROM `corpus_article`
+[ 2011-07-02T14:25:23+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.003934s SQL = SHOW COLUMNS FROM corpus_text
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000833s SQL = SELECT * FROM `corpus_text` WHERE txtid='x3,d0005,d1' LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.003348s SQL = SHOW COLUMNS FROM corpus_error
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000759s SQL = SELECT * FROM `corpus_error` WHERE eid="Js3" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000312s SQL = SELECT * FROM `corpus_error` WHERE eid="Ds5" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000333s SQL = SELECT * FROM `corpus_error` WHERE eid="Js1" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000310s SQL = SELECT * FROM `corpus_error` WHERE eid="W1" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000302s SQL = SELECT * FROM `corpus_error` WHERE eid="Js1" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000312s SQL = SELECT * FROM `corpus_error` WHERE eid="W1" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000214s SQL = SELECT * FROM `corpus_error` WHERE eid="Jd2" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000298s SQL = SELECT * FROM `corpus_error` WHERE eid="Ds8" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000261s SQL = SELECT * FROM `corpus_error` WHERE eid="W5" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000308s SQL = SELECT * FROM `corpus_error` WHERE eid="Jd2" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000309s SQL = SELECT * FROM `corpus_error` WHERE eid="Js1" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000337s SQL = SELECT * FROM `corpus_error` WHERE eid="W2" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000293s SQL = SELECT * FROM `corpus_error` WHERE eid="Hk1" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000243s SQL = SELECT * FROM `corpus_error` WHERE eid="Hk1" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000306s SQL = SELECT * FROM `corpus_error` WHERE eid="Js1" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000296s SQL = SELECT * FROM `corpus_error` WHERE eid="Ds2" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000307s SQL = SELECT * FROM `corpus_error` WHERE eid="W5" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000185s SQL = SELECT * FROM `corpus_error` WHERE eid="B4" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000222s SQL = SELECT * FROM `corpus_error` WHERE eid="Js2" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000235s SQL = SELECT * FROM `corpus_error` WHERE eid="Js1" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000197s SQL = SELECT * FROM `corpus_error` WHERE eid="B4" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000214s SQL = SELECT * FROM `corpus_error` WHERE eid="Hk1" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000212s SQL = SELECT * FROM `corpus_error` WHERE eid="Js2" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000385s SQL = SELECT * FROM `corpus_error` WHERE eid="W1" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000247s SQL = SELECT * FROM `corpus_error` WHERE eid="B4" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000278s SQL = SELECT * FROM `corpus_error` WHERE eid="Ds2" LIMIT 1 
+[ 2011-07-02T14:25:23+08:00 ] SQL:  RunTime:0.000330s SQL = SELECT * FROM `corpus_error` WHERE eid="W2" LIMIT 1 
+[ 2011-07-02T14:25:36+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:25:36+08:00 ] SQL:  RunTime:0.004985s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:25:36+08:00 ] SQL:  RunTime:0.005795s SQL = SELECT * FROM `corpus_article`
+[ 2011-07-02T14:25:39+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:25:39+08:00 ] SQL:  RunTime:0.003476s SQL = SHOW COLUMNS FROM corpus_text
+[ 2011-07-02T14:25:39+08:00 ] SQL:  RunTime:0.004832s SQL = SELECT * FROM `corpus_text` WHERE txtid=',j0010,j11' LIMIT 1 
+[ 2011-07-02T14:25:41+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:25:41+08:00 ] SQL:  RunTime:0.006162s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:25:41+08:00 ] SQL:  RunTime:0.009183s SQL = SELECT * FROM `corpus_article`
+[ 2011-07-02T14:28:04+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.003902s SQL = SHOW COLUMNS FROM corpus_text
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000878s SQL = SELECT * FROM `corpus_text` WHERE txtid='x3,d0013,d10' LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.002977s SQL = SHOW COLUMNS FROM corpus_error
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000912s SQL = SELECT * FROM `corpus_error` WHERE eid="Js1" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000292s SQL = SELECT * FROM `corpus_error` WHERE eid="Ms2" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000236s SQL = SELECT * FROM `corpus_error` WHERE eid="Js3" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000231s SQL = SELECT * FROM `corpus_error` WHERE eid="W2" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000237s SQL = SELECT * FROM `corpus_error` WHERE eid="Js3" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000232s SQL = SELECT * FROM `corpus_error` WHERE eid="Js1" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000217s SQL = SELECT * FROM `corpus_error` WHERE eid="B6" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000236s SQL = SELECT * FROM `corpus_error` WHERE eid="Km2" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000232s SQL = SELECT * FROM `corpus_error` WHERE eid="Js2" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000234s SQL = SELECT * FROM `corpus_error` WHERE eid="Ky2" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000292s SQL = SELECT * FROM `corpus_error` WHERE eid="Ms1" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000222s SQL = SELECT * FROM `corpus_error` WHERE eid="B7" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000221s SQL = SELECT * FROM `corpus_error` WHERE eid="B2" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000208s SQL = SELECT * FROM `corpus_error` WHERE eid="F" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000208s SQL = SELECT * FROM `corpus_error` WHERE eid="W2" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000254s SQL = SELECT * FROM `corpus_error` WHERE eid="Ms" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000237s SQL = SELECT * FROM `corpus_error` WHERE eid="W2" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000229s SQL = SELECT * FROM `corpus_error` WHERE eid="B6" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000259s SQL = SELECT * FROM `corpus_error` WHERE eid="F" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000223s SQL = SELECT * FROM `corpus_error` WHERE eid="W2" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000197s SQL = SELECT * FROM `corpus_error` WHERE eid="Kd2" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000237s SQL = SELECT * FROM `corpus_error` WHERE eid="Hk2" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000302s SQL = SELECT * FROM `corpus_error` WHERE eid="Ms" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000245s SQL = SELECT * FROM `corpus_error` WHERE eid="W2" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000246s SQL = SELECT * FROM `corpus_error` WHERE eid="B2" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000222s SQL = SELECT * FROM `corpus_error` WHERE eid="Ds2" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000236s SQL = SELECT * FROM `corpus_error` WHERE eid="W5" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000221s SQL = SELECT * FROM `corpus_error` WHERE eid="Ds2" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000219s SQL = SELECT * FROM `corpus_error` WHERE eid="Ds2" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000248s SQL = SELECT * FROM `corpus_error` WHERE eid="W5" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000254s SQL = SELECT * FROM `corpus_error` WHERE eid="St" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000235s SQL = SELECT * FROM `corpus_error` WHERE eid="W2" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000238s SQL = SELECT * FROM `corpus_error` WHERE eid="Ss" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000230s SQL = SELECT * FROM `corpus_error` WHERE eid="Js2" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000218s SQL = SELECT * FROM `corpus_error` WHERE eid="Ds1" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000241s SQL = SELECT * FROM `corpus_error` WHERE eid="Sj" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000272s SQL = SELECT * FROM `corpus_error` WHERE eid="W1" LIMIT 1 
+[ 2011-07-02T14:28:04+08:00 ] SQL:  RunTime:0.000217s SQL = SELECT * FROM `corpus_error` WHERE eid="B7" LIMIT 1 
+[ 2011-07-02T14:28:35+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:28:35+08:00 ] SQL:  RunTime:0.003732s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:28:35+08:00 ] SQL:  RunTime:0.006457s SQL = SELECT * FROM `corpus_article`
+[ 2011-07-02T14:28:37+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:28:37+08:00 ] SQL:  RunTime:0.003938s SQL = SHOW COLUMNS FROM corpus_text
+[ 2011-07-02T14:28:37+08:00 ] SQL:  RunTime:0.000811s SQL = SELECT * FROM `corpus_text` WHERE txtid='x3,d0058,d28' LIMIT 1 
+[ 2011-07-02T14:28:37+08:00 ] SQL:  RunTime:0.003310s SQL = SHOW COLUMNS FROM corpus_error
+[ 2011-07-02T14:28:37+08:00 ] SQL:  RunTime:0.000894s SQL = SELECT * FROM `corpus_error` WHERE eid="Jd2" LIMIT 1 
+[ 2011-07-02T14:28:37+08:00 ] SQL:  RunTime:0.000262s SQL = SELECT * FROM `corpus_error` WHERE eid="Hk2" LIMIT 1 
+[ 2011-07-02T14:28:37+08:00 ] SQL:  RunTime:0.000229s SQL = SELECT * FROM `corpus_error` WHERE eid="Js3" LIMIT 1 
+[ 2011-07-02T14:28:37+08:00 ] SQL:  RunTime:0.000250s SQL = SELECT * FROM `corpus_error` WHERE eid="Js1" LIMIT 1 
+[ 2011-07-02T14:28:37+08:00 ] SQL:  RunTime:0.000224s SQL = SELECT * FROM `corpus_error` WHERE eid="Ds5" LIMIT 1 
+[ 2011-07-02T14:28:37+08:00 ] SQL:  RunTime:0.000223s SQL = SELECT * FROM `corpus_error` WHERE eid="Hj2" LIMIT 1 
+[ 2011-07-02T14:28:37+08:00 ] SQL:  RunTime:0.000246s SQL = SELECT * FROM `corpus_error` WHERE eid="W2" LIMIT 1 
+[ 2011-07-02T14:28:37+08:00 ] SQL:  RunTime:0.000233s SQL = SELECT * FROM `corpus_error` WHERE eid="Js3" LIMIT 1 
+[ 2011-07-02T14:28:37+08:00 ] SQL:  RunTime:0.000236s SQL = SELECT * FROM `corpus_error` WHERE eid="Fk1" LIMIT 1 
+[ 2011-07-02T14:28:37+08:00 ] SQL:  RunTime:0.000223s SQL = SELECT * FROM `corpus_error` WHERE eid="Ds5" LIMIT 1 
+[ 2011-07-02T14:28:37+08:00 ] SQL:  RunTime:0.000231s SQL = SELECT * FROM `corpus_error` WHERE eid="Hk1" LIMIT 1 
+[ 2011-07-02T14:28:37+08:00 ] SQL:  RunTime:0.000219s SQL = SELECT * FROM `corpus_error` WHERE eid="B6" LIMIT 1 
+[ 2011-07-02T14:28:39+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:28:39+08:00 ] SQL:  RunTime:0.005483s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:28:39+08:00 ] SQL:  RunTime:0.009565s SQL = SELECT * FROM `corpus_article`
+[ 2011-07-02T14:28:42+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:28:42+08:00 ] SQL:  RunTime:0.003441s SQL = SHOW COLUMNS FROM corpus_text
+[ 2011-07-02T14:28:42+08:00 ] SQL:  RunTime:0.001071s SQL = SELECT * FROM `corpus_text` WHERE txtid='x3,d0113,d12' LIMIT 1 
+[ 2011-07-02T14:28:42+08:00 ] SQL:  RunTime:0.003156s SQL = SHOW COLUMNS FROM corpus_error
+[ 2011-07-02T14:28:42+08:00 ] SQL:  RunTime:0.000850s SQL = SELECT * FROM `corpus_error` WHERE eid="Km" LIMIT 1 
+[ 2011-07-02T14:28:42+08:00 ] SQL:  RunTime:0.000248s SQL = SELECT * FROM `corpus_error` WHERE eid="W2" LIMIT 1 
+[ 2011-07-02T14:28:42+08:00 ] SQL:  RunTime:0.000231s SQL = SELECT * FROM `corpus_error` WHERE eid="Js1" LIMIT 1 
+[ 2011-07-02T14:28:42+08:00 ] SQL:  RunTime:0.000271s SQL = SELECT * FROM `corpus_error` WHERE eid="Js1" LIMIT 1 
+[ 2011-07-02T14:28:42+08:00 ] SQL:  RunTime:0.000272s SQL = SELECT * FROM `corpus_error` WHERE eid="Js1" LIMIT 1 
+[ 2011-07-02T14:28:42+08:00 ] SQL:  RunTime:0.000288s SQL = SELECT * FROM `corpus_error` WHERE eid="Km" LIMIT 1 
+[ 2011-07-02T14:28:42+08:00 ] SQL:  RunTime:0.000322s SQL = SELECT * FROM `corpus_error` WHERE eid="W1" LIMIT 1 
+[ 2011-07-02T14:28:42+08:00 ] SQL:  RunTime:0.000290s SQL = SELECT * FROM `corpus_error` WHERE eid="R3" LIMIT 1 
+[ 2011-07-02T14:28:42+08:00 ] SQL:  RunTime:0.000259s SQL = SELECT * FROM `corpus_error` WHERE eid="F1" LIMIT 1 
+[ 2011-07-02T14:28:42+08:00 ] SQL:  RunTime:0.000309s SQL = SELECT * FROM `corpus_error` WHERE eid="Jd" LIMIT 1 
+[ 2011-07-02T14:28:42+08:00 ] SQL:  RunTime:0.000514s SQL = SELECT * FROM `corpus_error` WHERE eid="W2" LIMIT 1 
+[ 2011-07-02T14:28:42+08:00 ] SQL:  RunTime:0.000453s SQL = SELECT * FROM `corpus_error` WHERE eid="Hk1" LIMIT 1 
+[ 2011-07-02T14:28:42+08:00 ] SQL:  RunTime:0.000546s SQL = SELECT * FROM `corpus_error` WHERE eid="Ds5" LIMIT 1 
+[ 2011-07-02T14:28:50+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:28:50+08:00 ] SQL:  RunTime:0.004176s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:28:50+08:00 ] SQL:  RunTime:0.005185s SQL = SELECT * FROM `corpus_article`
+[ 2011-07-02T14:32:08+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:32:08+08:00 ] SQL:  RunTime:0.029302s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:32:08+08:00 ] SQL:  RunTime:0.009021s SQL = SELECT * FROM `corpus_article`
+[ 2011-07-02T14:32:10+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:32:10+08:00 ] SQL:  RunTime:0.003883s SQL = SHOW COLUMNS FROM corpus_text
+[ 2011-07-02T14:32:10+08:00 ] SQL:  RunTime:0.000802s SQL = SELECT * FROM `corpus_text` WHERE txtid='x3,d0007,d4' LIMIT 1 
+[ 2011-07-02T14:32:10+08:00 ] SQL:  RunTime:0.003544s SQL = SHOW COLUMNS FROM corpus_error
+[ 2011-07-02T14:32:10+08:00 ] SQL:  RunTime:0.000717s SQL = SELECT * FROM `corpus_error` WHERE eid="B6" LIMIT 1 
+[ 2011-07-02T14:32:10+08:00 ] SQL:  RunTime:0.000270s SQL = SELECT * FROM `corpus_error` WHERE eid="St" LIMIT 1 
+[ 2011-07-02T14:32:10+08:00 ] SQL:  RunTime:0.000315s SQL = SELECT * FROM `corpus_error` WHERE eid="W2" LIMIT 1 
+[ 2011-07-02T14:32:10+08:00 ] SQL:  RunTime:0.000310s SQL = SELECT * FROM `corpus_error` WHERE eid="B6" LIMIT 1 
+[ 2011-07-02T14:32:10+08:00 ] SQL:  RunTime:0.000320s SQL = SELECT * FROM `corpus_error` WHERE eid="Js1" LIMIT 1 
+[ 2011-07-02T14:32:10+08:00 ] SQL:  RunTime:0.000325s SQL = SELECT * FROM `corpus_error` WHERE eid="Ds" LIMIT 1 
+[ 2011-07-02T14:32:10+08:00 ] SQL:  RunTime:0.000329s SQL = SELECT * FROM `corpus_error` WHERE eid="W2" LIMIT 1 
+[ 2011-07-02T14:32:10+08:00 ] SQL:  RunTime:0.000317s SQL = SELECT * FROM `corpus_error` WHERE eid="Hk2" LIMIT 1 
+[ 2011-07-02T14:32:11+08:00 ] NOTIC: [8] A session had already been started - ignoring session_start() ~runtime.php 第 2 行.
+[ 2011-07-02T14:32:11+08:00 ] SQL:  RunTime:0.005704s SQL = SHOW COLUMNS FROM corpus_article
+[ 2011-07-02T14:32:11+08:00 ] SQL:  RunTime:0.009020s SQL = SELECT * FROM `corpus_article`

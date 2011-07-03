@@ -7,9 +7,12 @@ class IndexAction extends Action{
         $article=M('article');
 		$articles=$article->select();
 		//print_r($articles);
-		foreach ($articles as $a){
-			echo $a['id'].':<a href="'.U('Index/view').'?id='.$a['id'].'&txtid='.$a['semester'].','.$a['aid'].','.$a['uid'].'">'.$a['title'].'</a><br>';
-		}
+		$this->assign("articles", $articles);
+		$this->assign("content", "Index:index");
+		$this->display("Public:base");
+		//foreach ($articles as $a){
+			//echo $a['id'].':<a href="'.U('Index/view').'?id='.$a['id'].'&txtid='.$a['semester'].','.$a['aid'].','.$a['uid'].'">'.$a['title'].'</a><br>';
+		//}
     }
 	public function view(){
 		if (!isset($_GET['txtid']) || !isset($_GET['id'])) $this->redirect('Index/index', array(), 2,'参数错误');
