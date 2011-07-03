@@ -14,13 +14,14 @@ class IndexAction extends Action{
 	public function view(){
 		if (!isset($_GET['txtid']) || !isset($_GET['id'])) $this->redirect('Index/index', array(), 2,'参数错误');
         header("Content-Type:text/html; charset=utf-8");
-		$file = "./public/article/".$_GET['txtid'].".txt";
-		//echo $file;
-		echo "id:".$_GET['id']."<br/>";
-		if (file_exists($file) == false) {
-			$this->redirect('Index/index', array(), 2,'此文章不存在');
-		}
-		$content = file_get_contents($file);
+		
+		$article=M('article');
+		$articleinfo=$article->where("id='{$_GET['id']}'")->find();
+		
+		$text=M("text");
+		$find=$text->where("txtid='".$_GET['txtid']."'")->find();
+		if ($find==null) $this->redirect('Index/index', array(), 2,'此文章不存在');
+		$content = $find['text'];
 		//echo $data;
 		$content=str_replace("\n","<br/>",$content);
 		preg_match_all('|\[([^\]\,]*),([^\]\,]*),([^\]\,]*)\]|', $content, $matches);
@@ -52,13 +53,37 @@ class IndexAction extends Action{
 			}
 			
 			
-			$content=str_replace($matches[0][$i],'&nbsp;<b title="'.$errormsg.'"><b id="tip" style="background-color:red"><S>'.$matches[1][$i].'</S></b>'.'<b style="background-color:green">'.$matches[2][$i].'</b></b>',$content);
+			$content=str_replace($matches[0][$i],'&nbsp;<b class="tip" title="'.$errormsg.'"><b id="tip" style="background-color:red"><S>'.$matches[1][$i].'</S></b>'.'<b style="background-color:green">'.$matches[2][$i].'</b></b>',$content);
 		}
-		$this->assign("content", $content);
-		$this->display("Index:view");
+		$this->assign("a", $articleinfo);
+		$this->assign("text", $content);
+		$this->assign("content", "Index:view");
+		$this->display("Public:base");
 	}
-	public function error(){
-		echo $_GET['id'].'ok';
+	public function update(){
+		ini_set('max_execution_time', '1000');
+		$article=M('article');
+		$articles=$article->select();
+		//print_r($articles);
+		foreach ($articles as $a){
+			$index=$a['semester'].','.$a['aid'].','.$a['uid'];
+			$file = "./public/article/".$index.".txt";
+			//echo $file;
+			//echo "id:".$_GET['id']."<br/>";
+			if (file_exists($file)) {
+				$content = file_get_contents($file);
+				$text=M("text");
+				$find=$text->where("txtid='".$index."'")->find();
+				//print_r($find);
+				if ($find==null){
+					$addr['title']=$a['title'];
+					$addr['index']=$index;
+					$addr['text']=$content;
+					$text->add($addr);
+				}
+			}
+			
+		}
 	}
 }
 ?>
