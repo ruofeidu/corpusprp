@@ -1,7 +1,7 @@
 ﻿body {
     font-size: 14px;
     font-family: Helvetica, "Lucida Grande",微软雅黑;
-    /* font-family: "Helvetica Neue",Helvetica,Arial,sans-serif, 文泉驿正黑; */
+    /* font-family: "Helvetica Neue", Helvetica, Arial,sans-serif, 文泉驿正黑; */
 }
 div.content{
     padding:10px 10px 5px 5px;
@@ -29,6 +29,12 @@ a:hover {
     margin: 20px auto;
     padding-bottom: 20px;
 }
+
+#search {
+    margin: 20px auto;
+    padding-bottom: 20px;
+}
+
 #logo a {
     color: white;
     padding: 10px 15px;
@@ -104,7 +110,6 @@ a:hover {
     background: #efefef;
 }
 
-
 .menu {
     height: 40px;
 }
@@ -127,7 +132,6 @@ a:hover {
 .search-form input[type='submit'] {
     width: 50px;
 }
-
 
 .b-info-logo,
 .b-info-copyright {
@@ -159,7 +163,6 @@ a:hover {
 }
 .main {
 }
-
 
 /* Antindex.index 列表类通用样式 */
 .main-title {

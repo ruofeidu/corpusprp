@@ -6,7 +6,12 @@
 			</tr>
 			<volist name='articles' id='a'>
 				<tr>
-					<td>{$a.aid}</td><td>{$a.uid}</td><td><a href="{:U('Index/view')}?id={$a.id}&txtid={$a.semester},{$a.aid},{$a.uid}">{$a.title}</td><td>{$a.semester}</td><td>{$a.time}</td><td>{$a.wordnum}</td>
+					<td>{$a.aid}</td>
+					<td>{$a.uid}</td>
+					<td><a href="{:U('Index/view')}?id={$a.id}&txtid={$a.semester},{$a.aid},{$a.uid}">{$a.title}</td>
+					<td>{$a.semester}</td>
+					<td>{$a.time}</td>
+					<td>{$a.wordnum}</td>
 				</tr>
 			</volist>
 		</table>
