@@ -32,6 +32,7 @@ class IndexAction extends Action{
 		preg_match_all('|\[([^\]\,]*),([^\]\,]*),([^\]\,]*)\]|', $content, $matches);
 		//print_r($matches);
 		//echo '<div style="background-color:green">';
+
 		for ($i = 0; $i < count($matches[0]); $i++){
 			//echo $matches[0][$i].$matches[1][$i].$matches[2][$i].$matches[3][$i]."<br/>";
 			//if ($matches[1][$i]=='' && $matches[2][$i]!='')
@@ -59,6 +60,12 @@ class IndexAction extends Action{
 			//#EE2C2C: red; #B3EE3A: green
 			$content = str_replace($matches[0][$i], '&nbsp;<b class="tip" title="'.$errormsg.'"><b id="tip" style="background-color:#EE4000"><S>'.$matches[1][$i].'</S></b>'.'<b style="background-color:#B3EE3A">'.$matches[2][$i].'</b></b>',$content);
 		}
+		
+		//	#FFFF6F: yellow
+		if (isset($_GET['keywords'])) {
+			$content = str_replace($_GET['keywords'], '&nbsp;<b id="tip" style="background-color:#FFFF6F">'.$_GET['keywords'].'</b>', $content);
+		}
+		
 		$this->assign("a", $articleinfo);
 		$this->assign("text", $content);
 		$this->assign("content", "Index:view");
@@ -74,10 +81,10 @@ class IndexAction extends Action{
 	}
 	
 	public function search(){
-		if ( !isset($_GET['keywords']) ) $this->redirect('Index/index', array(), 2, '参数错误');
+		if ( !isset($_POST['keywords']) ) $this->redirect('Index/index', array(), 2, '参数错误');
         header("Content-Type:text/html; charset=utf-8");
 		
-		$keywords = $_GET['keywords'];
+		$keywords = $_POST['keywords'];
 		//print_r($keywords);
 		$article = M('article');
 		$text = M("text");
@@ -100,7 +107,8 @@ class IndexAction extends Action{
 			}
 		}
 		$this->assign("articles", $result);
-		$this->assign("content", "Index:index");
+		$this->assign("keywords", $keywords); 
+		$this->assign("content", "Index:search");
 		$this->display("Public:base");
 	}
 	
