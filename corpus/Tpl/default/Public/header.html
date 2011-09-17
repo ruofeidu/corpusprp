@@ -9,36 +9,54 @@
 	
     <!-- Grid CSS框架库|布局用 -->
     <link href="../Public/css/grid.css" rel="stylesheet" />
+	
     <!-- 俺们自己写的CSS -->
     <link href="../Public/css/style.css" rel="stylesheet" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 	<title>Corpus PRP</title>
-
 </head>
 
 <body>
     <div id="superheader">
-        <div class="row">
-            <div class="column grid_6">
-               <div class="nav">
+		<div class="row">
+			<div class="column grid_6">
+			   <div class="nav">
 					<volist name="navs" id="nav">
-						<div class="nav-item"><a id='{$nav['id']}' href='{$nav['href']}' <?php if ($nav['npage']) echo 'target="_blank"'; ?> >{$nav['title']}</a></div>
+						<div class="nav-item">
+							<a id='{$nav['id']}' href='{$nav['href']}' <?php if ($nav['npage']) echo 'target="_blank"'; ?> >{$nav['title']}</a>
+						</div>
 					</volist>
-                    
-                </div>
-            </div>
-            
-    </div>
+				</div>
+			</div>
+		</div>
 	</div>
+	
     <div id="header" class="row b-l">
-        <div id="logo"><a href="{:U("Index/index")}">Corpus</a></div>
-                <div class="column grid_3">
-						<volist name="subnavs" id="nav">
-					<div class="subnav">
-							<div class="subnav-item"><a id='{$nav['id']}' href='{$nav['href']}' <?php if ($nav['npage']) echo 'target="_blank"'; ?> >{$nav['title']}</a></div>
-                    </div>
-						</volist>
-                </div>
-
+        <div id="logo">
+			<a href="{:U("Index/index")}">Corpus</a>
+		</div>
+		<div class="column grid_3">
+			<volist name="subnavs" id="nav">
+				<div class="subnav">
+					<div class="subnav-item">
+						<a id='{$nav['id']}' href='{$nav['href']}' <?php if ($nav['npage']) echo 'target="_blank"'; ?> >{$nav['title']}</a>
+					</div>
+				</div>
+			</volist>
+		</div>
     </div>
+	
+	<div id = "search" align = "center">
+		<div id = "form">
+			<form method = 'post' action = "__URL__/insert">
+				 <table cellpadding = 2 cellspacing = 3>
+				 <tr>
+					<td class = "tRight" width = "16%">关键字：</td>
+					<td class = "tLeft"><input type = "text" name = "keywords" style = "height:23px;width:500px" class = "large bLeft"></td>
+					<td><input type = "submit" class = "button" value="提 交"> <input type = "reset" class = "button" value = "清 空"></td>
+				 </tr>
+				 </table>
+			</form>
+		</div>
+	</div>
 
