@@ -154,6 +154,7 @@ class IndexAction extends Action{
 		$school = $_POST['school'];
 		$gender = $_POST['gender'];  
 		$people = $_POST['people'];
+		$firstlang = $_POST['firstlang'];
 		$year = $_POST['year'];
 		
 		$article = M('article');
@@ -173,7 +174,7 @@ class IndexAction extends Action{
 			//$find = $text->where("%\[*[!\]\,]*" . $keywords . "*,*[!\]\,]*,*[!\]\,]*\]% escape '\'")->select();
 		} else {
 			//$find = $text->where("\[([^\]\,]%),([^\]\,]%" . $keywords . "%),([^\]\,]%)\]")->select();
-			$find = $text->where("text LIKE '%".$keywords."%'")->select();$find = $text->where("text LIKE '%".$keywords."%'")->select();
+			$find = $text->where("text LIKE '%".$keywords."%'")->select();
 		}
 		
 		foreach ($find as $item){
@@ -184,6 +185,7 @@ class IndexAction extends Action{
 			if ($school != 'all' && $student_info['school'] != $school) continue; 
 			if ($gender != 'all' && $student_info['gender'] != $gender) continue; 
 			if ($people != 'all' && $student_info['people'] != $people) continue; 
+			if ($firstlang != 'all' && $student_info['firstlang'] != $firstlang) continue; 
 			if ($year != 'all' && $student_info['year'] != $year) continue; 
 			
 			$articles = $article->where("semester='" .$semester. "' AND aid='" .$aid. "' AND uid='" .$uid. "'")->find();
