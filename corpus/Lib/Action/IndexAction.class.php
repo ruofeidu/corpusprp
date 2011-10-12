@@ -18,6 +18,23 @@ class IndexAction extends Action{
 		*/
     }
 	
+	public function copytext(){
+		//first you need make sure there is a "text" key in the "article" table
+		set_time_limit(300);
+		$article=M('article');
+		$articles=$article->select();
+		foreach ($articles as &$a){
+			echo "BRGIN! ";
+			$text=M("text");
+			$find=$text->where("txtid='".$a['semester'].','.$a['aid'].','.$a['uid']."'")->find();
+			if ($find!=null){
+				$a['text']=$find['text'];
+				if ($article->save($a)) echo "OK!<br>"; else echo "ERROR<br>";
+			}
+		}
+	}
+	
+	
 	public function view(){
 		if (!isset($_GET['txtid']) || !isset($_GET['id'])) $this->redirect('Index/index', array(), 2,'参数错误');
         header("Content-Type:text/html; charset=utf-8");
