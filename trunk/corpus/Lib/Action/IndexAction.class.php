@@ -137,17 +137,22 @@ class IndexAction extends CommonAction {
 		if ($search_type == 'all') {
 			$find = $list;
 		}else{
-			//错误文
-			if ($search_type == 'error') {
-				foreach ($list as $l){
-					if (preg_match('|\[([^\]\,]*'.$keywords.'[^\]\,]*),([^\]\,]*),([^\]\,]*)\]|', $l['text'], $matches))
-						$find[]=$l;
+			foreach ($list as $l){
+				if ($search_type == 'error') {
+					//错误文
+					if ($error == 'all')
+						if (preg_match('|\[([^\]\,]*'.$keywords.'[^\]\,]*),([^\]\,]*),([^\]\,]*)\]|', $l['text'], $matches)) $find[]=$l;
+					else
+						if (preg_match('|\[([^\]\,]*'.$keywords.'[^\]\,]*),([^\]\,]*),([^\]\,]*'.$error.'[^\]\,]*)\]|', $l['text'], $matches)) $find[]=$l;
 				}
-			} else { //修正文
-				foreach ($list as $l){
-					if (preg_match('|\[([^\]\,]*),([^\]\,]*'.$keywords.'[^\]\,]*),([^\]\,]*)\]|', $l['text'], $matches))
-						$find[]=$l;
-				}	
+				if ($search_type == 'right') { 
+					//修正文
+					if ($error == 'all')
+						if (preg_match('|\[([^\]\,]*),([^\]\,]*'.$keywords.'[^\]\,]*),([^\]\,]*)\]|', $l['text'], $matches)) $find[]=$l;
+					else
+						if (preg_match('|\[([^\]\,]*),([^\]\,]*'.$keywords.'[^\]\,]*),([^\]\,]*'.$error.'[^\]\,]*\]|', $l['text'], $matches)) $find[]=$l;
+					
+				}
 			}
 		}
 		
