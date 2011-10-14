@@ -355,4 +355,45 @@ function rand_string($len = 6, $type = '', $addChars = '') {
 function pwdHash($password, $type = 'md5') {
 	return hash ( $type, $password );
 }
+
+function inerror($str,$pos){
+	$f=$pos-1;
+	$t=$pos+1;
+	while ($f>=0){
+		if ( substr($str,$f,1)==',' || substr($str,$f,1)==']') return false;
+		$f--;
+	}
+	if ($f<0) return false;
+	
+	while ($t<strlen($str)){
+		if ( substr($str,$t,1)=='[') return false;
+		$t++;
+	}
+	if ($t>=strlen($str)) return false;
+	
+	return true;
+	
+}
+
+function inright($str,$pos){
+	$f=$pos-1;
+	$t=$pos+1;
+	$douhao=false;
+	while ($f>=0){
+		if ( (substr($str,$f,1)=='[' && !$douhao) || substr($str,$f,1)==']') return false;
+		if ( substr($str,$f,1)==',') $douhao=true;
+		$f--;
+	}
+	if ($f<0) return false;
+	
+	while ($t<strlen($str)){
+		if ( substr($str,$t,1)=='[') return false;
+		$t++;
+	}
+	if ($t>=strlen($str)) return false;
+	
+	return true;
+	
+}
+
 ?>
