@@ -1,91 +1,43 @@
 <?php
-// 本类由系统自动生成，仅供测试用途
-class IndexAction extends Action{
-
+class IndexAction extends CommonAction {
+	// 后台首页
     public function index(){
+		C ( 'SHOW_RUN_TIME', false ); // 运行时间显示
+		C ( 'SHOW_PAGE_TRACE', false );
+		$this->display();
+    }
+	
+	// 前台首页
+	public function welcome(){
         header("Content-Type:text/html; charset=utf-8");
         $article = M('article');
 		$articles = $article->select();
-		//print_r($articles);
+		
 		$this->assign("articles", $articles);
 		$this->assign("content", "Index:index");
 		$this->display("Public:base");
 		
-		/*
-		foreach ($articles as $a){
-			echo $a['id'].':<a href="'.U('Index/view').'?id='.$a['id'].'&txtid='.$a['semester'].','.$a['aid'].','.$a['uid'].'">'.$a['title'].'</a><br>';
-		}
-		*/
+		$this->display();
     }
 	
-	public function copytext(){
-		//first you need make sure there is a "text" key in the "article" table
-		set_time_limit(300);
-		$article=M('article');
-		$articles=$article->select();
-		foreach ($articles as &$a){
-			echo "BRGIN! ";
-			$text=M("text");
-			$find=$text->where("txtid='".$a['semester'].','.$a['aid'].','.$a['uid']."'")->find();
-			if ($find!=null){
-				$a['text']=$find['text'];
-				if ($article->save($a)) echo "OK!<br>"; else echo "ERROR<br>";
-			}
-		}
-	}
-	
-	
 	public function view(){
-		if (!isset($_GET['txtid']) || !isset($_GET['id'])) $this->redirect('Index/index', array(), 2,'参数错误');
-        header("Content-Type:text/html; charset=utf-8");
-		
+		if (!isset($_GET['txtid']) || !isset($_GET['id'])) $this->error('参数错误');		
 		$article = M('article');
-		$articleinfo = $article->where("id='{$_GET['id']}'")->find();
+		$find = $article->where("id='{$_GET['id']}'")->find();
 		
-		$text = M("text");
-		$find = $text->where("txtid='".$_GET['txtid']."'")->find();
-		if ($find == null) $this->redirect('Index/index', array(), 2,'此文章不存在');
+		if ($find['text'] == null) $this->error('此文章不存在');
 		$content = $find['text'];
 		//echo $data;
 		$content = str_replace("\n","<br/>",$content);
-		preg_match_all('|\[([^\]\,]*),([^\]\,]*),([^\]\,]*)\]|', $content, $matches);
-		//print_r($matches);
-		//echo '<div style="background-color:green">';
 
-		for ($i = 0; $i < count($matches[0]); $i++){
-			//echo $matches[0][$i].$matches[1][$i].$matches[2][$i].$matches[3][$i]."<br/>";
-			//if ($matches[1][$i]=='' && $matches[2][$i]!='')
-			//$content=str_replace($matches[0][$i],'<b style="background-color:green">'.$matches[2][$i].'</b>',$content);
-			//if ($matches[1][$i]!='' && $matches[2][$i]=='')
-			//$content=str_replace($matches[0][$i],'<b style="background-color:red"><S>'.$matches[1][$i].'</S></b>',$content);
-			//if ($matches[1][$i]!='' && $matches[2][$i]=='')
-			$errormsg = '';
-			preg_match_all('|(\w+)|', $matches[3][$i], $error);
-			//print_r($error);
-			foreach($error[1] as $e){
-				//echo $e."<br/>";
-				if ($pos = strpos($e,'_')){
-					//echo "sub".substr($e,0,$pos).".".substr($e,$pos+1,100).'<br>';
-					$Merror = M("error");
-					$errorinfo1 = $Merror->where('eid="'.substr($e,0,$pos).'"')->find();
-					$errorinfo2 = $Merror->where('eid="'.substr($e,$pos+1,100).'"')->find();
-					$errormsg.="错误类型:".$errorinfo1['type'].$errorinfo2['type']."<br/>错误信息:".$errorinfo1['msg'].'<br/>'.$errorinfo2['msg']."<br/><br/>";
-				}else{
-					$Merror = M("error");
-					$errorinfo = $Merror->where('eid="'.$e.'"')->find();
-					$errormsg.="错误类型:".$errorinfo['type']."<br/>错误信息:".$errorinfo['msg']."<br/><br/>";
-				}
-			}
-			//#EE2C2C: red; #B3EE3A: green #ADFF2F
-			$content = str_replace($matches[0][$i], '&nbsp;<b class="tip" title="'.$errormsg.'"><b id="tip" style="background-color:#EE4000"><S>'.$matches[1][$i].'</S></b>'.'<b style="background-color:#ADFF2F">'.$matches[2][$i].'</b></b>',$content);
-		}
+		$content = format_text($content);
 		
 		//	#FFFF6F: yellow
-		if (isset($_GET['keywords'])) {
-			$content = str_replace($_GET['keywords'], '&nbsp;<b id="tip" style="background-color:#FFFF6F">'.$_GET['keywords'].'</b>', $content);
-		}
+		//if (isset($_GET['keywords'])) {
+		//	$content = str_replace($_GET['keywords'], '&nbsp;<b id="tip" style="background-color:#FFFF6F">'.$_GET['keywords'].'</b>', $content);
+		//}
 		
-		$this->assign("a", $articleinfo);
+		$this->assign("a", $find);
 		$this->assign("text", $content);
 		$this->assign("content", "Index:view");
 		$this->display("Public:base");
@@ -162,9 +114,7 @@ class IndexAction extends Action{
 	//下面是SQL查询，但是——strpos比SQL速度快2s啊！！
 	
 	public function search(){
-		if ( !isset($_POST['keywords']) ) $this->redirect('Index/index', array(), 2, '参数错误');
-        header("Content-Type:text/html; charset=utf-8");
-		
+		if ( !isset($_POST['keywords']) || $_POST['keywords']=="" ) $this->error('请输入关键字');
 		$keywords = $_POST['keywords'];
 		$search_type = $_POST['searchtype'];
 		$error = $_POST['error']; 
@@ -175,27 +125,35 @@ class IndexAction extends Action{
 		$year = $_POST['year'];
 		
 		$article = M('article');
-		$text = M("text");
 		$student = M('student'); 
 		
 		$articles = $article->select();
+		$find = array(); 
 		$result = array(); 
 		$n = count($articles);
 		
+		$list = $article->where("text LIKE '%".$keywords."%'")->select();
 		if ($search_type == 'all') {
-			$find = $text->where("text LIKE '%".$keywords."%'")->select();
-		} else 
-		if ($search_type == 'error') {
-			$find = $text->where("text LIKE '%".$keywords."%'")->select();
-			//$find = $text->where("text LIKE '%しかし%' ESCAPE '\'")->select();
-			//$find = $text->where("%\[*[!\]\,]*" . $keywords . "*,*[!\]\,]*,*[!\]\,]*\]% escape '\'")->select();
-		} else {
-			//$find = $text->where("\[([^\]\,]%),([^\]\,]%" . $keywords . "%),([^\]\,]%)\]")->select();
-			$find = $text->where("text LIKE '%".$keywords."%'")->select();
+			$find = $list;
+		}else{
+			//错误文
+			if ($search_type == 'error') {
+				foreach ($list as $l){
+					if (preg_match('|\[([^\]\,]*'.$keywords.'[^\]\,]*),([^\]\,]*),([^\]\,]*)\]|', $l['text'], $matches))
+						$find[]=$l;
+				}
+			} else { //修正文
+				foreach ($list as $l){
+					if (preg_match('|\[([^\]\,]*),([^\]\,]*'.$keywords.'[^\]\,]*),([^\]\,]*)\]|', $l['text'], $matches))
+						$find[]=$l;
+				}	
+			}
 		}
 		
 		foreach ($find as $item){
-			list($semester, $aid, $uid) = split(',', $item['txtid']); 
+			$uid = $item['uid'];
+			$aid = $item['aid'];
+			$semester = $item['semester'];
 			
 			$student_info = $student->where("uid='".$uid."'")->find(); 
 			
@@ -205,9 +163,19 @@ class IndexAction extends Action{
 			if ($firstlang != 'all' && $student_info['firstlang'] != $firstlang) continue; 
 			if ($year != 'all' && $student_info['year'] != $year) continue; 
 			
-			$articles = $article->where("semester='" .$semester. "' AND aid='" .$aid. "' AND uid='" .$uid. "'")->find();
-			
-			array_push($result, $articles);
+			$result[] = $item;
+		}
+		
+		foreach ($result as &$item){
+			$num = 0;
+			$point=0;
+			$item['detail']="";
+			while ($pos=strpos($item['text'], $keywords, $point)){
+				$num++;
+				$point = $pos+1;
+				$item['detail'] .= $num.": ...".format_text( my_substr( $item['text'], $pos ),$keywords )."...<br/>";
+				
+			}
 		}
 
 		$this->assign("articles", $result);
