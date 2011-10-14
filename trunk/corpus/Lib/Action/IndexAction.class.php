@@ -28,6 +28,7 @@ class IndexAction extends CommonAction {
 		if ($find['text'] == null) $this->error('此文章不存在');
 		$content = $find['text'];
 		//echo $data;
+		$content = substr($content,strpos($content,"\n"));
 		$content = str_replace("\n","<br/>",$content);
 
 		$content = format_text($content);

@@ -41,14 +41,13 @@ function format_text($content , $keywords=""){
 			if ($keywords!=""){
 				
 				$content = str_replace($matches[0][$i], '&nbsp;<b id="tip" style="background-color:#EE4000"><S>'.$matches[1][$i].'</S></b>'.'<b style="background-color:#ADFF2F">'.$matches[2][$i].'</b>',$content);
-				$content = str_replace($keywords, '&nbsp;<b id="tip" style="background-color:#FFFF6F">'.$keywords.'</b>', $content);
+				//$content = str_replace($keywords, '&nbsp;<b id="tip" style="background-color:#FFFF6F">'.$keywords.'</b>', $content);
 			}
 			else
 			//#EE2C2C: red; #B3EE3A: green #ADFF2F
 				$content = str_replace($matches[0][$i], '&nbsp;<b class="tip" title="'.$errormsg.'"><b id="tip" style="background-color:#EE4000"><S>'.$matches[1][$i].'</S></b>'.'<b style="background-color:#ADFF2F">'.$matches[2][$i].'</b></b>',$content);
 		}
-		if ($keywords!="")	
-			$content = str_replace($keywords, '&nbsp;<b id="tip" style="background-color:#FFFF6F">'.$keywords.'</b>', $content);
+		if ($keywords!="") $content = str_replace($keywords, '&nbsp;<b id="tip" style="background-color:#FFFF6F">'.$keywords.'</b>', $content);
 			
 		return $content;
 }
