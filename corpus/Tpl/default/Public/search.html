@@ -20,12 +20,22 @@
 								
 						</select> 
 					</div>
+				</div>
 					
-					<div class = "column grid_1"> 错误类型： </div>			
+				 <div class = "row">
+					<div class = "column grid_1"> 书写： </div>			
 					<div class = "column grid_2">
-						<select name="error">
+						<select name="error_writing">
 							<option value="all">不限</option>
 							<option value="Hk">表记</option>
+							<option value="Ss">文章格式</option>							
+						</select>
+					</div>
+				 
+					<div class = "column grid_1"> 词语： </div>			
+					<div class = "column grid_2">
+						<select name="error_words">
+							<option value="all">不限</option>
 							<option value="Ds">动词</option>
 							<option value="Hj">补助动词</option>
 							<option value="Ms">名词</option>
@@ -43,10 +53,40 @@
 							<option value="St">接续词</option>
 							<option value="F">副词</option>
 							<option value="W">词语</option>
-							<option value="R">词组</option>
-							<option value="B">句子</option>
-							<option value="Lg">连语</option>
-							<option value="Ss">文章格式</option>
+						</select>
+					</div>
+				 </div>
+				 
+				 <div class = "row">
+					<div class = "column grid_1"> 词组： </div>			
+					<div class = "column grid_2">
+						<select name="error_phrase">
+							<option value="all">不限</option>
+							<option value="R1">动/动搭配</option>
+							<option value="R2">副/动搭配</option>
+							<option value="R3">名/动搭配</option>
+							<option value="R4">名/名搭配</option>
+							<option value="R5">形/名搭配</option>
+							<option value="R6">形动/名搭配</option>
+							<option value="R7">形动/动搭配</option>v
+							<option value="R8">形/动搭配</option>
+							<option value="R9">固定词组</option>
+							<option value="R10">名/形搭配</option>
+						</select>
+					</div>
+				 
+					<div class = "column grid_1"> 句子： </div>			
+					<div class = "column grid_2">
+						<select name="error_sentence">
+							<option value="all">不限</option>
+							<option value="B1">重复、多余</option>
+							<option value="B2">欠缺</option>
+							<option value="B3">时态</option>
+							<option value="B4">标点</option>
+							<option value="B5">语序</option>
+							<option value="B6">句子置换</option>
+							<option value="B7">文体</option>
+							<option value="B8">肯定与否定</option>
 						</select>
 					</div>
 				 </div>
