@@ -436,4 +436,69 @@ td {
 .articletext{
 	line-height: 25px;
 }
+
+.striped {
+     background-color:#eaf0ff;
+}
+
+div.message{
+	border-style: solid;
+	border-width: 6px;
+	font-weight: bold;
+	margin-bottom: 1.5em;
+	overflow: hidden;
+	padding: 14px;
+	font-size: 110%;
+	background-color: #EAF8E4;
+	border-color: #8DC478;
+	color: #3E642F;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
 	
+}
+
+div.success{
+	border-style: solid;
+	border-width: 6px;
+	font-weight: bold;
+	margin-bottom: 1.5em;
+	overflow: hidden;
+	padding: 14px;
+	font-size: 110%;
+	background-color: #EAF8E4;
+	border-color: #8DC478;
+	color: #3E642F;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	
+}
+
+div.error{
+	border-style: solid;
+	border-width: 6px;
+	font-weight: bold;
+	margin-bottom: 1.5em;
+	overflow: hidden;
+	padding: 14px;
+	font-size: 110%;
+	background-color: #FFF2F2;
+	border-color: #C00;
+	color: #B20000;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+}
+
+div.warning{
+	border-style: solid;
+	border-width: 6px;
+	font-weight: bold;
+	margin-bottom: 1.5em;
+	overflow: hidden;
+	padding: 14px;
+	font-size: 110%;
+	background: #FFFFDD;
+	border-color: #EED300;
+	color: #745500;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+}
