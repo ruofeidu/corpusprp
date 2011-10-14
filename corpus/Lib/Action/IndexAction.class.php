@@ -115,7 +115,7 @@ class IndexAction extends CommonAction {
 	//下面是SQL查询，但是——strpos比SQL速度快2s啊！！
 	
 	public function search(){
-		if ( !isset($_POST['keywords']) $this->error('请输入关键字');
+		if ( !isset($_POST['keywords'])) $this->error('请输入关键字');
 		$keywords = $_POST['keywords'];
 		$search_type = $_POST['searchtype'];
 		$error = $_POST['error']; 
