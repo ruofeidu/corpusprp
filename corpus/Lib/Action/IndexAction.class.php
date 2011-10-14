@@ -233,22 +233,24 @@ class IndexAction extends Action{
 		//print_r($articles);
 		foreach ($articles as $a){
 			$index = $a['semester'].','.$a['aid'].','.$a['uid'];
-			$file = "./public/article/".$index.".txt";
-			//echo $file;
-			//echo "id:".$_GET['id']."<br/>";
+			$file = "./Public/article/".$index.".txt";
+			echo $file;
+			
 			if (file_exists($file)) {
+				echo "file found!";
 				$content = file_get_contents($file);
 				$text = M("text");
 				$find = $text->where("txtid='".$index."'")->find();
 				//print_r($find);
 				if ($find == null){
 					$addr['title'] = $a['title'];
-					$addr['index'] = $index;
+					$addr['txtid'] = $index;
 					$addr['text'] = $content;
 					$text->add($addr);
 				}
 			}
 		}
+		$this->copytext();
 	}
 }
 ?>
