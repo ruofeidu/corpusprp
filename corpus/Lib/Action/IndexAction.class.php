@@ -140,14 +140,14 @@ class IndexAction extends CommonAction {
 			foreach ($list as $l){
 				if ($search_type == 'error') {
 					//错误文
-					if ($error == 'all')
+					if (!isset($error) || $error == 'all')
 						if (preg_match('|\[([^\]\,]*'.$keywords.'[^\]\,]*),([^\]\,]*),([^\]\,]*)\]|', $l['text'], $matches)) $find[]=$l;
 					else
 						if (preg_match('|\[([^\]\,]*'.$keywords.'[^\]\,]*),([^\]\,]*),([^\]\,]*'.$error.'[^\]\,]*)\]|', $l['text'], $matches)) $find[]=$l;
 				}
 				if ($search_type == 'right') { 
 					//修正文
-					if ($error == 'all')
+					if (!isset($error) || $error == 'all')
 						if (preg_match('|\[([^\]\,]*),([^\]\,]*'.$keywords.'[^\]\,]*),([^\]\,]*)\]|', $l['text'], $matches)) $find[]=$l;
 					else
 						if (preg_match('|\[([^\]\,]*),([^\]\,]*'.$keywords.'[^\]\,]*),([^\]\,]*'.$error.'[^\]\,]*\]|', $l['text'], $matches)) $find[]=$l;
@@ -177,11 +177,23 @@ class IndexAction extends CommonAction {
 			$point=0;
 			$item['detail']="";
 			while ($pos=strpos($item['text'], $keywords, $point)){
-				$num++;
-				$point = $pos+1;
-				$item['detail'] .= $num.": ...".format_text( my_substr( $item['text'], $pos ),$keywords )."...<br/>";
 				
-			}
+					$num++;
+					$point = $pos+1;
+					$sub = my_substr( $item['text'], $pos );
+					if ($search_type == 'all' ){
+						$item['detail'] .= $num.": ...".format_text( $sub,$keywords )."...<br/>";
+					}
+					if ($search_type == 'error'){
+						if (preg_match('|\[([^\]\,]*'.$keywords.'[^\]\,]*),([^\]\,]*),([^\]\,]*)\]|', $sub, $matches))
+							$item['detail'] .= $num.": ...".format_text( $sub,$keywords )."...<br/>";
+					}
+					if ($search_type == 'right'){
+						if (preg_match('|\[([^\]\,]*),([^\]\,]*'.$keywords.'[^\]\,]*),([^\]\,]*)\]|', $sub, $matches))
+							$item['detail'] .= $num.": ...".format_text( $sub,$keywords )."...<br/>";
+					}
+				}	
+			
 		}
 
 		$this->assign("articles", $result);
