@@ -2,7 +2,7 @@
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2009 http://thinkphp.cn All rights reserved.
+// | Copyright (c) 2010 http://thinkphp.cn All rights reserved.
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -26,6 +26,33 @@ import('TagLib');
 class TagLibCx extends TagLib
 {//类定义开始
 
+    // 标签定义
+    protected $tags   =  array(
+        // 标签定义： attr 属性列表 close 是否闭合（0 或者1 默认1） alias 标签别名 level 嵌套层次
+        'php'=>array(),
+        'volist'=>array('attr'=>'name,id,offset,length,key,mod','level'=>3,'alias'=>'iterate'),
+        'foreach' =>array('attr'=>'name,item,key','level'=>3),
+        'include'=>array('attr'=>'file','close'=>0),
+        'if'=>array('attr'=>'condition'),
+        'elseif'=>array('attr'=>'condition','close'=>0),
+        'else'=>array('attr'=>'','close'=>0),
+        'switch'=>array('attr'=>'name','level'=>3),
+        'case'=>array('attr'=>'value,break'),
+        'default'=>array('attr'=>'','close'=>0),
+        'compare'=>array('attr'=>'name,value,type','level'=>3,'alias'=>'eq,equal,notequal,neq,gt,lt,egt,elt,heq,nheq'),
+        'range'=>array('attr'=>'name,value,type','level'=>3,'alias'=>'in,notin'),
+        'empty'=>array('attr'=>'name','level'=>3),
+        'notempty'=>array('attr'=>'name','level'=>3),
+        'present'=>array('attr'=>'name','level'=>3),
+        'notpresent'=>array('attr'=>'name','level'=>3),
+        'defined'=>array('attr'=>'name','level'=>3),
+        'notdefined'=>array('attr'=>'name','level'=>3),
+        'layout' =>array('attr'=>'name,cache','close'=>0),
+        'import'=>array('attr'=>'file,href,type,value,basepath','close'=>0,'alias'=>'load,css,js'),
+        'assign'=>array('attr'=>'name,value','close'=>0),
+        'define'=>array('attr'=>'name,value','close'=>0),
+        );
+
     /**
      +----------------------------------------------------------
      * include标签解析
@@ -42,7 +69,15 @@ class TagLibCx extends TagLib
     {
         $tag    = $this->parseXmlAttr($attr,'include');
         $file   =   $tag['file'];
-        return $this->tpl->parseInclude($file);
+        $parseStr = $this->tpl->parseInclude($file);
+		 foreach ($tag as $key=>$val) {
+            if ($key == 'file') {
+                continue;
+            }
+            //echo $key;
+            $parseStr = str_replace('['.$key.']',$val,$parseStr);
+        }
+        return $this->tpl->parse($parseStr);
     }
 
     /**
@@ -86,18 +121,25 @@ class TagLibCx extends TagLib
         $cacheIterateId = md5($attr.$content);
         if(isset($_iterateParseCache[$cacheIterateId]))
             return $_iterateParseCache[$cacheIterateId];
-        $tag      = $this->parseXmlAttr($attr,'iterate');
+        $tag      = $this->parseXmlAttr($attr,'volist');
         $name   = $tag['name'];
         $id        = $tag['id'];
         $empty  = isset($tag['empty'])?$tag['empty']:'';
         $key     =   !empty($tag['key'])?$tag['key']:'i';
         $mod    =   isset($tag['mod'])?$tag['mod']:'2';
-        $name   = $this->autoBuildVar($name);
-        $parseStr  =  '<?php if(is_array('.$name.')): $'.$key.' = 0;';
+        // 允许使用函数设定数据集 <volist name=":fun('arg')" id="vo">{$vo.name}</volist>
+        $parseStr   =  '<?php ';
+        if(0===strpos($name,':')) {
+            $parseStr   .= '$_result='.substr($name,1).';';
+            $name   = '$_result';
+        }else{
+            $name   = $this->autoBuildVar($name);
+        }
+        $parseStr  .=  'if(is_array('.$name.')): $'.$key.' = 0;';
 		if(isset($tag['length']) && '' !=$tag['length'] ) {
-			$parseStr  .= ' $__LIST__ = array_slice('.$name.','.$tag['offset'].','.$tag['length'].');';
+			$parseStr  .= ' $__LIST__ = array_slice('.$name.','.$tag['offset'].','.$tag['length'].',true);';
 		}elseif(isset($tag['offset'])  && '' !=$tag['offset']){
-            $parseStr  .= ' $__LIST__ = array_slice('.$name.','.$tag['offset'].');';
+            $parseStr  .= ' $__LIST__ = array_slice('.$name.','.$tag['offset'].',count($__LIST__),true);';
         }else{
             $parseStr .= ' $__LIST__ = '.$name.';';
         }
@@ -207,7 +249,7 @@ class TagLibCx extends TagLib
      +----------------------------------------------------------
      * switch标签解析
      * 格式：
-     * <switch name="$a.name" >
+     * <switch name="a.name" >
      * <case value="1" break="false">1</case>
      * <case value="2" >2</case>
      * <default />other
@@ -265,7 +307,8 @@ class TagLibCx extends TagLib
             $value	=	'case "'.$value.'": ';
         }
         $parseStr = '<?php '.$value.' ?>'.$content;
-        if('' ==$tag['break'] || $tag['break']) {
+        $isBreak  = isset($tag['break']) ? $tag['break'] : '';
+        if('' ==$isBreak || $isBreak) {
             $parseStr .= '<?php break;?>';
         }
         return $parseStr;
@@ -308,7 +351,7 @@ class TagLibCx extends TagLib
         $tag      = $this->parseXmlAttr($attr,'compare');
         $name   = $tag['name'];
         $value   = $tag['value'];
-        $type    =   $tag['type']?$tag['type']:$type;
+        $type    =   isset($tag['type'])?$tag['type']:$type;
         $type    =   $this->parseCondition(' '.$type.' ');
         $varArray = explode('|',$name);
         $name   =   array_shift($varArray);
@@ -329,7 +372,7 @@ class TagLibCx extends TagLib
     }
 
     public function _equal($attr,$content) {
-        return $this->_eq($attr,$content);
+        return $this->_compare($attr,$content,'eq');
     }
 
     public function _neq($attr,$content) {
@@ -337,7 +380,7 @@ class TagLibCx extends TagLib
     }
 
     public function _notequal($attr,$content) {
-        return $this->_neq($attr,$content);
+        return $this->_compare($attr,$content,'neq');
     }
 
     public function _gt($attr,$content) {
@@ -369,6 +412,7 @@ class TagLibCx extends TagLib
      * range标签解析
      * 如果某个变量存在于某个范围 则输出内容 type= in 表示在范围内 否则表示在范围外
      * 格式： <range name="var|function"  value="val" type='in|notin' >content</range>
+     * example: <range name="a"  value="1,2,3" type='in' >content</range>
      +----------------------------------------------------------
      * @access public
      +----------------------------------------------------------
@@ -386,7 +430,7 @@ class TagLibCx extends TagLib
         $varArray = explode('|',$name);
         $name   =   array_shift($varArray);
         $name = $this->autoBuildVar($name);
-        $type    =   $tag['type']?$tag['type']:$type;
+        $type    =   isset($tag['type'])?$tag['type']:$type;
         $fun  =  ($type == 'in')? 'in_array'    :   '!in_array';
         if(count($varArray)>0)
             $name = $this->tpl->parseVarFunction($name,$varArray);
@@ -449,7 +493,7 @@ class TagLibCx extends TagLib
      */
     public function _notpresent($attr,$content)
     {
-        $tag      = $this->parseXmlAttr($attr,'present');
+        $tag      = $this->parseXmlAttr($attr,'notpresent');
         $name   = $tag['name'];
         $name   = $this->autoBuildVar($name);
         $parseStr  = '<?php if(!isset('.$name.')): ?>'.$content.'<?php endif; ?>';
@@ -481,13 +525,19 @@ class TagLibCx extends TagLib
 
     public function _notempty($attr,$content)
     {
-        $tag      = $this->parseXmlAttr($attr,'empty');
+        $tag      = $this->parseXmlAttr($attr,'notempty');
         $name   = $tag['name'];
         $name   = $this->autoBuildVar($name);
         $parseStr  = '<?php if(!empty('.$name.')): ?>'.$content.'<?php endif; ?>';
         return $parseStr;
     }
-
+    /**
+     * 判断是否已经定义了该常量
+     * <defined name='TXT'>已定义</defined>
+     * @param <type> $attr
+     * @param <type> $content
+     * @return string
+     */
     public function _defined($attr,$content)
     {
         $tag        = $this->parseXmlAttr($attr,'defined');
@@ -498,7 +548,7 @@ class TagLibCx extends TagLib
 
     public function _notdefined($attr,$content)
     {
-        $tag        = $this->parseXmlAttr($attr,'defined');
+        $tag        = $this->parseXmlAttr($attr,'_notdefined');
         $name     = $tag['name'];
         $parseStr = '<?php if(!defined("'.$name.'")): ?>'.$content.'<?php endif; ?>';
         return $parseStr;
@@ -520,7 +570,7 @@ class TagLibCx extends TagLib
     public function _layout($attr,$content) {
         $tag      = $this->parseXmlAttr($attr,'layout');
         $name   =   $tag['name'];
-        $cache   =   $tag['cache']?$tag['cache']:0;
+        $cache   =   isset($tag['cache'])?$tag['cache']:0;
         $parseStr=   "<!-- layout::$name::$cache -->";
         return $parseStr;
     }
@@ -542,11 +592,11 @@ class TagLibCx extends TagLib
     public function _import($attr,$content,$isFile=false,$type='')
     {
         $tag  = $this->parseXmlAttr($attr,'import');
-        $file   = $tag['file']?$tag['file']:$tag['href'];
+        $file   = isset($tag['file'])?$tag['file']:$tag['href'];
         $parseStr = '';
         $endStr   = '';
         // 判断是否存在加载条件 允许使用函数判断(默认为isset)
-        if ($tag['value'])
+        if (isset($tag['value']))
         {
             $varArray  = explode('|',$tag['value']);
             $name      = array_shift($varArray);
@@ -560,10 +610,14 @@ class TagLibCx extends TagLib
         }
         if($isFile) {
             // 根据文件名后缀自动识别
-            $type       = $type?$type:(!empty($tag['type'])?strtolower($tag['type']):strtolower(substr(strrchr($file, '.'),1)));
+            $type = $type?$type:(!empty($tag['type'])?strtolower($tag['type']):null);
             // 文件方式导入
             $array =  explode(',',$file);
             foreach ($array as $val){
+                if (!$type || isset($reset))
+                {
+                    $type = $reset = strtolower(substr(strrchr($val, '.'),1));
+                }
                 switch($type) {
                 case 'js':
                     $parseStr .= '<script type="text/javascript" src="'.$val.'"></script>';
@@ -585,10 +639,10 @@ class TagLibCx extends TagLib
             foreach ($array as $val){
                 switch($type) {
                 case 'js':
-                    $parseStr .= "<script type='text/javascript' src='".$basepath.'/'.str_replace(array('.','#'), array('/','.'),$val).'.js'."'></script> ";
+                    $parseStr .= '<script type="text/javascript" src="'.$basepath.'/'.str_replace(array('.','#'), array('/','.'),$val).'.js"></script>';
                     break;
                 case 'css':
-                    $parseStr .= "<link rel='stylesheet' type='text/css' href='".$basepath.'/'.str_replace(array('.','#'), array('/','.'),$val).'.css'."' />";
+                    $parseStr .= '<link rel="stylesheet" type="text/css" href="'.$basepath.'/'.str_replace(array('.','#'), array('/','.'),$val).'.css" />';
                     break;
                 case 'php':
                     $parseStr .= '<?php import("'.$val.'"); ?>';
@@ -599,7 +653,7 @@ class TagLibCx extends TagLib
         return $parseStr.$endStr;
     }
 
-    // import别名 采用文件方式加载 例如 <load file="__PUBLIC__/Js/Base.js" />
+    // import别名 采用文件方式加载(要使用命名空间必须用import) 例如 <load file="__PUBLIC__/Js/Base.js" />
     public function _load($attr,$content)
     {
         return $this->_import($attr,$content,true);
@@ -615,6 +669,60 @@ class TagLibCx extends TagLib
     public function _js($attr,$content)
     {
         return $this->_import($attr,$content,true,'js');
+    }
+
+    /**
+     +----------------------------------------------------------
+     * assign标签解析
+     * 在模板中给某个变量赋值 支持变量赋值
+     * 格式： <assign name="" value="" />
+     +----------------------------------------------------------
+     * @access public
+     +----------------------------------------------------------
+     * @param string $attr 标签属性
+     * @param string $content  标签内容
+     +----------------------------------------------------------
+     * @return string
+     +----------------------------------------------------------
+     */
+    public function _assign($attr,$content)
+    {
+        $tag      = $this->parseXmlAttr($attr,'assign');
+        $name   = $this->autoBuildVar($tag['name']);
+        if('$'==substr($tag['value'],0,1)) {
+            $value   =  $this->autoBuildVar(substr($tag['value'],1));
+        }else{
+            $value   =   '\''.$tag['value']. '\'';
+        }
+        $parseStr  = '<?php '.$name.' = '.$value.'; ?>';
+        return $parseStr;
+    }
+
+    /**
+     +----------------------------------------------------------
+     * define标签解析
+     * 在模板中定义常量 支持变量赋值
+     * 格式： <define name="" value="" />
+     +----------------------------------------------------------
+     * @access public
+     +----------------------------------------------------------
+     * @param string $attr 标签属性
+     * @param string $content  标签内容
+     +----------------------------------------------------------
+     * @return string
+     +----------------------------------------------------------
+     */
+    public function _define($attr,$content)
+    {
+        $tag      = $this->parseXmlAttr($attr,'define');
+        $name   =  '\''.$tag['name']. '\'';
+        if('$'==substr($tag['value'],0,1)) {
+            $value   =  $this->autoBuildVar(substr($tag['value'],1));
+        }else{
+            $value   =   '\''.$tag['value']. '\'';
+        }
+        $parseStr  = '<?php define('.$name.', '.$value.'); ?>';
+        return $parseStr;
     }
 
 }//类定义结束

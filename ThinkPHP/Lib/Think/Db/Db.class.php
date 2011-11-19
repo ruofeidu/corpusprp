@@ -2,7 +2,7 @@
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2009 http://thinkphp.cn All rights reserved.
+// | Copyright (c) 2010 http://thinkphp.cn All rights reserved.
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -13,7 +13,6 @@
 /**
  +------------------------------------------------------------------------------
  * ThinkPHP 数据库中间层实现类
- * 支持Mysql 可以使用PDO
  +------------------------------------------------------------------------------
  * @category   Think
  * @package  Think
@@ -55,8 +54,6 @@ class Db extends Think
     protected $connected       = false;
     // 数据库连接参数配置
     protected $config             = '';
-    // SQL 执行时间记录
-    protected $beginTime;
     // 数据库表达式
     protected $comparison      = array('eq'=>'=','neq'=>'!=','gt'=>'>','egt'=>'>=','lt'=>'<','elt'=>'<=','notlike'=>'NOT LIKE','like'=>'LIKE');
     // 查询表达式
@@ -71,7 +68,7 @@ class Db extends Think
      * @param array $config 数据库配置数组
      +----------------------------------------------------------
      */
-    function __construct($config=''){
+    public function __construct($config=''){
         return $this->factory($config);
     }
 
@@ -339,9 +336,9 @@ class Db extends Think
      */
     protected function debug() {
         // 记录操作结束时间
-        if ( $this->debug )    {
-            $runtime    =   number_format(microtime(TRUE) - $this->beginTime, 6);
-            Log::record(" RunTime:".$runtime."s SQL = ".$this->queryStr,Log::SQL);
+        if ( $this->debug ) {
+            G('queryEndTime');
+            Log::record($this->queryStr." [ RunTime:".G('queryStartTime','queryEndTime',6)."s ]",Log::SQL);
         }
     }
 
@@ -393,11 +390,13 @@ class Db extends Think
      * @return string
      +----------------------------------------------------------
      */
-    protected function parseValue(&$value) {
+    protected function parseValue($value) {
         if(is_string($value)) {
             $value = '\''.$this->escape_string($value).'\'';
         }elseif(isset($value[0]) && is_string($value[0]) && strtolower($value[0]) == 'exp'){
             $value   =  $this->escape_string($value[1]);
+        }elseif(is_array($value)) {
+            $value   =  array_map(array($this, 'parseValue'),$value);
         }elseif(is_null($value)){
             $value   =  'null';
         }
@@ -449,15 +448,8 @@ class Db extends Think
     protected function parseTable($tables) {
         if(is_string($tables))
             $tables  =  explode(',',$tables);
-        $array   =  array();
-        foreach ($tables as $key=>$table){
-            if(is_numeric($key)) {
-                $array[] =  $this->addSpecialChar($table);
-            }else{
-                $array[] =  $this->addSpecialChar($key).' '.$this->addSpecialChar($table);
-            }
-        }
-        return implode(',',$array);
+        array_walk($tables, array(&$this, 'addSpecialChar'));
+        return implode(',',$tables);
     }
 
     /**
@@ -499,16 +491,14 @@ class Db extends Think
                             }elseif('exp'==strtolower($val[0])){ // 使用表达式
                                 $whereStr .= ' ('.$key.' '.$val[1].') ';
                             }elseif(preg_match('/IN/i',$val[0])){ // IN 运算
-                                if(is_array($val[1])) {
-                                    array_walk($val[1], array($this, 'parseValue'));
-                                    $zone   =   implode(',',$val[1]);
-                                }else{
-                                    $zone   =   $val[1];
+                                if(is_string($val[1])) {
+                                     $val[1] =  explode(',',$val[1]);
                                 }
+                                $zone   =   implode(',',$this->parseValue($val[1]));
                                 $whereStr .= $key.' '.strtoupper($val[0]).' ('.$zone.')';
                             }elseif(preg_match('/BETWEEN/i',$val[0])){ // BETWEEN运算
                                 $data = is_string($val[1])? explode(',',$val[1]):$val[1];
-                                $whereStr .=  ' ('.$key.' '.strtoupper($val[0]).' '.$this->parseValue($data[0]).' AND '.$this->parseValue($data[1]).' )';
+                                $whereStr .=  ' ('.$key.' BETWEEN '.$data[0].' AND '.$data[1].' )';
                             }else{
                                 throw_exception(L('_EXPRESS_ERROR_').':'.$val[0]);
                             }
@@ -713,11 +703,12 @@ class Db extends Think
      +----------------------------------------------------------
      * @param mixed $data 数据
      * @param array $options 参数表达式
+     * @param boolean $replace 是否replace
      +----------------------------------------------------------
      * @return false | integer
      +----------------------------------------------------------
      */
-    public function insert($data,$options=array()) {
+    public function insert($data,$options=array(),$replace=false) {
         foreach ($data as $key=>$val){
             $value   =  $this->parseValue($val);
             if(is_scalar($value)) { // 过滤非标量数据
@@ -725,7 +716,7 @@ class Db extends Think
                 $fields[]     =  $this->addSpecialChar($key);
             }
         }
-        $sql   =  'INSERT INTO '.$this->parseTable($options['table']).' ('.implode(',', $fields).') VALUES ('.implode(',', $values).')';
+        $sql   =  ($replace?'REPLACE':'INSERT').' INTO '.$this->parseTable($options['table']).' ('.implode(',', $fields).') VALUES ('.implode(',', $values).')';
         $sql   .= $this->parseLock(isset($options['lock'])?$options['lock']:false);
         return $this->execute($sql);
     }
@@ -824,7 +815,8 @@ class Db extends Think
         if(isset($options['page'])) {
             // 根据页数计算limit
             list($page,$listRows) =  explode(',',$options['page']);
-            $listRows = $listRows?$listRows:((isset($options['limit']) && is_numeric($options['limit']))?$options['limit']:20);
+            $page    = $page?$page:1;
+            $listRows = $listRows?$listRows:($options['limit']?$options['limit']:20);
             $offset  =  $listRows*((int)$page-1);
             $options['limit'] =  $offset.','.$listRows;
         }
@@ -867,50 +859,6 @@ class Db extends Think
             }
         }
         return $value;
-    }
-
-    /**
-     +----------------------------------------------------------
-     * 查询次数更新或者查询
-     +----------------------------------------------------------
-     * @access public
-     +----------------------------------------------------------
-     * @param mixed $times
-     +----------------------------------------------------------
-     * @return void
-     +----------------------------------------------------------
-     */
-    public function Q($times='') {
-        static $_times = 0;
-        if(empty($times)) {
-            return $_times;
-        }else{
-            $_times++;
-            // 记录开始执行时间
-            $this->beginTime = microtime(TRUE);
-        }
-    }
-
-    /**
-     +----------------------------------------------------------
-     * 写入次数更新或者查询
-     +----------------------------------------------------------
-     * @access public
-     +----------------------------------------------------------
-     * @param mixed $times
-     +----------------------------------------------------------
-     * @return void
-     +----------------------------------------------------------
-     */
-    public function W($times='') {
-        static $_times = 0;
-        if(empty($times)) {
-            return $_times;
-        }else{
-            $_times++;
-            // 记录开始执行时间
-            $this->beginTime = microtime(TRUE);
-        }
     }
 
     /**

@@ -2,7 +2,7 @@
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2009 http://thinkphp.cn All rights reserved.
+// | Copyright (c) 2010 http://thinkphp.cn All rights reserved.
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -87,6 +87,8 @@ class ViewModel extends Model {
             $options['field'] = $this->checkFields();
         if(isset($options['group']))
             $options['group']  =  $this->checkGroup($options['group']);
+        if(isset($options['where']))
+            $options['where']  =  $this->checkCondition($options['where']);
         if(isset($options['order']))
             $options['order']  =  $this->checkOrder($options['order']);
     }
@@ -130,7 +132,7 @@ class ViewModel extends Model {
                 $k = isset($val['_as'])?$val['_as']:$key;
                 $val  =  $this->_checkFields($key,$val);
                 foreach ($where as $name=>$value){
-                    if(false !== $field = array_search($name,$val)) {
+                    if(false !== $field = array_search($name,$val,true)) {
                         // 存在视图字段
                         $_key   =   is_numeric($field)?    $k.'.'.$name   :   $k.'.'.$field;
                         $view[$_key]    =   $value;
@@ -166,7 +168,7 @@ class ViewModel extends Model {
                 foreach ($this->viewFields as $name=>$val){
                     $k = isset($val['_as'])?$val['_as']:$name;
                     $val  =  $this->_checkFields($name,$val);
-                    if(false !== $_field = array_search($field,$val)) {
+                    if(false !== $_field = array_search($field,$val,true)) {
                         // 存在视图字段
                         $field     =  is_numeric($_field)?$k.'.'.$field:$k.'.'.$_field;
                         break;
@@ -199,7 +201,7 @@ class ViewModel extends Model {
                 foreach ($this->viewFields as $name=>$val){
                     $k = isset($val['_as'])?$val['_as']:$name;
                     $val  =  $this->_checkFields($name,$val);
-                    if(false !== $_field = array_search($field,$val)) {
+                    if(false !== $_field = array_search($field,$val,true)) {
                         // 存在视图字段
                         $field     =  is_numeric($_field)?$k.'.'.$field:$k.'.'.$_field;
                         break;
@@ -261,7 +263,7 @@ class ViewModel extends Model {
                 $k = isset($val['_as'])?$val['_as']:$name;
                 $val  =  $this->_checkFields($name,$val);
                 foreach ($fields as $key=>$field){
-                    if(false !== $_field = array_search($field,$val)) {
+                    if(false !== $_field = array_search($field,$val,true)) {
                         // 存在视图字段
                         if(is_numeric($_field)) {
                             $array[]    =   $k.'.'.$field.' AS '.$field;

@@ -37,6 +37,23 @@ class UserAction extends CommonAction {
 			}
 		}
 	}
+	
+	// 修改数据
+	public function update() {
+		// 创建数据对象
+		$User	 =	 D("User");
+		if(!$User->create()) {
+			$this->error($User->getError());
+		}else{
+			// 写入帐号数据
+			if($result	 =	 $User->add()) {
+				$this->addRole($result);
+				$this->success('用户修改成功！');
+			}else{
+				$this->error('用户修改失败！');
+			}
+		}
+	}
 
 	protected function addRole($userId) {
 		//新增用户自动加入相应权限组

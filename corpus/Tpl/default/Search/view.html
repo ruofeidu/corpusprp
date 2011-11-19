@@ -1,0 +1,53 @@
+<div class="row">
+	<div class="column grid_6"><p class="articletitle">{$a.title}</p></div>
+	<div class="column grid_3"><p class="pagetopnav"><a href="<?php echo U('Index/Index'); ?>">返回</a></div>
+</div>
+
+<div class="row main">
+<div class="column grid_6">
+	<div class="articletext">{$text}</div>
+</div>
+<div class="column grid_3">
+	<table width="100%">
+		<tr><th>文章信息</th></tr>
+		<tr><td>作品コード</td><td>{$a.aid}</td></tr>
+		<tr><td>執筆者コード</td><td>{$a.uid}</td></tr>
+		<tr><td>題目</td><td>{$a.title}</td></tr>
+		<tr><td>文体</td><td>{$a.type}</td></tr>
+		<tr><td>学期</td><td>{$a.semester}</td></tr>
+		<tr><td>学習時間数</td><td>{$a.semestertime}</td></tr>
+		<tr><td>執筆日</td><td>{$a.time}</td></tr>
+		<tr><td>辞書の使用</td><td>{$a.usebook}</td></tr>
+		<tr><td>時間制限</td><td>{$a.timelimit}</td></tr>
+		<tr><td>添削者</td><td>{$a.modifiedby}</td></tr>		
+		<tr><td>タグ付者</td><td>{$a.markedby}</td></tr>
+		<tr><td>タグ付項目</td><td>{$a.mark}</td></tr>
+		<tr><td>タグ付完成日</td><td>{$a.finishedday}</td></tr>
+		<tr><td>字数</td><td>{$a.wordnum}</td></tr>	
+		<tr><td>入力者</td><td>{$a.inputed}</td></tr>	
+		<tr><td>入力完成日</td><td>{$a.inputedday}</td></tr>	
+	</table>
+</div>
+<script type="text/javascript"> 
+	$(document).ready(function()
+	{
+	   $('.tip[title]').qtip({
+		  position: {
+			 corner: {
+				target: 'bottomRight',
+				tooltip: 'topLeft'
+			 }
+		  },
+		  style: {
+			 name: 'cream',
+			 padding: '7px 13px',
+			 width: {
+				max: 300,
+				min: 0
+			 },
+			 tip: true
+		  }
+	   });
+	});
+</script> 
+</div>

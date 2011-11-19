@@ -2,7 +2,7 @@
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2009 http://thinkphp.cn All rights reserved.
+// | Copyright (c) 2010 http://thinkphp.cn All rights reserved.
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -112,7 +112,7 @@ class Think
                     self::$_instance[$identify] = $o;
             }
             else
-                halt(L('_CLASS_NOT_EXIST_'));
+                halt(L('_CLASS_NOT_EXIST_').':'.$class);
         }
         return self::$_instance[$identify];
     }

@@ -2,7 +2,7 @@
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2009 http://thinkphp.cn All rights reserved.
+// | Copyright (c) 2010 http://thinkphp.cn All rights reserved.
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -145,22 +145,5 @@ class Cache extends Think
         return get_instance_of(__CLASS__,'connect',$param);
     }
 
-    // 读取缓存次数
-    public function Q($times='') {
-        static $_times = 0;
-        if(empty($times))
-            return $_times;
-        else
-            $_times++;
-    }
-
-    // 写入缓存次数
-    public  function W($times='') {
-        static $_times = 0;
-        if(empty($times))
-            return $_times;
-        else
-            $_times++;
-    }
 }//类定义结束
 ?>
