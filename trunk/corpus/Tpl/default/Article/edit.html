@@ -1,0 +1,83 @@
+<include file="Public:header" />
+<div id="main" class="main" >
+<div class="content">
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Js/editor/kindeditor.js"></script>
+<script type="text/javascript">
+    KE.show({
+        id : 'content_1' //TEXTAREA输入框的ID
+   });
+</script>
+<div class="title">编辑作文 [ <a href="__URL__">返回列表</a> ]</div>
+<div class="fRig"><neq name="vo.image" value=''><img src="__PUBLIC__/Uploads/{$vo.image}"  width="160" height="120" style="border:1px solid silver;padding:1px" /></neq></div>
+<div id="result" class="result none"></div>
+<form method='post' id="form1" name="form1"action="__URL__/update"  enctype="multipart/form-data">
+<table cellpadding=3 cellspacing=3 >
+	<table cellpadding=3 cellspacing=3 >
+	<tr>
+		<td class="tRight" width="10%">文章编号：</td>
+		<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="aid"></td>
+	</tr>
+	<tr>
+		<td class="tRight" width="10%">作者编号：</td>
+		<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="uid"></td>
+	</tr>
+	<tr>
+		<td class="tRight" width="10%">学期编号：</td>
+		<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="semester"></td>
+	</tr>
+	
+	
+	<tr>
+		<td class="tRight" width="10%">标题：</td>
+		<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="title"></td>
+	</tr>
+	<tr>
+		<td class="tRight tTop">内容：</td>
+		<td class="tLeft"><textarea id="content_1" name="content" style="width:700px;height:300px;"></textarea>	</td>
+	</tr>
+	
+		<tr>
+		<td class="tRight" width="10%">写作时间：</td>
+		<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="time"></td>
+	</tr>
+	<tr>
+		<td class="tRight" width="10%">使用书籍：</td>
+		<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="usebook"></td>
+	</tr>
+	<tr>
+		<td class="tRight" width="10%">时间限制：</td>
+		<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="timelimit"></td>
+	</tr>
+	<tr>
+		<td class="tRight" width="10%">修改者：</td>
+		<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="r1"></td>
+	</tr>
+
+	<tr>
+		<td class="tRight" width="10%">完成时间</td>
+		<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="finishedday"></td>
+	</tr>
+	<tr>
+		<td class="tRight" width="10%">字数：</td>
+		<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="wordnum"></td>
+	</tr>
+	<tr>
+		<td class="tRight" width="10%">inputedday</td>
+		<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="inputedday"></td>
+	</tr>
+	
+
+	<tr>
+		<td></td>
+		<td class="center"><div style="width:85%;margin:5px">
+		<input type="hidden" class="huge bLeftRequire" name="id" value="{$vo.id}">
+		<input type="hidden" name="type" value="1"><!-- who knows what it is-->
+		<input type="hidden" name="inputed" value="<?php echo $_SESSION[C('USER_AUTH_KEY')] ?>">
+		
+		<input type="submit" value="更 新" class="button medium">
+		</div></td>
+	</tr>
+</table>
+</form>
+</div>
+</div>

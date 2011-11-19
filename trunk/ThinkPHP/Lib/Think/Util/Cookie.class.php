@@ -2,7 +2,7 @@
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2009 http://thinkphp.cn All rights reserved.
+// | Copyright (c) 2010 http://thinkphp.cn All rights reserved.
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -54,7 +54,7 @@ class Cookie extends Think
 
     // 删除某个Cookie值
     static function delete($name) {
-        Cookie::set($name,'',time()-3600);
+        Cookie::set($name,'',-3600);
         unset($_COOKIE[C('COOKIE_PREFIX').$name]);
     }
 

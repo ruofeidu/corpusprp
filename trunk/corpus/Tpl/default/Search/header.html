@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!-- 系统CSS样式清空 -->
+	<link rel="stylesheet" type="text/css" href="../Public/css/reset-min.css" />
+	
+	<script type="text/javascript" src="../Public/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="../Public/jquery.qtip-1.0.0-rc3.min.js"></script>
+	
+    <!-- Grid CSS框架库|布局用 -->
+    <link href="../Public/css/grid.css" rel="stylesheet" />
+	
+    <!-- 俺们自己写的CSS -->
+    <link href="../Public/css/style.css" rel="stylesheet" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<title>Corpus PRP</title>
+</head>
+
+<body>
+    <div id="superheader">
+		<div class="row" align="right">
+			<div class="column grid_6">
+			</div>
+			
+			<a href="{:U("Public/index")}"><img src="__PUBLIC__/images/brand.gif" width="16" height="16" border="0" alt="" align="absmiddle"> 后台管理</a> 
+			
+			<a href="{:U("Public/password")}"><img src="__PUBLIC__/images/checked_out.png" width="16" height="16" border="0" alt="" align="absmiddle"> 修改密码</a> 
+			<a href="{:U("Public/profile")}"><img SRC="__PUBLIC__/images/write.gif" WIDTH="17" HEIGHT="16" BORDER="0" ALT="" align="absmiddle"> 修改资料</a> 
+			<a href="{:U("Public/logout")}"><img SRC="__PUBLIC__/images/error.gif" WIDTH="20" HEIGHT="20" BORDER="0" ALT="" align="absmiddle"> 退 出</a></div>
+		
+		</div>
+	</div>
+	
+    <div id="header" class="row b-l">
+        <div id="logo">
+			<a href="{:U("Index/welcome")}">Corpus</a>
+		</div>
+		
+		<div class="column grid_3">
+			<volist name="subnavs" id="nav">
+				<div class="subnav">
+					<div class="subnav-item">
+						<a id='{$nav['id']}' href='{$nav['href']}' <?php if ($nav['npage']) echo 'target="_blank"'; ?> >{$nav['title']}</a>
+					</div>
+				</div>
+			</volist>
+		</div>
+    </div>
+
+

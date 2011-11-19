@@ -2,7 +2,7 @@
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2009 http://thinkphp.cn All rights reserved.
+// | Copyright (c) 2010 http://thinkphp.cn All rights reserved.
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -49,7 +49,7 @@ class App
         // 应用调度过滤器
         // 如果没有加载任何URL调度器
         // 默认只支持 QUERY_STRING 方式
-        if(C('URL_DISPATCH_ON'))   Dispatcher::dispatch();
+        Dispatcher::dispatch();
 
         // 取得模块和操作名称
         // 可以在Dispatcher中定义获取规则
