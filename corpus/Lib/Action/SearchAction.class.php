@@ -25,7 +25,9 @@ class SearchAction extends CommonAction {
 		$content = substr($content,strpos($content,"\n"));
 		$content = str_replace("\n","<br/>",$content);
 
-		$content = format_text($content);
+		if (!isset($_GET['error'])) $error="";
+		else $error=$_GET['error'];
+		$content = format_text($content,$_GET['keywords'], $_GET['error']);
 		
 		//	#FFFF6F: yellow
 		//if (isset($_GET['keywords'])) {
@@ -40,10 +42,16 @@ class SearchAction extends CommonAction {
 	
 	//搜索
 	public function search(){
-		if ( !isset($_POST['keywords'])) $this->error('请输入关键字');
+		if ( (!isset($_POST['keywords'])||$_POST['keywords']=="") && (!isset($_POST['error'])||$_POST['error']=="") ) $this->error('请输入关键字');
 		$keywords = $_POST['keywords'];
-		$search_type = $_POST['searchtype'];
-		$error = $_POST['error']; 
+		if (!isset($_POST['error']))
+		$error="";
+		else $error = $_POST['error']; 
+		if (isset($_GET['page'])) $page = $_GET['page'];
+		else $page = 1;
+		$listnum = 30;
+		//echo $keywords.":".$error;
+		
 		$school = $_POST['school'];
 		$gender = $_POST['gender'];  
 		$people = $_POST['people'];
@@ -52,76 +60,37 @@ class SearchAction extends CommonAction {
 		
 		$article = M('article');
 		$student = M('student'); 
-		
-		$articles = $article->select();
-		$find = array(); 
-		$result = array(); 
-		$n = count($articles);
-		
-		$list = $article->where("text LIKE '%".$keywords."%'")->select();
-		if ($search_type == 'all') {
-			$find = $list;
-		}else{
-			foreach ($list as $l){
-				if ($search_type == 'error') {
-					//错误文
-					if (!isset($error) || $error == 'all')
-						if (preg_match('|\[([^\]\,]*'.$keywords.'[^\]\,]*),([^\]\,]*),([^\]\,]*)\]|', $l['text'], $matches)) $find[]=$l;
-					else
-						if (preg_match('|\[([^\]\,]*'.$keywords.'[^\]\,]*),([^\]\,]*),([^\]\,]*'.$error.'[^\]\,]*)\]|', $l['text'], $matches)) $find[]=$l;
-				}
-				if ($search_type == 'right') { 
-					//修正文
-					if (!isset($error) || $error == 'all')
-						if (preg_match('|\[([^\]\,]*),([^\]\,]*'.$keywords.'[^\]\,]*),([^\]\,]*)\]|', $l['text'], $matches)) $find[]=$l;
-					else
-						if (preg_match('|\[([^\]\,]*),([^\]\,]*'.$keywords.'[^\]\,]*),([^\]\,]*'.$error.'[^\]\,]*\]|', $l['text'], $matches)) $find[]=$l;
-					
-				}
-			}
-		}
-		
-		foreach ($find as $item){
-			$uid = $item['uid'];
-			$aid = $item['aid'];
-			$semester = $item['semester'];
-			
-			$student_info = $student->where("uid='".$uid."'")->find(); 
-			
-			if ($school != 'all' && $student_info['school'] != $school) continue; 
-			if ($gender != 'all' && $student_info['gender'] != $gender) continue; 
-			if ($people != 'all' && $student_info['people'] != $people) continue; 
-			if ($firstlang != 'all' && $student_info['firstlang'] != $firstlang) continue; 
-			if ($year != 'all' && $student_info['year'] != $year) continue; 
-			
-			$result[] = $item;
-		}
-		
-		foreach ($result as &$item){
+				
+		if ($error=="")
+			$list = $article->where("text RLIKE '.*".$keywords.".*'")->page($page.','.$listnum)->select();
+		else
+			$list = $article->where("text RLIKE '.*\[[^\]]*".$keywords."[^\]]*\,[^\]]*\,[^\]]*".$error."[^\]]*\].*'")->page($page.','.$listnum)->select();
+			//$list = $article->where("text RLIKE '.*\[[^\]\,]*".$keywords."[^\]\,]*\,[^\]\,]*\,[^\]\,]*".$error."[^\]\,]*\].*'")->page($page.','.$listnum)->select();
+		//print_r($list);
+				
+		foreach ($list as &$item){
 			$num = 0;
 			$point=0;
 			$item['detail']="";
 			while ($pos=strpos($item['text'], $keywords, $point)){
 				
-					$num++;
 					$point = $pos+1;
 					$sub = my_substr( $item['text'], $pos );
-					if ($search_type == 'all' ){
-						$item['detail'] .= $num.": ...".format_text( $sub,$keywords )."...<br/>";
+					$matchsub = my_substr( $item['text'], $pos,1 );
+					if ($error=="" ){
+						$item['detail'] .= "...".format_text( $sub,$keywords, $error, 1)."...<br/>";
 					}
-					if ($search_type == 'error'){
-						if (preg_match('|\[([^\]\,]*'.$keywords.'[^\]\,]*),([^\]\,]*),([^\]\,]*)\]|', $sub, $matches))
-							$item['detail'] .= $num.": ...".format_text( $sub,$keywords )."...<br/>";
-					}
-					if ($search_type == 'right'){
-						if (preg_match('|\[([^\]\,]*),([^\]\,]*'.$keywords.'[^\]\,]*),([^\]\,]*)\]|', $sub, $matches))
-							$item['detail'] .= $num.": ...".format_text( $sub,$keywords )."...<br/>";
+					else{
+						if (preg_match('|\[[^\]]*'.$keywords.'[^\]]*\,[^\]]*\,[^\]]*'.$error.'[^\]]*\]|', $matchsub, $matches))
+							$item['detail'] .= "...".format_text( $sub,$keywords, $error, 1 )."...<br/>";
 					}
 				}	
 			
 		}
 
-		$this->assign("articles", $result);
+		$this->assign("articles", $list);
+		$this->assign("error", $error); 
+		$this->assign("page", $page); 
 		$this->assign("keywords", $keywords); 
 		$this->assign("content", "Search:result");
 		$this->display("Search:base");
