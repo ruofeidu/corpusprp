@@ -10,7 +10,8 @@
 // +----------------------------------------------------------------------
 // $Id$
 
-function format_text($content , $keywords=""){
+function format_text($content , $keywords="", $errorcode="", $notitle = 0){
+		//echo $keywords." ".$errorcode;
 		preg_match_all('|\[([^\]\,]*),([^\]\,]*),([^\]\,]*)\]|', $content, $matches);
 		//print_r($matches);
 		//echo '<div style="background-color:green">';
@@ -39,16 +40,17 @@ function format_text($content , $keywords=""){
 					$errormsg.="错误类型:".$errorinfo['type']."<br/>错误信息:".$errorinfo['msg']."<br/><br/>";
 				}
 			}
-			if ($keywords!=""){
-				
-				$content = str_replace($matches[0][$i], '&nbsp;<b id="tip" style="background-color:#EE4000"><S>'.$matches[1][$i].'</S></b>'.'<b style="background-color:#ADFF2F">'.$matches[2][$i].'</b>',$content);
-				//$content = str_replace($keywords, '&nbsp;<b id="tip" style="background-color:#FFFF6F">'.$keywords.'</b>', $content);
+			//echo $matches[3][$i].' '.$errorcode.'<br>';
+			if ($errorcode!="" && strstr($matches[3][$i],$errorcode)!=false){
+				$matches[1][$i] = str_replace($keywords, '<span style="background-color:#FFFF6F">'.$keywords.'</span>', $matches[1][$i]);
+				//echo $matches[1][$i];
 			}
+			if ($notitle)
+			$content = str_replace($matches[0][$i], '&nbsp;<b class="tip"><b><S>'.$matches[1][$i].'</S></b>'.'<b>'.$matches[2][$i].'</b></b>',$content);
 			else
-			//#EE2C2C: red; #B3EE3A: green #ADFF2F
-				$content = str_replace($matches[0][$i], '&nbsp;<b class="tip" title="'.$errormsg.'"><b id="tip" style="background-color:#EE4000"><S>'.$matches[1][$i].'</S></b>'.'<b style="background-color:#ADFF2F">'.$matches[2][$i].'</b></b>',$content);
+			$content = str_replace($matches[0][$i], '&nbsp;<b class="tip" title="'.$errormsg.'"><b><S>'.$matches[1][$i].'</S></b>'.'<b>'.$matches[2][$i].'</b></b>',$content);
 		}
-		if ($keywords!="") $content = str_replace($keywords, '&nbsp;<b id="tip" style="background-color:#FFFF6F">'.$keywords.'</b>', $content);
+		if ($keywords!="" && $errorcode == "") $content = str_replace($keywords, '<span style="background-color:#FFFF6F">'.$keywords.'</span>', $content);
 			
 		return $content;
 }
