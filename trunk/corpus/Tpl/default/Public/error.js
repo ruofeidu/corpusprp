@@ -1,119 +1,154 @@
 
-//ÊÖĞ´javascriptÎŞÑ¹Á¦ÁË...
-errorBase = new Object(); 	//´íÎóĞÅÏ¢
+//æ‰‹å†™javascriptæ— å‹åŠ›äº†...
+errorBase = new Object(); 	//é”™è¯¯ä¿¡æ¯
 errorText = new Object(); 
-errorValue = new Object(); 	//´íÎó´úÂë
+errorValue = new Object(); 	//é”™è¯¯ä»£ç 
 
-errorBase['ËùÓĞÀàĞÍ'] = new Array('²»ÏŞ'); 
-	errorText['²»ÏŞ'] = new Array('²»ÏŞ'); 
-	errorValue['²»ÏŞ'] = new Array('all'); 
+errorBase['æ‰€æœ‰ç±»å‹'] = new Array('ä¸é™'); 
+	errorText['ä¸é™'] = new Array('ä¸é™'); 
+	errorValue['ä¸é™'] = new Array('all'); 
 
-errorBase['ÊéĞ´´íÎó'] = new Array('²»ÏŞ', '±í¼Ç', 'ÎÄÕÂ¸ñÊ½');
-	errorText['±í¼Ç'] = new Array('±í¼Ç'); 
-	errorValue['±í¼Ç'] = new Array('Hk'); 
+errorBase['ä¹¦å†™é”™è¯¯'] = new Array('ä¸é™', 'è¡¨è®°', 'æ–‡ç« æ ¼å¼');
+	errorText['è¡¨è®°'] = new Array('è¡¨è®°'); 
+	errorValue['è¡¨è®°'] = new Array('Hk'); 
 	
-	errorText['ÎÄÕÂ¸ñÊ½'] = new Array('ÎÄÕÂ¸ñÊ½'); 
-	errorValue['ÎÄÕÂ¸ñÊ½'] = new Array('Ss'); 
+	errorText['æ–‡ç« æ ¼å¼'] = new Array('æ–‡ç« æ ¼å¼'); 
+	errorValue['æ–‡ç« æ ¼å¼'] = new Array('Ss'); 
 	
-errorBase['´ÊÓï´íÎó'] = new Array('²»ÏŞ', '¶¯´Ê', '²¹Öú¶¯´Ê', 'Ãû´Ê', 'ĞÎÊ½Ãû´Ê', '´ú´Ê', '¸´ºÏ´Ê', '´ú´Ê', 'ĞÎÈİ´Ê', 'Öú´Ê', 'ÖÕÖú´Ê', 'Á¬Ìå´Ê', '¸ĞÌ¾´Ê', '½Ó´Ç', '¸´ºÏÖú´Ê', 'Öú¶¯´Ê', '½ÓĞø´Ê', '¸±´Ê', '´ÊÓï'); 
+errorBase['è¯è¯­é”™è¯¯'] = new Array('ä¸é™', 'åŠ¨è¯', 'è¡¥åŠ©åŠ¨è¯', 'åè¯', 'å½¢å¼åè¯', 'ä»£è¯', 'å¤åˆè¯', 'ä»£è¯', 'å½¢å®¹è¯', 'åŠ©è¯', 'ç»ˆåŠ©è¯', 'è¿ä½“è¯', 'æ„Ÿå¹è¯', 'æ¥è¾', 'å¤åˆåŠ©è¯', 'åŠ©åŠ¨è¯', 'æ¥ç»­è¯', 'å‰¯è¯', 'è¯è¯­'); 
 
-	errorText['¶¯´Ê'] = new Array('¶¯´Ê', '´ÊĞÎ', '×Ô¶¯´Ê', '±»¶¯Ì¬', 'Ê¹ÒÛÌ¬', '¿ÉÄÜÌ¬', 'ÊÚÊÜ¶¯´Ê', '¥µ±ä¶¯´Ê', 'Ëû¶¯´Ê', '´ÊĞÔ'); 
-	errorValue['¶¯´Ê'] = new Array('Ds', 'Ds1', 'Ds2', 'Ds3', 'Ds4', 'Ds5', 'Ds5', 'Ds6', 'Ds7', 'Ds8', 'Ds9'); 
+	errorText['åŠ¨è¯'] = new Array('åŠ¨è¯', 'è¯å½¢', 'è‡ªåŠ¨è¯', 'è¢«åŠ¨æ€', 'ä½¿å½¹æ€', 'å¯èƒ½æ€', 'æˆå—åŠ¨è¯', 'ã‚µå˜åŠ¨è¯', 'ä»–åŠ¨è¯', 'è¯æ€§'); 
+	errorValue['åŠ¨è¯'] = new Array('Ds', 'Ds1', 'Ds2', 'Ds3', 'Ds4', 'Ds5', 'Ds5', 'Ds6', 'Ds7', 'Ds8', 'Ds9'); 
 	
-	errorText['²¹Öú¶¯´Ê'] = new Array('²¹Öú¶¯´Ê', '´ÊĞÎ', 'ÊÚÊÜ¹ØÏµ²¹Öú¶¯´Ê', 'Ê±Ìå²¹Öú¶¯´Ê', 'ÆäËû²¹Öú¶¯´Ê'); 
-	errorValue['²¹Öú¶¯´Ê'] = new Array('Hj', 'Hj1', 'Hj2', 'Hj3'); 
+	errorText['è¡¥åŠ©åŠ¨è¯'] = new Array('è¡¥åŠ©åŠ¨è¯', 'è¯å½¢', 'æˆå—å…³ç³»è¡¥åŠ©åŠ¨è¯', 'æ—¶ä½“è¡¥åŠ©åŠ¨è¯', 'å…¶ä»–è¡¥åŠ©åŠ¨è¯'); 
+	errorValue['è¡¥åŠ©åŠ¨è¯'] = new Array('Hj'); 
 	
-	errorText['Ãû´Ê'] = new Array('Ãû´Ê', '´ÊĞÎ', '´ÊÒå', '´ÊĞÔ'); 
-	errorValue['Ãû´Ê'] = new Array('Ms', 'Ms1', 'Ms2', 'Ms3'); 
+	errorText['åè¯'] = new Array('åè¯', 'è¯å½¢', 'è¯ä¹‰', 'è¯æ€§'); 
+	errorValue['åè¯'] = new Array('Ms'); 
 		
-	errorText['ĞÎÊ½Ãû´Ê'] = new Array('ĞÎÊ½Ãû´Ê', '´ÊĞÎ', '´ÊÒå'); 
-	errorValue['ĞÎÊ½Ãû´Ê'] = new Array('Km'); 
+	errorText['å½¢å¼åè¯'] = new Array('å½¢å¼åè¯', 'è¯å½¢', 'è¯ä¹‰'); 
+	errorValue['å½¢å¼åè¯'] = new Array('Km'); 
 	
-	errorText['¸´ºÏ´Ê'] = new Array('¸´ºÏ´Ê', '´ÊĞÎ', '´ÊÒå', 'Ê±Ì¬¸´ºÏ¶¯´Ê'); 
-	errorValue['¸´ºÏ´Ê'] = new Array('Fg'); 
+	errorText['å¤åˆè¯'] = new Array('å¤åˆè¯', 'è¯å½¢', 'è¯ä¹‰', 'æ—¶æ€å¤åˆåŠ¨è¯'); 
+	errorValue['å¤åˆè¯'] = new Array('Fg'); 
 	
-	errorText['´ú´Ê'] = new Array('´ú´Ê', '´ÊĞÎ', '´ÊÒå'); 
-	errorValue['´ú´Ê'] = new Array('Dm'); 
+	errorText['ä»£è¯'] = new Array('ä»£è¯', 'è¯å½¢', 'è¯ä¹‰'); 
+	errorValue['ä»£è¯'] = new Array('Dm'); 
 	
-	errorText['ĞÎÈİ´Ê'] = new Array('ĞÎÈİ´Ê', '´ÊĞÎ', '´ÊÒå', '´ÊĞÔ'); 
-	errorValue['ĞÎÈİ´Ê'] = new Array('Ky'); 
+	errorText['å½¢å®¹è¯'] = new Array('å½¢å®¹è¯', 'è¯å½¢', 'è¯ä¹‰', 'è¯æ€§'); 
+	errorValue['å½¢å®¹è¯'] = new Array('Ky'); 
 	
-	errorText['Öú´Ê'] = new Array('Öú´Ê', '¸ñÖú´Ê', '½ÓĞøÖú´Ê'); 
-	errorValue['Öú´Ê'] = new Array('Js'); 
+	errorText['åŠ©è¯'] = new Array('åŠ©è¯', 'æ ¼åŠ©è¯', 'æ¥ç»­åŠ©è¯'); 
+	errorValue['åŠ©è¯'] = new Array('Js'); 
 	
-	errorText['ÖÕÖú´Ê'] = new Array('ÖÕÖú´ÊÓïÒåºÍĞÎÊ½µÄÊ¹ÓÃ´íÎó'); 
-	errorValue['ÖÕÖú´Ê'] = new Array('Syj'); 
+	errorText['ç»ˆåŠ©è¯'] = new Array('ç»ˆåŠ©è¯è¯­ä¹‰å’Œå½¢å¼çš„ä½¿ç”¨é”™è¯¯'); 
+	errorValue['ç»ˆåŠ©è¯'] = new Array('Syj'); 
 	
-	errorText['Á¬Ìå´Ê'] = new Array('Á¬Ìå´Ê'); 
-	errorValue['Á¬Ìå´Ê'] = new Array('Rt'); 
+	errorText['è¿ä½“è¯'] = new Array('è¿ä½“è¯'); 
+	errorValue['è¿ä½“è¯'] = new Array('Rt'); 
 	
-	errorText['¸ĞÌ¾´Ê'] = new Array('¸ĞÌ¾´Ê'); 
-	errorValue['¸ĞÌ¾´Ê'] = new Array('Gd'); 
+	errorText['æ„Ÿå¹è¯'] = new Array('æ„Ÿå¹è¯'); 
+	errorValue['æ„Ÿå¹è¯'] = new Array('Gd'); 
 	
-	errorText['½Ó´Ç'] = new Array('½Ó´Ç', '´ÊĞÎ', '´ÊÒå'); 
-	errorValue['½Ó´Ç'] = new Array('Sj'); 
+	errorText['æ¥è¾'] = new Array('æ¥è¾', 'è¯å½¢', 'è¯ä¹‰'); 
+	errorValue['æ¥è¾'] = new Array('Sj'); 
 	
-	errorText['¸´ºÏÖú´Ê'] = new Array('¸´ºÏÖú´Ê', '´ÊĞÎ', '´ÊÒå'); 
-	errorValue['¸´ºÏÖú´Ê'] = new Array('Fk'); 
+	errorText['å¤åˆåŠ©è¯'] = new Array('å¤åˆåŠ©è¯', 'è¯å½¢', 'è¯ä¹‰'); 
+	errorValue['å¤åˆåŠ©è¯'] = new Array('Fk'); 
 	
-	errorText['Öú¶¯´Ê'] = new Array('Öú¶¯´Ê', '´ÊĞÎ', '´ÊÒå'); 
-	errorValue['Öú¶¯´Ê'] = new Array('Jd'); 
+	errorText['åŠ©åŠ¨è¯'] = new Array('åŠ©åŠ¨è¯', 'è¯å½¢', 'è¯ä¹‰'); 
+	errorValue['åŠ©åŠ¨è¯'] = new Array('Jd'); 
 	
-	errorText['½ÓĞø´Ê'] = new Array('½ÓĞø´Ê', '´ÊĞÎ', '´ÊÒå'); 
-	errorValue['½ÓĞø´Ê'] = new Array('St'); 
+	errorText['æ¥ç»­è¯'] = new Array('æ¥ç»­è¯', 'è¯å½¢', 'è¯ä¹‰'); 
+	errorValue['æ¥ç»­è¯'] = new Array('St'); 
 	
-	errorText['¸±´Ê'] = new Array('¸±´Ê', '´ÊĞÎ', '´ÊÒå', '´ÊĞÔ'); 
-	errorValue['¸±´Ê'] = new Array('F'); 
+	errorText['å‰¯è¯'] = new Array('å‰¯è¯', 'è¯å½¢', 'è¯ä¹‰', 'è¯æ€§'); 
+	errorValue['å‰¯è¯'] = new Array('F'); 
 	
-errorBase['´Ê×é´íÎó'] = new Array('²»ÏŞ', '¶¯/¶¯´îÅä', '¸±/¶¯´îÅä', 'Ãû/¶¯´îÅä', 'Ãû/Ãû´îÅä', 'ĞÎ/Ãû´îÅä', 'ĞÎ¶¯/Ãû´îÅä', 'ĞÎ¶¯/¶¯´îÅä', 'ĞÎ/¶¯´îÅä', '¹Ì¶¨´Ê×é', 'Ãû/ĞÎ´îÅä'); 
-errorValue['´Ê×é´íÎó'] = 'R';
+errorBase['è¯ç»„é”™è¯¯'] = new Array('ä¸é™', 'åŠ¨/åŠ¨æ­é…', 'å‰¯/åŠ¨æ­é…', 'å/åŠ¨æ­é…', 'å/åæ­é…', 'å½¢/åæ­é…', 'å½¢åŠ¨/åæ­é…', 'å½¢åŠ¨/åŠ¨æ­é…', 'å½¢/åŠ¨æ­é…', 'å›ºå®šè¯ç»„', 'å/å½¢æ­é…'); 
+errorValue['è¯ç»„é”™è¯¯'] = 'R';
 
-errorBase['´Ê·¨´íÎó'] = new Array('²»ÏŞ', 'ÖØ¸´', 'Ç·È±', 'ÓïÌå', 'ÓïĞò', 'Ê±Ì¬'); 
-errorValue['´Ê·¨´íÎó'] = 'W';
+errorBase['è¯æ³•é”™è¯¯'] = new Array('ä¸é™', 'é‡å¤', 'æ¬ ç¼º', 'è¯­ä½“', 'è¯­åº', 'æ—¶æ€'); 
+errorValue['è¯æ³•é”™è¯¯'] = 'W';
 
-errorBase['¾ä×Ó´íÎó'] = new Array('²»ÏŞ', 'ÖØ¸´¡¢¶àÓà', 'Ç·È±', 'Ê±Ì¬', '±êµã', 'ÓïĞò', '¾ä×ÓÖÃ»»', 'ÎÄÌå', '¿Ï¶¨Óë·ñ¶¨'); 
-errorValue['¾ä×Ó´íÎó'] = 'W';
+errorBase['å¥å­é”™è¯¯'] = new Array('ä¸é™', 'é‡å¤ã€å¤šä½™', 'æ¬ ç¼º', 'æ—¶æ€', 'æ ‡ç‚¹', 'è¯­åº', 'å¥å­ç½®æ¢', 'æ–‡ä½“', 'è‚¯å®šä¸å¦å®š'); 
+errorValue['å¥å­é”™è¯¯'] = 'B';
 
-function set_city(province, city, error)
+function set_base(base, next, temp, error)
 {
-   //¸Ä±ä¶ş¼¶¼¶ÁªÏÂÀ­²Ëµ¥µÄÑ¡Ïî¹©Ñ¡Ôñ
+   //æ”¹å˜äºŒçº§çº§è”ä¸‹æ‹‰èœå•çš„é€‰é¡¹ä¾›é€‰æ‹©
 	var pv, i;
 
-	pv = province.value;
-	city.length = 1;
+	pv = base.value;
+	next.length = 1;
 
 	if (pv == '0') return;
 	if (typeof(errorBase[pv]) == 'undefined') return;
 
 	for (i = 0; i < errorBase[pv].length; i++)
 	{
-		city.options[i] = new Option();
-		city.options[i].text = errorBase[pv][i];
-		city.options[i].value = errorBase[pv][i];
+		next.options[i] = new Option();
+		next.options[i].text = errorBase[pv][i];
+		next.options[i].value = errorBase[pv][i];
 	}
-    set_next(city, error); 
+    set_next(base, next, temp, error); 
 }
 
-function set_next(city, error)
+function set_next(base, next, temp, error)
 {
-   //¸Ä±ä¶ş¼¶¼¶ÁªÏÂÀ­²Ëµ¥µÄÑ¡Ïî¹©Ñ¡Ôñ
-	var cv, i;
+   //æ”¹å˜ä¸‰çº§çº§è”ä¸‹æ‹‰èœå•çš„é€‰é¡¹ä¾›é€‰æ‹©
+	var bv, cv, i;
 
-	cv = city.value;
-	error.length = 1;
+	bv = base.value; 
+	cv = next.value;
+	temp.length = 1;
 
 	if (cv == '0') return;
 	if (typeof(errorText[cv]) == 'undefined') {
-		error.options[0] = new Option();
-		error.options[0].text = cv;
-		error.options[0].value = errorValue[cv] + city.index;
+		temp.options[0] = new Option();
+		temp.options[0].text = cv;
+		temp.options[0].value = errorValue[bv] + next.selectedIndex;
+		set_last(base, temp, error);
 		return;
 	}
 	
 	for (i = 0; i < errorText[cv].length; i++)
 	{
-		error.options[i] = new Option();
-		error.options[i].text = errorText[cv][i];
-		error.options[i].value = errorValue[cv] + i;
+		temp.options[i] = new Option();
+		temp.options[i].text = errorText[cv][i];
+		if (i == 0)
+			temp.options[i].value = errorValue[cv][0];
+		else
+			temp.options[i].value = errorValue[cv][0] + i;
+	}
+	
+	set_last(base, temp, error);
+}
+
+function set_last(base, temp, error)
+{
+   //æ”¹å˜å››çº§çº§è”ä¸‹æ‹‰èœå•çš„é€‰é¡¹ä¾›é€‰æ‹©
+	var cv, i;
+
+	cv = 'è¯æ³•é”™è¯¯';
+	error.length = 1;
+	
+	if (base.value == 'è¯è¯­é”™è¯¯'){
+		for (i = 0; i < errorBase[cv].length; i++)
+		{
+			error.options[i] = new Option();
+			if (i == 0){
+				error.options[i].text = temp.value + '_' + errorValue[cv];	// errorText[cv][i];
+				error.options[i].value = temp.value + '_' + errorValue[cv];
+			} else {
+				error.options[i].text = temp.value + '_' + errorValue[cv] + i;	// errorText[cv][i];
+				error.options[i].value = temp.value + '_' + errorValue[cv] + i;
+			}
+		}
+	} else {
+		error.length = 1;
+		error.options[0] = new Option();
+		error.options[0].text = temp.value; 
+		error.options[0].value = temp.value; 
 	}
 }
