@@ -42,7 +42,7 @@ class SearchAction extends CommonAction {
 	
 	//搜索
 	public function search(){
-		if ( (!isset($_POST['keywords'])||$_POST['keywords']=="") && (!isset($_POST['error'])||$_POST['error']=="") ) $this->error('请输入关键字');
+		//if ( (!isset($_POST['keywords'])||$_POST['keywords']=="") && (!isset($_POST['error'])||$_POST['error']=="") ) $this->error('请输入关键字');
 		$keywords = $_POST['keywords'];
 		if (!isset($_POST['error']))
 		$error="";
