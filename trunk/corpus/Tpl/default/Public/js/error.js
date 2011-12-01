@@ -6,7 +6,7 @@ errorValue = new Object(); 	//错误代码
 
 errorBase['所有类型'] = new Array('不限'); 
 	errorText['不限'] = new Array('不限'); 
-	errorValue['不限'] = new Array('all'); 
+	errorValue['不限'] = new Array(''); 
 
 errorBase['书写错误'] = new Array('不限', '表记', '文章格式');
 	errorText['表记'] = new Array('表记'); 
@@ -138,8 +138,8 @@ function set_last(base, temp, error)
 		{
 			error.options[i] = new Option();
 			if (i == 0){
-				error.options[i].text = temp.value + '_' + errorValue[cv];	// errorText[cv][i];
-				error.options[i].value = temp.value + '_' + errorValue[cv];
+				error.options[i].text = temp.value;	// errorText[cv][i];
+				error.options[i].value = temp.value;
 			} else {
 				error.options[i].text = temp.value + '_' + errorValue[cv] + i;	// errorText[cv][i];
 				error.options[i].value = temp.value + '_' + errorValue[cv] + i;

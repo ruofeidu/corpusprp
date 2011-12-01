@@ -53,6 +53,14 @@ a:hover {
     display: block;
 }
 
+.wrapper { 
+	width:100%;
+	overflow:hidden;
+}
+.container { 
+	width:100%;
+}
+
 .form-item {
     margin: 10px;
 }
@@ -502,3 +510,65 @@ div.warning{
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
 }
+
+/*--- tabs ---*/
+ul.tabs {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	height: 48px; /*--Set height of tabs--*/
+	padding:0 0 0 0;
+	position:relative;
+	float:left;
+}
+ul.tabs li {
+	float: left;
+	border-left: none;
+	overflow: hidden;
+	position: relative;
+	background:url(../images/tab-bg1.gif) no-repeat 0 0;
+	width:130px;
+	height:44px;
+	line-height:44px;
+	font-size:14px;
+	color:#fff;
+	text-align:center;
+	font-family:"微软雅黑", Arial, Helvetica, sans-serif;
+	margin:4px 0 0 4px;
+}
+ul.tabs li.first {
+	margin-left:0;
+}
+ul.tabs li a {
+	text-decoration: none;
+	color: #fff;
+	display: block;
+}
+	html ul.tabs li.active a {
+		color:#000;
+	}
+
+ul.tabs li:hover, html ul.tabs li.active  {
+	background:url(../images/tab-bg2.gif) no-repeat 0 0;
+	margin-top:0;
+	height:48px;
+	color:#000;
+	line-height:48px;
+}
+	ul.tabs li:hover a {
+		color:#000;
+	}
+
+.tab_container {
+	overflow: hidden;
+	clear: both;
+	float: left; width: 100%;
+	background: #fff;
+	min-height:205px;
+	height:auto !important;
+	height:205px;
+}
+.tab_content {
+	padding: 0px 0px 0px 0px;
+}
+/*--- tabs ---*/
