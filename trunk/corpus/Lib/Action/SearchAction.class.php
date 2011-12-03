@@ -54,17 +54,26 @@ class SearchAction extends CommonAction {
 		
 		$school = $_POST['school'];
 		$gender = $_POST['gender'];  
-		$people = $_POST['people'];
+		$studytime = $_POST['studytime'];
 		$firstlang = $_POST['firstlang'];
-		$year = $_POST['year'];
+		$semester = $_POST['year'];
+		$uid = $_POST['uid'];
 		
+		$condition = "";
+		if ($school!="") $condition .="corpus_student.school='$school' AND ";
+		if ($gender!="") $condition .="corpus_student.gender='$gender' AND ";
+		if ($studytime!="") $condition .="corpus_student.studytime='$studytime' AND ";
+		if ($firstlang!="") $condition .="corpus_student.firstlang='$firstlang' AND ";
+		if ($semester!="") $condition .="corpus_article.semester='$semester' AND ";
+		if ($uid!="") $condition .="corpus_article.uid='$uid' AND ";
+		//echo $condition.'<br/>';
 		$article = M('article');
 		$student = M('student'); 
 				
 		if ($error=="")
-			$list = $article->where("text RLIKE '.*".$keywords.".*'")->page($page.','.$listnum)->select();
+			$list = $article->field('corpus_article.*')->join('corpus_student ON corpus_article.uid = corpus_student.uid')->where($condition."text RLIKE '.*".$keywords.".*'")->page($page.','.$listnum)->select();
 		else
-			$list = $article->where("text RLIKE '.*\[[^\]]*".$keywords."[^\]]*\,[^\]]*\,[^\]]*".$error."[^\]]*\].*'")->page($page.','.$listnum)->select();
+			$list = $article->field('corpus_article.*')->join('corpus_student ON corpus_article.uid = corpus_student.uid')->where($condition."text RLIKE '.*\[[^\]]*".$keywords."[^\]]*\,[^\]]*\,[^\]]*".$error."[^\]]*\].*'")->page($page.','.$listnum)->select();
 			//$list = $article->where("text RLIKE '.*\[[^\]\,]*".$keywords."[^\]\,]*\,[^\]\,]*\,[^\]\,]*".$error."[^\]\,]*\].*'")->page($page.','.$listnum)->select();
 		//print_r($list);
 				
