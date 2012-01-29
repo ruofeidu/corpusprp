@@ -25,7 +25,13 @@ html{overflow-x : hidden;}
 <neq name="item['name']|strtolower" value="index" >
 <eq name="item['access']" value="1" >
 <tr class="row " >
-	<td><div style="margin:0px 5px"><img SRC="../Public/images/comment.gif" WIDTH="9" HEIGHT="9" BORDER="0" align="absmiddle" ALT=""> <a href="__APP__/{$item['name']}/index/" id="{$key}">{$item['title']}</a></div></td>
+	<td><div style="margin:0px 5px"><img SRC="../Public/images/comment.gif" WIDTH="9" HEIGHT="9" BORDER="0" align="absmiddle" ALT=""> 
+	<eq name="key" eq="1">
+	<a href="__APP__/{$item['name']}/index/" id="{$key}" target="_blank">{$item['title']}</a>
+	<else/>
+	<a href="__APP__/{$item['name']}/index/" id="{$key}">{$item['title']}</a>
+	</eq>
+	</div></td>
 </tr>
 </eq>
 </neq>

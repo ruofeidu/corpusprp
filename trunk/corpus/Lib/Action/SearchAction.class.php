@@ -4,10 +4,20 @@ class SearchAction extends CommonAction {
     public function index(){
 		//dump($_SESSION['_ACCESS_LIST']);
 		//dump($_SESSION['_ACCESS_LIST']['CORPUS']['INDEX']['MAIN'] != null );
+		//dump($_SESSION['_ACCESS_LIST']['CORPUS']['INDEX']['MAIN']);
+		
+		if ($_SESSION['_ACCESS_LIST']['CORPUS']['INDEX']['MAIN'] != null){
+			$admin_user = true; 
+		} else {
+			$admin_user = false; 
+		}
+		
         header("Content-Type:text/html; charset=utf-8");
         $article = M('article');
 		$articles = $article->select();
+		$this->assign("hasResult", -1); 
 		$this->assign("articles", $articles);
+		$this->assign("admin_user", $admin_user);
 		$this->assign("content", "Search:index");
 		$this->display("Search:base");
 		$this->display();
@@ -44,12 +54,9 @@ class SearchAction extends CommonAction {
 	public function search(){
 		//if ( (!isset($_POST['keywords'])||$_POST['keywords']=="") && (!isset($_POST['error'])||$_POST['error']=="") ) $this->error('请输入关键字');
 		$keywords = $_POST['keywords'];
-		if (!isset($_POST['error']))
-		$error="";
-		else $error = $_POST['error']; 
-		if (isset($_GET['page'])) $page = $_GET['page'];
-		else $page = 1;
-		$listnum = 30;
+		if (!isset($_POST['error'])) $error="";	else $error = $_POST['error']; 
+		if (isset($_POST['page'])) $page = $_POST['page']; else $page = 1;
+		if (isset($_POST['listnum'])) $listnum = $_POST['listnum']; else $listnum = 30;
 		//echo $keywords.":".$error;
 		
 		$school = $_POST['school'];
@@ -90,19 +97,23 @@ class SearchAction extends CommonAction {
 						$item['detail'] .= "...".format_text( $sub,$keywords, $error, 1)."...<br/>";
 					}
 					else{
-						if (preg_match('|\[[^\]]*'.$keywords.'[^\]]*\,[^\]]*\,[^\]]*'.$error.'[^\]]*\]|', $matchsub, $matches))
+						if (preg_match('|\[[^\]]*'.$keywords.'[^\]]*\,[^\]]*\,[^\]]*'.$error.'[^\]]*\]|', $matchsub, $matches)) {
 							$item['detail'] .= "...".format_text( $sub,$keywords, $error, 1 )."...<br/>";
+						}
 					}
 				}	
 			
 		}
 
+		if (count($list) != 0) $hasResult = 1; else $hasResult = 0; 
 		$this->assign("articles", $list);
+		$this->assign("hasResult", $hasResult); 
 		$this->assign("error", $error); 
 		$this->assign("page", $page); 
+		$this->assign("listnum", $listnum); 
 		$this->assign("keywords", $keywords); 
 		$this->assign("content", "Search:result");
-		$this->display("Search:base");
+		$this->display("Search:result");
 	}
 	
 	//private 更新文章

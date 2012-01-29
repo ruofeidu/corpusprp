@@ -6,6 +6,7 @@
 div.content{
     padding:10px 10px 5px 5px;
 }
+
 hr{
     border: 1px solid #ccc;
     width: 100%;
@@ -17,12 +18,17 @@ p {
     margin: 0 0 10px 0;
 }
 a {
+	font-size: 14px;
+	font-weight:bold;
+	font-family: 微软雅黑;
     text-decoration: none;
     color: #006FBB; 
+	text-decoration:none;
     /* color: #990000; */
 }
 a:hover {
-    color: #002E4E;
+    //color: #002E4E;
+	//text-decoration:underline;
 }
 
 #header {
@@ -37,8 +43,10 @@ a:hover {
 
 #search {
     margin: 20px auto;
-    padding-bottom: 20px;
 }
+
+#keywords{width:520px;height:38px;border:1px solid #a6dfe7;}
+#corpuslogo{width:223px;height:90px;float:left;}
 
 #logo a {
     color: white;
@@ -340,11 +348,13 @@ thead,
 }
 
 #superheader {
-    padding: 8px 0 8px 0;
+    padding: 5px 0 3px 0;
     font-size: 13px;
     color: #ddd;
-    background: #006fbb;
-    border-bottom: 6px solid #005188;
+    background: #006fbb; 
+    /* background: #4b8df8; */
+	border-bottom: 6px solid #005188;
+	/* border-bottom: 6px solid #3079ed; */
     border-top: 1px solid #007ed5;
 }
 

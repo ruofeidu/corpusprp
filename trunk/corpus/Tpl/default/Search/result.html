@@ -1,23 +1,55 @@
-<div class="row main">
-	<div class="column grid_9">
-	<!--<p class="articletitle">"{$keywords}"的搜索结果</p>-->
-		<table width="100%">
-			<tr>
-				<th>作品コード</th><th>執筆者コード</th><th>題目</th><th>学期</th><th>執筆日</th><th>字数</th>
-			</tr>
-			<volist name='articles' id='a'>
-				<tr class="striped">
-					<td>{$a.aid}</td>
-					<td>{$a.uid}</td>
-					<td><a href="{:U('Search/view')}?id={$a.id}&txtid={$a.semester},{$a.aid},{$a.uid}&keywords={$keywords}&error={$error}" target="_blank">{$a.title}</td>
-					<td>{$a.semester}</td>
-					<td>{$a.time}</td>
-					<td>{$a.wordnum}</td>
-				</tr>
-				<tr>
-					<td colspan="6" >{$a.detail}</td>
-				</tr>
-			</volist>
-		</table>
-	</div>
+<switch name="hasResult">
+<case value="1">
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#page')[0].value = {$page};
+	
+	$("#previous").click(function(){
+		pg = $('#page')[0];
+		--pg.value; 
+		$("#submit").click(); 
+	});
+	
+	$("#nextpage").click(function(){
+		pg = $('#page')[0];
+		++pg.value; 
+		$("#submit").click(); 
+	});
+}); 
+</script>
+<div class="row" align="center">
+<neq name="page" value="1">
+<div class="page column grid_1" id="previous"><a>上一页</a></div>
+</neq>
+<div class="page column grid_1">当前第{$page}页</div>
+<div class="page column grid_1" id="nextpage"><a>下一页</a></div>
 </div>
+<div class="column grid_9">
+<!--<p class="articletitle">"{$keywords}"的搜索结果</p>-->
+	<table width="100%">
+		<tr>
+			<th>作品コード</th><th>執筆者コード</th><th>題目</th><th>学期</th><th>執筆日</th><th>字数</th>
+		</tr>
+		<volist name='articles' id='a'>
+			<tr class="striped">
+				<td>{$a.aid}</td>
+				<td>{$a.uid}</td>
+				<td><a href="{:U('Search/view')}?id={$a.id}&txtid={$a.semester},{$a.aid},{$a.uid}&keywords={$keywords}&error={$error}" target="_blank">{$a.title}</td>
+				<td>{$a.semester}</td>
+				<td>{$a.time}</td>
+				<td>{$a.wordnum}</td>
+			</tr>
+			<neq name="a.detail" value="">
+			<tr>
+				<td colspan="6" >{$a.detail}</td>
+			</tr>
+			</neq>
+		</volist>
+	</table>
+</div>
+</case>
+<case value="0">
+对不起，没有找到任何结果。
+</case>
+<default/>
+</switch>
