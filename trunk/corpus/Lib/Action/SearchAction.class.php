@@ -50,6 +50,30 @@ class SearchAction extends CommonAction {
 		$this->display("Search:base");
 	}
 	
+	public function exportCSV($name, $title, $array){
+	//内容的类型
+		header("Content-Type:text/plain");    
+	// 以附件形式保存  $name 默认保存时的文件名 
+		header("Content-Disposition:attachment;filename=$name"); 
+	// 不缓存
+		header("Pragma:no-cache");     
+	// 浏览器不缓存的时间 
+		header("Expires:0"); 
+
+	// 循环输出 excel 抬头
+		foreach($title as $value){ // excel抬头
+			echo '"'.$value.'",';
+		}
+		echo "\r\n"; // 换行
+	// 循环输出 excel 内容
+		foreach($array as $val){
+			foreach($val as $v){
+				echo '"'.$v.'",';
+		}
+		echo "\r\n"; // 换行
+		}
+	}
+	
 	//搜索
 	public function search(){
 		//if ( (!isset($_POST['keywords'])||$_POST['keywords']=="") && (!isset($_POST['error'])||$_POST['error']=="") ) $this->error('请输入关键字');
@@ -57,6 +81,7 @@ class SearchAction extends CommonAction {
 		if (!isset($_POST['error'])) $error="";	else $error = $_POST['error']; 
 		if (isset($_POST['page'])) $page = $_POST['page']; else $page = 1;
 		if (isset($_POST['listnum'])) $listnum = $_POST['listnum']; else $listnum = 30;
+		if (isset($_POST['download'])) $download = $_POST['download']; else $download = 0;
 		//echo $keywords.":".$error;
 		
 		$school = $_POST['school'];
@@ -77,43 +102,73 @@ class SearchAction extends CommonAction {
 		$article = M('article');
 		$student = M('student'); 
 				
-		if ($error=="")
-			$list = $article->field('corpus_article.*')->join('corpus_student ON corpus_article.uid = corpus_student.uid')->where($condition."text RLIKE '.*".$keywords.".*'")->page($page.','.$listnum)->select();
-		else
-			$list = $article->field('corpus_article.*')->join('corpus_student ON corpus_article.uid = corpus_student.uid')->where($condition."text RLIKE '.*\[[^\]]*".$keywords."[^\]]*\,[^\]]*\,[^\]]*".$error."[^\]]*\].*'")->page($page.','.$listnum)->select();
-			//$list = $article->where("text RLIKE '.*\[[^\]\,]*".$keywords."[^\]\,]*\,[^\]\,]*\,[^\]\,]*".$error."[^\]\,]*\].*'")->page($page.','.$listnum)->select();
+		if ($download == 0) {
+			if ($error=="")
+				$list = $article->field('corpus_article.*')->join('corpus_student ON corpus_article.uid = corpus_student.uid')->where($condition."text RLIKE '.*".$keywords.".*'")->page($page.','.$listnum)->select();
+			else
+				$list = $article->field('corpus_article.*')->join('corpus_student ON corpus_article.uid = corpus_student.uid')->where($condition."text RLIKE '.*\[[^\]]*".$keywords."[^\]]*\,[^\]]*\,[^\]]*".$error."[^\]]*\].*'")->page($page.','.$listnum)->select();
+		} else {
+			if ($error=="")
+				$list = $article->field('corpus_article.*')->join('corpus_student ON corpus_article.uid = corpus_student.uid')->where($condition."text RLIKE '.*".$keywords.".*'")->select();
+			else
+				$list = $article->field('corpus_article.*')->join('corpus_student ON corpus_article.uid = corpus_student.uid')->where($condition."text RLIKE '.*\[[^\]]*".$keywords."[^\]]*\,[^\]]*\,[^\]]*".$error."[^\]]*\].*'")->select();
+		}
+		
+		//$list = $article->where("text RLIKE '.*\[[^\]\,]*".$keywords."[^\]\,]*\,[^\]\,]*\,[^\]\,]*".$error."[^\]\,]*\].*'")->page($page.','.$listnum)->select();
 		//print_r($list);
 				
+				
+		$array = array(); 
+		$ind = 0; 
 		foreach ($list as &$item){
 			$num = 0;
 			$point=0;
 			$item['detail']="";
+			
 			while ($pos=strpos($item['text'], $keywords, $point)){
-				
-					$point = $pos+1;
-					$sub = my_substr( $item['text'], $pos );
-					$matchsub = my_substr( $item['text'], $pos,1 );
-					if ($error=="" ){
+				$point = $pos+1;
+				$sub = my_substr( $item['text'], $pos );
+				$matchsub = my_substr( $item['text'], $pos,1 );
+				if ($error=="" ){
+					if ($download == 1) {
+						$item['detail'] .= "...".format_text( $sub,$keywords, $error, 1)."...; ";
+					} else {
 						$item['detail'] .= "...".format_text( $sub,$keywords, $error, 1)."...<br/>";
 					}
-					else{
-						if (preg_match('|\[[^\]]*'.$keywords.'[^\]]*\,[^\]]*\,[^\]]*'.$error.'[^\]]*\]|', $matchsub, $matches)) {
+				}
+				else{
+					if (preg_match('|\[[^\]]*'.$keywords.'[^\]]*\,[^\]]*\,[^\]]*'.$error.'[^\]]*\]|', $matchsub, $matches)) {
+						if ($download == 1){
+							$item['detail'] .= "...".format_text( $sub,$keywords, $error, 1 )."...; ";
+						} else {
 							$item['detail'] .= "...".format_text( $sub,$keywords, $error, 1 )."...<br/>";
 						}
 					}
-				}	
-			
+				}
+			}	
+			if ($download == 1) {
+				array_push($array, Array($item['aid'],$item['aid'],$item['uid'],$item['title'],$item['semester'],$item['time'],$item['detail']) );
+			}			
+			++$ind; 
+			//90条截止，防止拖库
+			if ($ind > 90) break; 
 		}
-
-		if (count($list) != 0) $hasResult = 1; else $hasResult = 0; 
-		$this->assign("articles", $list);
-		$this->assign("hasResult", $hasResult); 
-		$this->assign("error", $error); 
-		$this->assign("page", $page); 
-		$this->assign("listnum", $listnum); 
-		$this->assign("keywords", $keywords); 
-		$this->assign("content", "Search:result");
-		$this->display("Search:result");
+		
+		if ($download == 1){
+			$name = "result_".$keywords.".csv"; 
+			$title = Array('作品コード','執筆者コード','題目','学期','執筆日','关键字上下文');
+			return $this->exportCSV($name, $title, $array);
+		} else {
+			if (count($list) != 0) $hasResult = 1; else $hasResult = 0; 
+			$this->assign("articles", $list);
+			$this->assign("hasResult", $hasResult); 
+			$this->assign("error", $error); 
+			$this->assign("page", $page); 
+			$this->assign("listnum", $listnum); 
+			$this->assign("keywords", $keywords); 
+			$this->assign("content", "Search:result");
+			$this->display("Search:result");
+		}
 	}
 	
 	//private 更新文章

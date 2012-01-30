@@ -13,37 +13,54 @@ function handleError(msg, url, line){
 var searchMode = 1; 
 
 $(document).ready(function(){
-	$("#errorSearch").hide(); 
+$("#errorSearch").hide(); 
 
-	$("#orgTab").click(function(){
-		$("#errorSearch").hide("normal"); 
-		searchMode = 1; 
-	}); 
-	
-	$("#errorTab").click(function(){
-		$("#errorSearch").show("normal"); 
-		searchMode = 2; 
-	});
-	
-	$("#submit").click(function(){
-		var kw = $('#keywords')[0].value;
-		var lkw = $('#lastkeywords')[0].value;
-		var sc = $('#school')[0].value; 
-		var gd = $('#gender')[0].value; 
-		var st = $('#studytime')[0].value; 
-		var fl = $('#firstlang')[0].value; 
-		var yr = $('#year')[0].value; 
-		var ud = $('#uid')[0].value; 
-		var er = $('#error')[0].value; 
-		if (kw == lkw) pg = $('#page')[0].value; else pg = 1;  
-		$('#lastkeywords')[0].value = kw; 
-		var ln = $('#listnum')[0].value;; 
+$("#orgTab").click(function(){
+	$("#errorSearch").hide("normal"); 
+	searchMode = 1; 
+}); 
+
+$("#errorTab").click(function(){
+	$("#errorSearch").show("normal"); 
+	searchMode = 2; 
+});
+
+$(".submit").click(function(){
+	var dl = 0; 
+	if (this.id == "download") {
+		dl = 1;
+		//alert("下载");
+		$("#resultList").html("下载中...请耐心等待..."); 
+	} else {
+		//alert("搜索");
 		$("#resultList").html("检索中...请耐心等待..."); 
+	}
+	var kw = $('#keywords')[0].value;
+	var lkw = $('#lastkeywords')[0].value;
+	var sc = $('#school')[0].value; 
+	var gd = $('#gender')[0].value; 
+	var st = $('#studytime')[0].value; 
+	var fl = $('#firstlang')[0].value; 
+	var yr = $('#year')[0].value; 
+	var ud = $('#uid')[0].value; 
+	var er = $('#error')[0].value; 
+	if (kw == lkw) pg = $('#page')[0].value; else pg = 1;  
+	$('#lastkeywords')[0].value = kw; 
+	var ln = $('#listnum')[0].value;; 
+	
+	if (dl == 0){
 		if (searchMode == 1)
-			$("#resultList").load("__URL__/search" , { keywords: kw, school: sc, gender: gd, studytime: st, firstlang:fl, year:yr, uid:ud, page:pg, listnum:ln} );
+			$("#resultList").load("__URL__/search" , { keywords: kw, school: sc, gender: gd, studytime: st, firstlang:fl, year:yr, uid:ud, page:pg, listnum:ln, download:dl} );
 		else 
-			$("#resultList").load("__URL__/search" , { keywords: kw, school: sc, gender: gd, studytime: st, firstlang:fl, year:yr, uid:ud, error:er, page:pg, listnum:ln} );
-	}); 
+			$("#resultList").load("__URL__/search" , { keywords: kw, school: sc, gender: gd, studytime: st, firstlang:fl, year:yr, uid:ud, error:er, page:pg, listnum:ln, download:dl} );
+	} else {
+		if (searchMode == 1){
+			$("#resultList").load("__URL__/search" , { keywords: kw, school: sc, gender: gd, studytime: st, firstlang:fl, year:yr, uid:ud, page:pg, listnum:ln, download:dl} );
+		} else { 
+			$("#resultList").load("__URL__/search" , { keywords: kw, school: sc, gender: gd, studytime: st, firstlang:fl, year:yr, uid:ud, error:er, page:pg, listnum:ln, download:dl} );
+		}
+	}
+}); 
 }); 
 </script>
 
@@ -64,12 +81,13 @@ $(document).ready(function(){
 </div>
 
 <div id="form">
+<form name="myForm" id="myForm" target="_blank" action="__URL__/search" method="post">
 <div class="row">
 	<div id="searchBox">
 		<div class="column grid_7"><input type="text" id="keywords" name="keywords" style="height:23px;width:95%" class="large bLeft" value="{$keywords}"> </div>
 	</div>
-	<div class="column gird_2"><td class="tRight" width="16%"><img id="submit" src="__PUBLIC__/images/search.png"/> </div>
-	<div class="column gird_2"><td class="tRight" width="16%"><img id="download" src="__PUBLIC__/images/download.png"/> </div>
+	<div class="column gird_2"><td class="tRight" width="16%"><img class="submit" id="submit" src="__PUBLIC__/images/search.png"/> </div>
+	<div class="column gird_2"><td class="tRight" width="16%"><img class="submit" id="download" src="__PUBLIC__/images/download.png"/> </div>
 </div>
  
 <div class="row" id="errorSearch">
@@ -179,6 +197,7 @@ $(document).ready(function(){
 		<input type="number" value="30" id="listnum" style="width:130px" class="large bLeft" min="3" max="90"/>
 		<input id="error" type="hidden" value=""/>
 		<input id="page" type="hidden" value="1"/>
+		<input id="editword" type="hidden" value="1"/>
 		<input id="lastkeywords" type="hidden" value="corpus"/>
 	</div>
 </div>
@@ -186,8 +205,12 @@ $(document).ready(function(){
 <div id="seperate" class="row b-l"></div>
 </div>
 </div>
+
+</div>
 </div>
 </div>
 
 <div class="row main" id="resultList">
+</div>
+<div id="downloadList">
 </div>

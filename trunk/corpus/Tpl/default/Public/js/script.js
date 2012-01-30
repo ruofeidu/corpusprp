@@ -4,7 +4,6 @@ $(function(){
 		autopagination:false
 	});
 });
-	
 var rate=20,obj,act=0,elmH=0,elmS=128,elmV=255,clrOrg,TimerID;
 Browser=true;
 if(Browser){document.onmouseover=doRainbowAnchor;document.onmouseout=stopRainbowAnchor;}
