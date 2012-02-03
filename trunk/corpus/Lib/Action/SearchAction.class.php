@@ -76,7 +76,10 @@ class SearchAction extends CommonAction {
 	
 	//搜索
 	public function search(){
-		//if ( (!isset($_POST['keywords'])||$_POST['keywords']=="") && (!isset($_POST['error'])||$_POST['error']=="") ) $this->error('请输入关键字');
+		if ( (!isset($_POST['keywords'])||$_POST['keywords']=="") && (!isset($_POST['error'])||$_POST['error']=="") ) {
+			echo '<b style="color:red;">请输入关键词</b>';
+			exit();
+		}
 		$keywords = $_POST['keywords'];
 		if (!isset($_POST['error'])) $error="";	else $error = $_POST['error']; 
 		if (isset($_POST['page'])) $page = $_POST['page']; else $page = 1;
@@ -126,6 +129,7 @@ class SearchAction extends CommonAction {
 			$item['detail']="";
 			
 			while ($pos=strpos($item['text'], $keywords, $point)){
+				//echo $pos.' ';
 				$point = $pos+1;
 				$sub = my_substr( $item['text'], $pos );
 				$matchsub = my_substr( $item['text'], $pos,1 );
@@ -145,7 +149,23 @@ class SearchAction extends CommonAction {
 						}
 					}
 				}
-			}	
+			}
+			if($keyword==""){
+				while ($pos=strpos($item['text'], $error, $point)){
+					//echo $pos.' ';
+					$point = $pos+1;
+					$sub = my_substr( $item['text'], $pos );
+					$matchsub = my_substr( $item['text'], $pos,1 );
+					if (preg_match('|\[[^\]]*\,[^\]]*\,[^\]]*'.$error.'[^\]]*\]|', $matchsub, $matches)) {
+							if ($download == 1){
+								$item['detail'] .= "...".format_text( $sub,$keywords, $error, 1 )."...; ";
+							} else {
+								$item['detail'] .= "...".format_text( $sub,$keywords, $error, 1 )."...<br/>";
+							}
+					}
+				}
+			}
+			
 			if ($download == 1) {
 				array_push($array, Array($item['aid'],$item['aid'],$item['uid'],$item['title'],$item['semester'],$item['time'],$item['detail']) );
 			}			
