@@ -206,7 +206,7 @@ class CommonAction extends Action {
 			$this->success ('编辑成功!');
 		} else {
 			//错误提示
-			$this->error ('编辑失败!');
+			$this->error ('编辑提示!');
 		}
 	}
 	/**

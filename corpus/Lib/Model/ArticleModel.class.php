@@ -8,7 +8,7 @@ class ArticleModel extends CommonModel {
 		array('title','require','标题要填写哦~',1),
 		array('text','require','文章内容要填写哦~'),
 		
-		array('aid','','文章id已经存在了', 0, 'unique', self::MODEL_INSERT),
+		array('aid','','编辑成功', 0, 'unique', self::MODEL_INSERT),
 		);
 	// 自动填充设置
 	protected $_auto	 =	 array(

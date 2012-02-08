@@ -26,6 +26,9 @@ class SearchAction extends CommonAction {
 	//浏览作文详细内容
 	public function view(){
 		if (!isset($_GET['txtid']) || !isset($_GET['id'])) $this->error('参数错误');		
+		if ($_SESSION['_ACCESS_LIST']['CORPUS']['INDEX']['MAIN'] != null){ $admin_user = true; } else { $admin_user = false;  }
+		$this->assign("admin_user", $admin_user);
+		
 		$article = M('article');
 		$find = $article->where("id='{$_GET['id']}'")->find();
 		
@@ -80,6 +83,9 @@ class SearchAction extends CommonAction {
 			echo '<b style="color:red;">请输入关键词</b>';
 			exit();
 		}
+		if ($_SESSION['_ACCESS_LIST']['CORPUS']['INDEX']['MAIN'] != null){ $admin_user = true; } else { $admin_user = false;  }
+		$this->assign("admin_user", $admin_user);
+		
 		$keywords = $_POST['keywords'];
 		if (!isset($_POST['error'])) $error="";	else $error = $_POST['error']; 
 		if (isset($_POST['page'])) $page = $_POST['page']; else $page = 1;

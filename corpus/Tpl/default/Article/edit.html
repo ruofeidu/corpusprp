@@ -7,77 +7,93 @@
         id : 'content_1' //TEXTAREA输入框的ID
    });
 </script>
-<div class="title">编辑作文 [ <a href="__URL__">返回列表</a> ]</div>
+<div align="center">
+<div class="title" align="center" style="width:50%"><div align="center">编辑作文——{$vo.title} [ <a href="__URL__">返回列表</a> ]</div></div>
+</div>
+
 <div class="fRig"><neq name="vo.image" value=''><img src="__PUBLIC__/Uploads/{$vo.image}"  width="160" height="120" style="border:1px solid silver;padding:1px" /></neq></div>
 <div id="result" class="result none"></div>
+
+<div class="main">
+<div class="row" align="center"> 
+	
+
 <form method='post' id="form1" name="form1"action="__URL__/update"  enctype="multipart/form-data">
-<table cellpadding=3 cellspacing=3 >
-	<table cellpadding=3 cellspacing=3 >
-	<tr>
-		<td class="tRight" width="10%">文章编号：</td>
-		<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="aid"></td>
-	</tr>
-	<tr>
-		<td class="tRight" width="10%">作者编号：</td>
-		<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="uid"></td>
-	</tr>
-	<tr>
-		<td class="tRight" width="10%">学期编号：</td>
-		<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="semester"></td>
-	</tr>
+<div class="row" align="center">
+	<div class="column grid_1">作品コード：</div> 
+	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="aid" value="{$vo.aid}"/></div> 
 	
+	<div class="column grid_1">執筆者：</div> 
+	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="uid" value="{$vo.uid}"/></div> 
 	
-	<tr>
-		<td class="tRight" width="10%">标题：</td>
-		<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="title"></td>
-	</tr>
-	<tr>
-		<td class="tRight tTop">内容：</td>
-		<td class="tLeft"><textarea id="content_1" name="content" style="width:700px;height:300px;"></textarea>	</td>
-	</tr>
+	<div class="column grid_1">学期编号：</div> 
+	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="semester" value="{$vo.semester}"/></div> 
+</div>
+<br/><br/>
+<div class="row" align="center">
+	<div class="column grid_1">題目：</div> 
+	<div class="column grid_5"><input type="text" style="width:98%" class="huge bLeftRequire" name="title" value="{$vo.title}"/></div> 
+	<div class="column grid_1">文体：</div> 
+	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="type" value="{$vo.type}"/></div> 
 	
-		<tr>
-		<td class="tRight" width="10%">写作时间：</td>
-		<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="time"></td>
-	</tr>
-	<tr>
-		<td class="tRight" width="10%">使用书籍：</td>
-		<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="usebook"></td>
-	</tr>
-	<tr>
-		<td class="tRight" width="10%">时间限制：</td>
-		<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="timelimit"></td>
-	</tr>
-	<tr>
-		<td class="tRight" width="10%">修改者：</td>
-		<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="r1"></td>
-	</tr>
+</div>
+<br/><br/>
+<div class="row" align="center">
+	<div class="column grid_1">文章内容：</div> 
+	<div class="column grid_8"><textarea id="content_1" name="text" style="width:99%;height:450px;">{$vo.text}</textarea></div> 
+</div>
+<br/><br/>
+<div class="row" align="center">
+	<div class="column grid_1">執筆日：</div> 
+	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="time" value="{$vo.time}"/></div> 
+	
+	<div class="column grid_1">使用辞書：</div> 
+	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="usebook" value="{$vo.usebook}"/></div> 
+	
+	<div class="column grid_1">時間制限：</div> 
+	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="timelimit" value="{$vo.timelimit}"/></div> 
+</div>
+<br/><br/>
+<div class="row" align="center">
+	<div class="column grid_1">学习时间数</div> 
+	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="semestertime" value="{$vo.semestertime}"/></div> 
+	<div class="column grid_1">完成时间：</div> 
+	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="finishedday" value="{$vo.finishedday}"/></div> 	
+	<div class="column grid_1">字数：</div> 
+	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="wordnum" value="{$vo.wordnum}"/></div> 
+</div>
+<br/><br/>
+<div class="row" align="center">	
+	<div class="column grid_1">添削者：</div> 
+	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="modifiedby" value="{$vo.modifiedby}"/></div> 
+	
+	<div class="column grid_1">タグ付者：</div> 
+	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="markedby" value="{$vo.markedby}"/></div> 
+	
+	<div class="column grid_1">タグ付項目：</div> 
+	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="mark" value="{$vo.mark}"/></div> 
+</div>
+<br/><br/>
+<div class="row" align="center">	
+	<div class="column grid_1">タグ付完成日：</div> 
+	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="finishedday" value="{$vo.finishedday}"/></div> 
+	
+	<div class="column grid_1">入力者：</div> 
+	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="inputed" value="{$vo.inputed}"/></div> 
+	
+	<div class="column grid_1">入力完成日：</div> 
+	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="inputedday" value="{$vo.inputedday}"/></div> 
+</div>
 
-	<tr>
-		<td class="tRight" width="10%">完成时间</td>
-		<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="finishedday"></td>
-	</tr>
-	<tr>
-		<td class="tRight" width="10%">字数：</td>
-		<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="wordnum"></td>
-	</tr>
-	<tr>
-		<td class="tRight" width="10%">inputedday</td>
-		<td class="tLeft" ><input type="text" class="huge bLeftRequire" name="inputedday"></td>
-	</tr>
-	
-
-	<tr>
-		<td></td>
-		<td class="center"><div style="width:85%;margin:5px">
-		<input type="hidden" class="huge bLeftRequire" name="id" value="{$vo.id}">
-		<input type="hidden" name="type" value="1"><!-- who knows what it is-->
-		<input type="hidden" name="inputed" value="<?php echo $_SESSION[C('USER_AUTH_KEY')] ?>">
-		
-		<input type="submit" value="更 新" class="button medium">
-		</div></td>
-	</tr>
-</table>
+<br/><br/>
+<div class="row" align="center">	
+	<div class="column grid_6"><input type="submit" value="更 新" class="button medium" style="width:90%; height:30px"/></div> 
+	<div class="column grid_1">管理员ID：</div> 
+	<div class="column grid_2"><?php echo $_SESSION[C('USER_AUTH_KEY')] ?></div> 
+</div>
 </form>
 </div>
+</div>
+
+
 </div>
