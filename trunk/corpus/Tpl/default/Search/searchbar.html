@@ -14,15 +14,37 @@ var searchMode = 1;
 
 $(document).ready(function(){
 $("#errorSearch").hide(); 
+$("#infoView").hide();
+$("#aboutView").hide();
 
 $("#orgTab").click(function(){
+	$("#aboutView").hide();
+	$("#infoView").hide();
 	$("#errorSearch").hide("normal"); 
 	searchMode = 1; 
 }); 
 
 $("#errorTab").click(function(){
+	$("#aboutView").hide();
+	$("#infoView").hide();
 	$("#errorSearch").show("normal"); 
 	searchMode = 2; 
+});
+
+$("#infoTab").click(function(){
+	$("#infoView").hide();
+	$("#errorSearch").hide(); 
+	$("#aboutView").hide();
+
+	$("#infoView").show("normal");
+});
+
+$("#aboutTab").click(function(){
+	$("#infoView").hide();
+	$("#errorSearch").hide(); 
+	$("#aboutView").hide();
+
+	$("#aboutView").show("normal");
 });
 
 $(".submit").click(function(){
@@ -124,6 +146,15 @@ $(".submit").click(function(){
 			<option value="">不限</option>
 		</select>
 	</div>
+</div>
+
+<div class="row" id="infoView">
+本语料库系统目前收录修改后的作文2920篇。
+</div>
+
+<div class="row" id="aboutView">
+本语料库系统由<a href="http://www.duruofei.com" target="_blank">杜若飞</a>、<a href="http://www.yepyao.info" target="_blank">幺恩鹏</a>、陈博在张建华老师指导下开发。
+友情链接：<a href="http://www.todict.com" target="_blank">兔词典</a>、<a href="http://www.douniwan.info" target="_blank">逗你玩</a>、<a href="http://www.acmclass.com" target="_blank">ACM班</a>
 </div>
  
 <div id="seperate" class="row b-l"></div>
