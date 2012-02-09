@@ -55,7 +55,7 @@ class SearchAction extends CommonAction {
 	
 	public function exportCSV($name, $title, $array){
 	//内容的类型
-		header("Content-Type:text/plain");    
+		header("Content-Type:text/plain; charset=utf-8");    
 	// 以附件形式保存  $name 默认保存时的文件名 
 		header("Content-Disposition:attachment;filename=$name"); 
 	// 不缓存
@@ -63,15 +63,21 @@ class SearchAction extends CommonAction {
 	// 浏览器不缓存的时间 
 		header("Expires:0"); 
 
+		//iconv("utf-8", "ansi", $name);   
+		//iconv("utf-8", "ansi", $array);   
+		echo "\xEF\xBB\xBF";
+		
 	// 循环输出 excel 抬头
 		foreach($title as $value){ // excel抬头
 			echo '"'.$value.'",';
+			//echo '"'.iconv("utf-8", "gb2312", $value).'",';
 		}
 		echo "\r\n"; // 换行
 	// 循环输出 excel 内容
 		foreach($array as $val){
 			foreach($val as $v){
 				echo '"'.$v.'",';
+				//echo '"'.iconv("utf-8", "gb2312",$v).'",';
 		}
 		echo "\r\n"; // 换行
 		}
