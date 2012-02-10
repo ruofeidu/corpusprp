@@ -147,7 +147,7 @@ class SearchAction extends CommonAction {
 				$matchsub = my_substr( $item['text'], $pos,1 );
 				if ($error=="" ){
 					if ($download == 1) {
-						$item['detail'] .= "...".format_text( $sub,$keywords, $error, 1)."...; ";
+						$item['detail'] .= "...".$sub."...;\n\n ";
 					} else {
 						$item['detail'] .= "...".format_text( $sub,$keywords, $error, 1)."...<br/>";
 					}
@@ -155,7 +155,7 @@ class SearchAction extends CommonAction {
 				else{
 					if (preg_match('|\[[^\]]*'.$keywords.'[^\]]*\,[^\]]*\,[^\]]*'.$error.'[^\]]*\]|', $matchsub, $matches)) {
 						if ($download == 1){
-							$item['detail'] .= "...".format_text( $sub,$keywords, $error, 1 )."...; ";
+							$item['detail'] .= "...".$sub."...; \n\n";
 						} else {
 							$item['detail'] .= "...".format_text( $sub,$keywords, $error, 1 )."...<br/>";
 						}
@@ -170,7 +170,7 @@ class SearchAction extends CommonAction {
 					$matchsub = my_substr( $item['text'], $pos,1 );
 					if (preg_match('|\[[^\]]*\,[^\]]*\,[^\]]*'.$error.'[^\]]*\]|', $matchsub, $matches)) {
 							if ($download == 1){
-								$item['detail'] .= "...".format_text( $sub,$keywords, $error, 1 )."...; ";
+								$item['detail'] .= "...".$sub."...;\n\n ";
 							} else {
 								$item['detail'] .= "...".format_text( $sub,$keywords, $error, 1 )."...<br/>";
 							}
@@ -179,7 +179,7 @@ class SearchAction extends CommonAction {
 			}
 			
 			if ($download == 1) {
-				array_push($array, Array($item['aid'],$item['aid'],$item['uid'],$item['title'],$item['semester'],$item['time'],$item['detail']) );
+				array_push($array, Array($item['aid'],$item['uid'],$item['title'],$item['semester'],$item['time'],$item['detail']) );
 			}			
 			++$ind; 
 			//90条截止，防止拖库
