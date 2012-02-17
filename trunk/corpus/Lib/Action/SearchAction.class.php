@@ -50,7 +50,7 @@ class SearchAction extends CommonAction {
 		$this->assign("a", $find);
 		$this->assign("text", $content);
 		$this->assign("content", "Search:view");
-		$this->display("Search:base");
+		$this->display("Search:viewbase");
 	}
 	
 	public function exportCSV($name, $title, $array){
