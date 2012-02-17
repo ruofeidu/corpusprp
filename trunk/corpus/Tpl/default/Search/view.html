@@ -1,10 +1,10 @@
 <div class="row">
-	<div class="column grid_7"><p class="articletitle">{$a.title}</p></div>
+	<div class="column grid_6"><p class="articletitle">{$a.title}</p></div>
 	<eq name="admin_user" value="1">
-	<div class="column grid_1"><p class="pagetopnav"><a href="__APP__/Article/Edit/id/{$a.id}" target="_blank">编辑</a></div>
-	<div class="column grid_1"><p class="pagetopnav"><a href="<?php echo U('Index/Index'); ?>">返回</a></div>
+	<div class="column grid_1" align="center"><p class="pagetopnav"><a onclick="window.close()">关闭</a></div>
+	<div class="column grid_1" align="center"><p class="pagetopnav"><a href="__APP__/Article/Edit/id/{$a.id}" target="_blank">编辑</a></div>
 	<else/>
-	<div class="column grid_2"><p class="pagetopnav"><a href="<?php echo U('Index/Index'); ?>">返回</a></div>
+	<div class="column grid_2"><p class="pagetopnav"><a onclick="window.close()">关闭</a></div>
 	</eq>
 </div>
 
@@ -16,6 +16,7 @@
 	<table width="100%">
 		<tr><th>作者信息</th></tr>
 		<tr><td>執筆者コード</td><td>{$a.uid}</td></tr>
+		<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
 		
 		<tr><th>文章信息</th></tr>
 		<tr><td>作品コード</td><td>{$a.aid}</td></tr>
