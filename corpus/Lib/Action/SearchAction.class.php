@@ -101,19 +101,25 @@ class SearchAction extends CommonAction {
 		
 		$school = $_POST['school'];
 		$gender = $_POST['gender'];  
-		$studytime = $_POST['studytime'];
+		//$studytime = $_POST['studytime'];
 		$firstlang = $_POST['firstlang'];
 		$semester = $_POST['year'];
 		$uid = $_POST['uid'];
+		
+		$timemin = $_POST['timemin'];
+		$timemax = $_POST['timemax'];
 		
 		$condition = "";
 		//if ($school!="") $condition .="corpus_student.school='$school' AND ";
 		if ($school!="") $condition .="corpus_article.aid LIKE '$school%' AND ";
 		if ($gender!="") $condition .="corpus_student.gender='$gender' AND ";
-		if ($studytime!="") $condition .="corpus_student.studytime='$studytime' AND ";
+		//if ($studytime!="") $condition .="corpus_student.studytime='$studytime' AND ";
 		if ($firstlang!="") $condition .="corpus_student.firstlang='$firstlang' AND ";
 		if ($semester!="") $condition .="corpus_article.semester='$semester' AND ";
 		if ($uid!="") $condition .="corpus_article.uid='$uid' AND ";
+		if ($timemin!="") $condition .="corpus_article.semestertime >= $timemin AND ";
+		if ($timemax!="") $condition .="corpus_article.semestertime < $timemax AND ";
+		
 		//echo $condition.'<br/>';
 		$article = M('article');
 		$student = M('student'); 
