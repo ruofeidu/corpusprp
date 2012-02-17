@@ -65,6 +65,7 @@ $(".submit").click(function(){
 	var gd = $('#gender')[0].value; 
 	var tmin = $('#studytime')[0].value; 
 	var tmax = tmin + 150; 
+
 	var fl = $('#firstlang')[0].value; 
 	var yr = $('#year')[0].value; 
 	var ud = $('#uid')[0].value;  
@@ -74,10 +75,19 @@ $(".submit").click(function(){
 	var ln = $('#listnum')[0].value;; 
 	
 	if (dl == 0){
-		if (searchMode == 1)
-			$("#resultList").load("__URL__/search" , { keywords: kw, school: sc, gender: gd, timemin: tmin, timemax: tmax, firstlang:fl, year:yr, uid:ud, page:pg, listnum:ln, download:dl} );
-		else 
-			$("#resultList").load("__URL__/search" , { keywords: kw, school: sc, gender: gd, timemin: tmin, timemax: tmax, firstlang:fl, year:yr, uid:ud, error:er, page:pg, listnum:ln, download:dl} );
+		if (searchMode == 1){
+			if (tmin == 0){
+				$("#resultList").load("__URL__/search" , { keywords: kw, school: sc, gender: gd, firstlang:fl, year:yr, uid:ud, page:pg, listnum:ln, download:dl} );
+			} else {
+				$("#resultList").load("__URL__/search" , { keywords: kw, school: sc, gender: gd, timemin: tmin, timemax: tmax, firstlang:fl, year:yr, uid:ud, page:pg, listnum:ln, download:dl} );
+			}
+		} else { 
+			if (tmin == 0){
+				$("#resultList").load("__URL__/search" , { keywords: kw, school: sc, gender: gd, firstlang:fl, year:yr, uid:ud, error:er, page:pg, listnum:ln, download:dl} );
+			} else {
+				$("#resultList").load("__URL__/search" , { keywords: kw, school: sc, gender: gd, timemin: tmin, timemax: tmax, firstlang:fl, year:yr, uid:ud, error:er, page:pg, listnum:ln, download:dl} );
+			}
+		}
 	} else {
 			//$("#myForm").submit();
 			//alert("已经提交");
@@ -189,7 +199,7 @@ $(".submit").click(function(){
 	<div class="column grid_1">学习时间： </div>			
 	<div class="column grid_2">
 		<select id="studytime" name="studytime" style="width:132px">
-			<option value="">不限</option>
+			<option value="0">不限</option>
 			<option value="700">700-850</option>
 			<option value="850">850-900</option>
 			<option value="100">1000-1000</option>
