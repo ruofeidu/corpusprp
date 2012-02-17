@@ -24,7 +24,7 @@ errorBase['书写错误'] = new Array('不限', '汉字', '假名', '其他', '�
 errorBase['文章格式'] = new Array('文章格式');
 	errorValue['文章格式'] = new Array('Ss'); 
 	
-errorBase['词语错误'] = new Array('动词', '补助动词', '名词', '形式名词', '代词', '复合词', '代词', '形容词', '形容动词', '助词', '终助词', '连体词', '感叹词', '接辞', '复合助词', '助动词', '接续词', '副词'); 
+errorBase['词语错误'] = new Array('动词', '补助动词', '名词', '形式名词', '代词', '复合词', '代词', '形容词', '形容动词', '助词', '终助词', '连体词', '感叹词', '接辞', '复合助词', '助动词', '接续词', '副词', '连语'); 
 errorValue['词语错误'] = new Array('Ds'); 
 
 	errorText['动词'] = new Array('动词', '词形', '自动词', '被动态', '使役态', '可能态、自发态', '授受动词', 'サ变动词', '他动词', '词性'); 
@@ -74,6 +74,9 @@ errorValue['词语错误'] = new Array('Ds');
 	
 	errorText['接续词'] = new Array('接续词', '词形', '词义'); 
 	errorValue['接续词'] = new Array('St'); 
+	
+	errorText['连语'] = new Array('连语', '词形', '词义'); 
+	errorValue['连语'] = new Array('Lg'); 
 	
 	errorText['副词'] = new Array('副词', '词形', '词义', '词性'); 
 	errorValue['副词'] = new Array('F'); 
