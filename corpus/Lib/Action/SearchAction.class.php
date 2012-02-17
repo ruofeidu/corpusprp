@@ -107,7 +107,8 @@ class SearchAction extends CommonAction {
 		$uid = $_POST['uid'];
 		
 		$condition = "";
-		if ($school!="") $condition .="corpus_student.school='$school' AND ";
+		//if ($school!="") $condition .="corpus_student.school='$school' AND ";
+		if ($school!="") $condition .="corpus_article.aid LIKE '$school%' AND ";
 		if ($gender!="") $condition .="corpus_student.gender='$gender' AND ";
 		if ($studytime!="") $condition .="corpus_student.studytime='$studytime' AND ";
 		if ($firstlang!="") $condition .="corpus_student.firstlang='$firstlang' AND ";
