@@ -24,7 +24,7 @@ errorBase['书写错误'] = new Array('不限', '汉字', '假名', '其他', '�
 errorBase['文章格式'] = new Array('文章格式');
 	errorValue['文章格式'] = new Array('Ss'); 
 	
-errorBase['词语错误'] = new Array('动词', '补助动词', '名词', '形式名词', '代词', '复合词', '代词', '形容词', '助词', '终助词', '连体词', '感叹词', '接辞', '复合助词', '助动词', '接续词', '副词', '词语'); 
+errorBase['词语错误'] = new Array('动词', '补助动词', '名词', '形式名词', '代词', '复合词', '代词', '形容词', '形容动词', '助词', '终助词', '连体词', '感叹词', '接辞', '复合助词', '助动词', '接续词', '副词'); 
 errorValue['词语错误'] = new Array('Ds'); 
 
 	errorText['动词'] = new Array('动词', '词形', '自动词', '被动态', '使役态', '可能态、自发态', '授受动词', 'サ变动词', '他动词', '词性'); 
@@ -39,7 +39,7 @@ errorValue['词语错误'] = new Array('Ds');
 	errorText['形式名词'] = new Array('形式名词', '词形', '词义'); 
 	errorValue['形式名词'] = new Array('Km'); 
 	
-	errorText['复合词'] = new Array('复合词', '词形', '词义', '时态复合动词'); 
+	errorText['复合词'] = new Array('复合词', '词形', '词义', '时态复合动词', '词性'); 
 	errorValue['复合词'] = new Array('Fg'); 
 	
 	errorText['代词'] = new Array('代词', '词形', '词义'); 
@@ -57,7 +57,7 @@ errorValue['词语错误'] = new Array('Ds');
 	errorText['终助词'] = new Array('终助词语义和形式的使用错误'); 
 	errorValue['终助词'] = new Array('Syj'); 
 	
-	errorText['连体词'] = new Array('连体词'); 
+	errorText['连体词'] = new Array('连体词', '词形', '词义'); 
 	errorValue['连体词'] = new Array('Rt'); 
 	
 	errorText['感叹词'] = new Array('感叹词'); 
