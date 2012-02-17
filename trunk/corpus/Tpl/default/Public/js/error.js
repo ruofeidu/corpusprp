@@ -48,6 +48,9 @@ errorValue['词语错误'] = new Array('Ds');
 	errorText['形容词'] = new Array('形容词', '词形', '词义', '词性'); 
 	errorValue['形容词'] = new Array('Ky'); 
 	
+	errorText['形容动词'] = new Array('形容动词', '词形', '词义'); 
+	errorValue['形容动词'] = new Array('Ky'); 
+	
 	errorText['助词'] = new Array('助词', '格助词', '接续助词', '提示助词'); 
 	errorValue['助词'] = new Array('Js'); 
 	
@@ -108,6 +111,7 @@ $(document).ready(function(){
 		}
 		$(".sError").hide(); 
 		$("#nextError").show("normal"); 
+		$("#nextError").change(); 
 		$("#error")[0].value = errorValue[bv];
 	}); 
 	
