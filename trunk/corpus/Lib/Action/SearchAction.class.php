@@ -22,7 +22,10 @@ class SearchAction extends CommonAction {
 		$this->display("Search:base");
 		$this->display();
     }
-	
+	public function viewpic(){
+		echo "asd";
+		$this->display();
+	}
 	//浏览作文详细内容
 	public function view(){
 		if (!isset($_GET['txtid']) || !isset($_GET['id'])) $this->error('参数错误');		
