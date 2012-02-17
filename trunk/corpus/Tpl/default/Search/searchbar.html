@@ -63,10 +63,11 @@ $(".submit").click(function(){
 	var lkw = $('#lastkeywords')[0].value;
 	var sc = $('#school')[0].value; 
 	var gd = $('#gender')[0].value; 
-	var st = $('#studytime')[0].value; 
+	var tmin = $('#studytime')[0].value; 
+	var tmax = tmin + 150; 
 	var fl = $('#firstlang')[0].value; 
 	var yr = $('#year')[0].value; 
-	var ud = $('#uid')[0].value; 
+	var ud = $('#uid')[0].value;  
 	var er = $('#error')[0].value; 
 	if (kw == lkw) pg = $('#page')[0].value; else pg = 1;  
 	$('#lastkeywords')[0].value = kw; 
@@ -74,9 +75,9 @@ $(".submit").click(function(){
 	
 	if (dl == 0){
 		if (searchMode == 1)
-			$("#resultList").load("__URL__/search" , { keywords: kw, school: sc, gender: gd, studytime: st, firstlang:fl, year:yr, uid:ud, page:pg, listnum:ln, download:dl} );
+			$("#resultList").load("__URL__/search" , { keywords: kw, school: sc, gender: gd, timemin: tmin, timemax: tmax, firstlang:fl, year:yr, uid:ud, page:pg, listnum:ln, download:dl} );
 		else 
-			$("#resultList").load("__URL__/search" , { keywords: kw, school: sc, gender: gd, studytime: st, firstlang:fl, year:yr, uid:ud, error:er, page:pg, listnum:ln, download:dl} );
+			$("#resultList").load("__URL__/search" , { keywords: kw, school: sc, gender: gd, timemin: tmin, timemax: tmax, firstlang:fl, year:yr, uid:ud, error:er, page:pg, listnum:ln, download:dl} );
 	} else {
 			//$("#myForm").submit();
 			//alert("已经提交");
@@ -168,11 +169,11 @@ $(".submit").click(function(){
 	<div class="column grid_2">
 		<select id="school" name="school" style="width:130px">
 			<option value="">不限</option>
-			<option value="d">d</option>
-			<option value="n">n</option>
-			<option value="s">s</option>
-			<option value="w">w</option>
-			<option value="j">j</option>
+			<option value="上海交通大学">j</option>
+			<option value="東北師範大学">d</option>
+			<option value="上海師範大学">s</option>
+			<option value="上海外国語大学">w</option>
+			<option value="南開大学">n</option>
 		</select>
 	</div>
 
@@ -189,11 +190,17 @@ $(".submit").click(function(){
 	<div class="column grid_2">
 		<select id="studytime" name="studytime" style="width:132px">
 			<option value="">不限</option>
-			<option value="A">A</option>
-			<option value="B">B</option>
-			<option value="C">C</option>
-			<option value="D">D</option>
-			<option value="E">E</option>
+			<option value="700">700-850</option>
+			<option value="850">850-900</option>
+			<option value="100">1000-1000</option>
+			<option value="1150">1150-1300</option>
+			<option value="1300">1300-1450</option>
+			<option value="1450">1450-1600</option>
+			<option value="1600">1600-1750</option>
+			<option value="1750">1750-1900</option>
+			<option value="1900">1900-2050</option>
+			<option value="2050">2050-2200</option>
+			<option value="2200">2200-2350</option>
 		</select>
 	</div>
 	
@@ -205,7 +212,6 @@ $(".submit").click(function(){
 			<option value="朝鮮語">朝鲜语</option>
 			<option value="モンゴル語">蒙古语</option>
 			<option value="英語">英语</option>
-			<option value="韓国語">韩国语</option>
 		</select>
 	</div>
 	
@@ -213,12 +219,12 @@ $(".submit").click(function(){
 	<div class="column grid_2">
 		<select id="year" name="year" style="width:130px">
 			<option value="">不限</option>
+			<option value="x3">x3</option>
 			<option value="x4">x4</option>
 			<option value="x5">x5</option>
 			<option value="x6">x6</option>
 			<option value="x7">x7</option>
 			<option value="x8">x8</option>
-			<option value="x9">x9</option>
 		</select>
 	</div>
 	
@@ -231,7 +237,7 @@ $(".submit").click(function(){
 	<div class="page column grid_1">每页条目：</div>
 	<div class="column grid_2">
 		<input type="number" value="30" id="listnum" name="listnum" style="width:130px" class="large bLeft" min="3" max="90"/>
-		<input id="error" name="error" value=""/>
+		<input id="error" name="error" type="hidden" value=""/>
 		<input id="page" name="page" type="hidden" value="1"/>
 		<input id="editword" type="hidden" value="1"/>
 		<input id="download" name="download" type="hidden" value="1"/>
