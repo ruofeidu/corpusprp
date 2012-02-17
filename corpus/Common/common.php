@@ -42,13 +42,21 @@ function format_text($content , $keywords="", $errorcode="", $notitle = 0){
 			}
 			//echo $matches[3][$i].' '.$errorcode.'<br>';
 			if ($errorcode!="" && strstr($matches[3][$i],$errorcode)!=false){
-				$matches[1][$i] = str_replace($keywords, '<span style="background-color:#FFFF6F">'.$keywords.'</span>', $matches[1][$i]);
+				if ($keywords!="")
+					$matches[1][$i] = str_replace($keywords, '<span style="background-color:#FFFF6F">'.$keywords.'</span>', $matches[1][$i]);
+				else {
+					$matches[1][$i] = '<span style="background-color:#6FFF6F">'.$matches[1][$i].'</span>';
+					$matches[2][$i] = '<span style="background-color:#6FFF6F">'.$matches[2][$i].'</span>';
+				}
+				
 				//echo $matches[1][$i];
 			}
 			if ($notitle)
 			$content = str_replace($matches[0][$i], '&nbsp;<b class="tip"><b><S>'.$matches[1][$i].'</S></b>'.'<b>'.$matches[2][$i].'</b></b>',$content);
 			else
 			$content = str_replace($matches[0][$i], '&nbsp;<b class="tip" title="'.$errormsg.'"><b><S>'.$matches[1][$i].'</S></b>'.'<b>'.$matches[2][$i].'</b></b>',$content);
+			
+			
 		}
 		if ($keywords!="" && $errorcode == "") $content = str_replace($keywords, '<span style="background-color:#FFFF6F">'.$keywords.'</span>', $content);
 			
