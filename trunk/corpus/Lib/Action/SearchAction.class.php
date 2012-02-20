@@ -23,7 +23,24 @@ class SearchAction extends CommonAction {
 		$this->display();
     }
 	public function viewpic(){
-		echo "asd";
+		$i = 1; 
+		$a = array(); 
+		$txtid = $_GET['txtid'];
+		
+		do {
+			$fileName = './Public/Photo/'. $txtid .'/000'.$i.'.jpg';
+			if (file_exists($fileName)) {
+			} else {
+				break; 
+			}
+			$fileName = '000' . $i . '.jpg'; 
+			array_push($a, $fileName); 
+			++$i; 
+			
+		} while (true); 
+		
+		$this->assign("txtid", $txtid); 
+		$this->assign("picture", $a); 
 		$this->display();
 	}
 	//浏览作文详细内容
@@ -89,8 +106,11 @@ class SearchAction extends CommonAction {
 	//搜索
 	public function search(){
 		if ( (!isset($_POST['keywords'])||$_POST['keywords']=="") && (!isset($_POST['error'])||$_POST['error']=="") ) {
-			echo '<b style="color:red;">请输入关键词</b>';
-			exit();
+			//管理员允许拖库，调试方便
+			if ($_SESSION['_ACCESS_LIST']['CORPUS']['INDEX']['MAIN'] == null){
+				echo '<b style="color:red;">请输入关键词</b>';
+				exit();
+			}
 		}
 		if ($_SESSION['_ACCESS_LIST']['CORPUS']['INDEX']['MAIN'] != null){ $admin_user = true; } else { $admin_user = false;  }
 		$this->assign("admin_user", $admin_user);
