@@ -39,6 +39,7 @@ class SearchAction extends CommonAction {
 			
 		} while (true); 
 		
+		if ($i == 1) echo "对不起，该作文目前没有参考扫描件"; 
 		$this->assign("txtid", $txtid); 
 		$this->assign("picture", $a); 
 		$this->display();
