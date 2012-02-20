@@ -40,6 +40,13 @@ $("#infoTab").click(function(){
 	$("#infoView").show("normal");
 });
 
+$("#keywords").keydown(function(event){
+	if (event.which == 13) {
+		$("#submit").click(); 
+		$("#keywords").focus(); 
+	}
+});
+
 $("#aboutTab").click(function(){
 	$("#infoView").hide();
 	$("#errorSearch").hide(); 
