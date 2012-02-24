@@ -47,6 +47,13 @@ $("#keywords").keydown(function(event){
 	}
 });
 
+$("#uid").keydown(function(event){
+	if (event.which == 13) {
+		$("#submit").click(); 
+		$("#keywords").focus(); 
+	}
+});
+
 $("#aboutTab").click(function(){
 	$("#infoView").hide();
 	$("#errorSearch").hide(); 
@@ -71,7 +78,7 @@ $(".submit").click(function(){
 	var sc = $('#school')[0].value; 
 	var gd = $('#gender')[0].value; 
 	var tmin = $('#studytime')[0].value; 
-	var tmax = tmin + 150; 
+	var tmax = parseInt(tmin) + 150; 
 
 	var fl = $('#firstlang')[0].value; 
 	var yr = $('#year')[0].value; 
@@ -79,8 +86,8 @@ $(".submit").click(function(){
 	var er = $('#error')[0].value; 
 	if (kw == lkw) pg = $('#page')[0].value; else pg = 1;  
 	$('#lastkeywords')[0].value = kw; 
-	var ln = $('#listnum')[0].value;; 
-	
+	var ln = $('#listnum')[0].value;
+		
 	if (dl == 0){
 		if (searchMode == 1){
 			if (tmin == 0){
