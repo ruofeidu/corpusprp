@@ -67,7 +67,6 @@ class SearchAction extends CommonAction {
 		//if (isset($_GET['keywords'])) {
 		//	$content = str_replace($_GET['keywords'], '&nbsp;<b id="tip" style="background-color:#FFFF6F">'.$_GET['keywords'].'</b>', $content);
 		//}
-		
 		$this->assign("a", $find);
 		$this->assign("text", $content);
 		$this->assign("content", "Search:view");
@@ -224,6 +223,11 @@ class SearchAction extends CommonAction {
 		} else {
 			if (count($list) != 0) $hasResult = 1; else $hasResult = 0; 
 			$this->assign("articles", $list);
+			if (count($list) == $listnum)
+				$this->assign("nextpage", 1); 
+			else
+				$this->assign("nextpage", 0);  
+			
 			$this->assign("hasResult", $hasResult); 
 			$this->assign("error", $error); 
 			$this->assign("page", $page); 

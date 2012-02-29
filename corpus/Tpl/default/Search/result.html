@@ -4,23 +4,33 @@
 $(document).ready(function(){
 	$("#previous").click(function(){
 		pg = $('#page')[0];
+		$('#samepage')[0].value = 1; 
 		--pg.value; 
 		$("#submit").click(); 
 	});
 	
 	$("#nextpage").click(function(){
 		pg = $('#page')[0];
+		$('#samepage')[0].value = 1; 
 		++pg.value; 
 		$("#submit").click(); 
 	});
 }); 
 </script>
+<div style="margin-bottom: 10px;">
 <div class="row" align="center">
 <neq name="page" value="1">
 <div class="page column grid_1" id="previous"><a>上一页</a></div>
+<else/>
+<div class="page column grid_1" id="firstpage"><a>无上页</a></div>
 </neq>
-<div class="page column grid_1">当前第{$page}页</div>
+<div class="page column grid_1"><a>当前第{$page}页</a></div>
+<eq name="nextpage" value="1">
 <div class="page column grid_1" id="nextpage"><a>下一页</a></div>
+<else/>
+<div class="page column grid_1" id="lastpage"><a>无下页</a></div>
+</eq>
+</div>
 </div>
 <div class="column grid_9">
 <!--<p class="articletitle">"{$keywords}"的搜索结果</p>-->

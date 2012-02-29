@@ -2,7 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Corpus管理系统登录</title>
+<meta name="description" content="Janpanese Corpus, 日语学习者语料库, 容纳数千篇精心批改的学生作文，方便日语语料库研究者做学术研究, 友情链接：www.duruofei.com, www.yepyao.info, www.todict.com, www.douniwan.info" />
+<meta name="keywords" content="Corpus, 日语学习者语料库, 语料库" />
+<meta name="author" content="杜若飞,Du Ruofei,幺恩鹏, Yao Enpeng, 陈博, Chen Bo, 张建华, Zhang Jianhua, ACM班, ACM Honered Class,SJTU" />
+<meta name="copyright" content="上海交通大学, Shanghai Jiao Tong University">
+<title>Corpus登录系统</title>
+<link href="../Public/css/grid.css" rel="stylesheet" />	
 <load href='__PUBLIC__/Css/style.css' />
 <load href="__PUBLIC__/Js/Base.js" />
 <load href="__PUBLIC__/Js/prototype.js" />
@@ -44,27 +49,30 @@ $('verifyImg').src= '__URL__/verify/'+timenow;
 //-->
 </script>
 </head>
-<body onLoad="document.login.account.focus()" >
+<!-- <body onLoad="document.login.account.focus()"  oncontextmenu="return false;" oncopy="return false;" onselectstart="return false;" oncut="return false;"> -->
+<body onLoad="document.login.account.focus()">
+<img src="__PUBLIC__/images/bg.jpg" width="100%" height="100%" style="position:absolute;top:0;left:0;right:100;bottom:500;z-index:-1">
 	<form method='post' name="login" id="form1" >
-	<div class="tCenter hMargin">
-	<table id="checkList" class="login shadow" cellpadding=0 cellspacing=0 >
-	<tr><td height="5" colspan="2" class="topTd" ></td></tr>
-	<tr class="row" ><Th colspan="2" class="tCenter space" ><img src="__PUBLIC__/Images/preview_f2.png" width="32" height="32" border="0" alt="" align="absmiddle"> 上海交通大学日语语料库登录系统</th></tr>
-	<tr><td height="5" colspan="2" class="topTd" ></td></tr>
-	<tr class="row" ><td colspan="2" class="tCenter"><div id="result" class="result none"></div></td></tr>
-	<tr class="row" ><td class="tRight" width="25%">帐 号：</td><td><input type="text" class="medium bLeftRequire" check="Require" warning="请输入帐号" name="account"></td></tr>
-	<tr class="row" ><td class="tRight">密 码：</td><td><input type="password" class="medium bLeftRequire" check="Require" warning="请输入密码" name="password"></td></tr>
-	<tr class="row" ><td class="tRight">验证码：</td><td><input type="text" onKeyDown="keydown(event)" class="small bLeftRequire" check="Require" warning="请输入验证码" name="verify"> <img id="verifyImg" SRC="__URL__/verify/" onClick="fleshVerify()" BORDER="0" ALT="点击刷新验证码" style="cursor:pointer" align="absmiddle"></td></tr>
-	<tr class="row" ><td class="tCenter" align="justify" colspan="2">
-	<input type="hidden" name="ajax" value="1">
-	<input type="button" value="登 录" onClick="ThinkAjax.sendForm('form1','__URL__/checkLogin/',loginHandle,'result')" class="submit medium hMargin">
-	</td></tr>
-	<tr><td height="5" colspan="2" class="bottomTd" ></td></tr>
-	</table>
-	<div class="result" algin="center">测试账号：超级管理员（最高权限）：admin/admin  普通管理员（直接进入后台，可切换到前台）：leader/1234 </div>
-	<div class="result" algin="center">普通老师（同管理员，只能进行文章管理）：teacher/1234      普通学生（只能搜索语料库）：student/1234</div>
-	
-	</div>
+		<div class="tCenter hMargin">
+			<table id="checkList" class="login shadow" cellpadding=0 cellspacing=0 >
+			<tr><td height="5" colspan="2" class="topTd" ></td></tr>
+			<tr class="row" ><th colspan="2" class="tCenter space" > Corpus 登录系统</th></tr>
+			<tr><td height="5" colspan="2" class="topTd" ></td></tr>
+			<tr class="row" ><td colspan="2" class="tCenter"><div id="result" class="result none"></div></td></tr>
+			<tr class="row" ><td class="tRight" width="25%">帐 号：</td><td><input type="text" class="medium bLeftRequire" check="Require" warning="请输入帐号" name="account"></td></tr>
+			<tr class="row" ><td class="tRight">密 码：</td><td><input type="password" class="medium bLeftRequire" check="Require" warning="请输入密码" name="password"></td></tr>
+			<tr class="row" ><td class="tRight">验证码：</td><td><input type="text" onKeyDown="keydown(event)" class="small bLeftRequire" check="Require" warning="请输入验证码" name="verify"> <img id="verifyImg" SRC="__URL__/verify/" onClick="fleshVerify()" BORDER="0" ALT="点击刷新验证码" style="cursor:pointer" align="absmiddle"></td></tr>
+			<tr class="row" ><td class="tCenter" align="justify" colspan="2">
+			<input type="hidden" name="ajax" value="1">
+			<input type="button" value="登 录" onClick="ThinkAjax.sendForm('form1','__URL__/checkLogin/',loginHandle,'result')" class="submit medium hMargin">
+			</td></tr>
+			<tr><td height="5" colspan="2" class="bottomTd" ></td></tr>
+			</table>
+			<div align="center" style="width:40%; text-align:center">
+			<div class="result" align="center" style="text-align:center; display:block; position:relative; left:77%">新用户注册请发送申请邮件至：zhjianhuaster[at]gmail[dot]com </div>
+			<div class="result" align="center" style="text-align:center; display:block; position:relative; left:77%">请注明姓名，学校，使用用途，所申请英文账号。</div>
+			</div>
+		</div>
 	</form>
 </body>
 </html>
