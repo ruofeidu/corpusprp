@@ -62,15 +62,31 @@ $("#aboutTab").click(function(){
 	$("#aboutView").show("normal");
 });
 
+$("#submit").mouseover(function(){
+	$("#submit")[0].src = "__PUBLIC__/images/search_glow.jpg";
+}); 
+
+$("#submit").mouseout(function(){
+	$("#submit")[0].src = "__PUBLIC__/images/search.jpg";
+}); 
+
+$("#dlbutton").mouseover(function(){
+	$("#dlbutton")[0].src = "__PUBLIC__/images/download_glow.jpg";
+}); 
+
+$("#dlbutton").mouseout(function(){
+	$("#dlbutton")[0].src = "__PUBLIC__/images/download.jpg";
+}); 
+
 $(".submit").click(function(){
 	var dl = 0; 
-	if (this.id == "download") {
+	if (this.id == "dlbutton") {
 		dl = 1;
 		//alert("下载");
-		$("#resultList").html("系统正在为您生成Excel文件...请您耐心等待..."); 
+		$("#resultList").html("&nbsp;&nbsp;&nbsp;系统正在为您生成Excel文件...请您耐心等待..."); 
 	} else {
 		//alert("搜索");
-		$("#resultList").html("系统正在检索中...请您耐心等待..."); 
+		$("#resultList").html("&nbsp;&nbsp;&nbsp;系统正在为您检索中...请您耐心等待..."); 
 	}
 	$('#download')[0].value = dl; 
 	var kw = $('#keywords')[0].value;
@@ -84,7 +100,11 @@ $(".submit").click(function(){
 	var yr = $('#year')[0].value; 
 	var ud = $('#uid')[0].value;  
 	var er = $('#error')[0].value; 
-	if (kw == lkw) pg = $('#page')[0].value; else pg = 1;  
+	var sp = $('#samepage')[0].value; 
+	if (sp == 1) pg = $('#page')[0].value; else {
+		pg = 1; 
+		$('#page')[0].value = 1; 
+	}	
 	$('#lastkeywords')[0].value = kw; 
 	var ln = $('#listnum')[0].value;
 		
@@ -112,6 +132,10 @@ $(".submit").click(function(){
 		//	$.ajax({  type: "POST", url: "__URL__/search",  data: { keywords: kw, school: sc, gender: gd, studytime: st, firstlang:fl, year:yr, uid:ud, error:er, page:pg, listnum:ln, download:dl},  success: function(str_response) {  var obj = window.open("about:blank");  obj.document.write(str_response);  }  });  
 		//}
 	}
+	$('#samepage')[0].value = 0; 
+	if (this.id == "dlbutton ") {
+		$("#resultList").html("&nbsp;&nbsp;&nbsp;系统已经为您生成了Excel文件，请到您的下载目录中查看。"); 
+	} 
 }); 
 }); 
 </script>
@@ -138,8 +162,8 @@ $(".submit").click(function(){
 	<div id="searchBox">
 		<div class="column grid_7"><input type="text" id="keywords" name="keywords" style="height:23px;width:95%" class="large bLeft" value="{$keywords}"/> </div>
 	</div>
-	<div class="column gird_2"><td class="tRight" width="16%"><img class="submit" id="submit" src="__PUBLIC__/images/search.png"/> </div>
-	<div class="column gird_2"><td class="tRight" width="16%"><img class="submit" id="download" src="__PUBLIC__/images/download.png"/> </div>
+	<div class="column gird_2"><td class="tRight" width="16%"><img class="submit" id="submit" src="__PUBLIC__/images/search.jpg"/> </div>
+	<div class="column gird_2"><td class="tRight" width="16%"><img class="submit" id="dlbutton" src="__PUBLIC__/images/download.jpg"/> </div>
 </div>
  
 <div class="row" id="errorSearch">
@@ -263,6 +287,7 @@ $(".submit").click(function(){
 		<input type="number" value="30" id="listnum" name="listnum" style="width:130px" class="large bLeft" min="3" max="90"/>
 		<input id="error" name="error" type="hidden" value=""/>
 		<input id="page" name="page" type="hidden" value="1"/>
+		<input id="samepage" name="samepage" type="hidden" value="1"/>
 		<input id="editword" type="hidden" value="1"/>
 		<input id="download" name="download" type="hidden" value="1"/>
 		<input id="lastkeywords" type="hidden" value="corpus"/>
