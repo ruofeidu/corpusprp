@@ -107,9 +107,11 @@ class SearchAction extends CommonAction {
 	public function search(){
 		if ( (!isset($_POST['keywords'])||$_POST['keywords']==""||$_POST['keywords']=='ss'||strlen($_POST['keywords'])<2) && (!isset($_POST['error'])||$_POST['error']=="") ) {
 			//管理员允许拖库，调试方便
-			if ($_SESSION['_ACCESS_LIST']['CORPUS']['INDEX']['MAIN'] == null || strlen($_POST['keywords'])<2 || $_POST['keywords']=='ss'){
-				echo '<b style="color:red;">请输入正确的关键词</b>';
-				exit();
+			if ($_SESSION['_ACCESS_LIST']['CORPUS']['INDEX']['MAIN'] == null) {
+				if (strlen($_POST['keywords'])<2 || $_POST['keywords']=='ss'){
+					echo '<b style="color:red;">请输入正确的关键词</b>';
+					exit();
+				}
 			}
 		}
 		if ($_SESSION['_ACCESS_LIST']['CORPUS']['INDEX']['MAIN'] != null){ $admin_user = true; } else { $admin_user = false;  }
