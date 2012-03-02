@@ -6,7 +6,7 @@
 <meta name="keywords" content="Corpus, 日语学习者语料库, 语料库" />
 <meta name="author" content="杜若飞,Du Ruofei,幺恩鹏, Yao Enpeng, 陈博, Chen Bo, 张建华, Zhang Jianhua, ACM班, ACM Honered Class,SJTU" />
 <meta name="copyright" content="上海交通大学, Shanghai Jiao Tong University">
-<title>Corpus登录系统</title>
+<title>上海交通大学日语学习者书面语料库登录系统</title>
 <link href="../Public/css/grid.css" rel="stylesheet" />	
 <load href='__PUBLIC__/Css/style.css' />
 <load href="__PUBLIC__/Js/Base.js" />
@@ -56,7 +56,7 @@ $('verifyImg').src= '__URL__/verify/'+timenow;
 		<div class="tCenter hMargin">
 			<table id="checkList" class="login shadow" cellpadding=0 cellspacing=0 >
 			<tr><td height="5" colspan="2" class="topTd" ></td></tr>
-			<tr class="row" ><th colspan="2" class="tCenter space" > Corpus 登录系统</th></tr>
+			<tr class="row" ><th colspan="2" class="tCenter space" >上海交通大学日语学习者书面语料库</th></tr>
 			<tr><td height="5" colspan="2" class="topTd" ></td></tr>
 			<tr class="row" ><td colspan="2" class="tCenter"><div id="result" class="result none"></div></td></tr>
 			<tr class="row" ><td class="tRight" width="25%">帐 号：</td><td><input type="text" class="medium bLeftRequire" check="Require" warning="请输入帐号" name="account"></td></tr>
@@ -66,12 +66,9 @@ $('verifyImg').src= '__URL__/verify/'+timenow;
 			<input type="hidden" name="ajax" value="1">
 			<input type="button" value="登 录" onClick="ThinkAjax.sendForm('form1','__URL__/checkLogin/',loginHandle,'result')" class="submit medium hMargin">
 			</td></tr>
+			<tr class="row" ><td class="tRight">新用户<br/>注册： </td><td>请将姓名，申请账号，学校，使用用途发送至：zhjianhuaster [at] gmail [dot] com</td></tr>
 			<tr><td height="5" colspan="2" class="bottomTd" ></td></tr>
 			</table>
-			<div align="center" style="width:40%; text-align:center">
-			<div class="result" align="center" style="text-align:center; display:block; position:relative; left:77%">新用户注册请发送申请邮件至：zhjianhuaster[at]gmail[dot]com </div>
-			<div class="result" align="center" style="text-align:center; display:block; position:relative; left:77%">请注明姓名，学校，使用用途，所申请英文账号。</div>
-			</div>
 		</div>
 	</form>
 </body>

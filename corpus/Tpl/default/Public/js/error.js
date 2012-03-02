@@ -92,6 +92,7 @@ errorValue['句子错误'] = 'B';
 
 $(document).ready(function(){
 	$(".sError").hide(); 
+	$(".SEO").hide(); 
 	//第一层
 	$("#baseError").change(function(){
 		next = $("#nextError")[0];
