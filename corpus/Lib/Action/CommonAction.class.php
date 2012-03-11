@@ -160,12 +160,12 @@ class CommonAction extends Action {
 		//B('FilterString');
 		$name=$this->getActionName();
 		$model = D ($name);
-		if (false === $model->create ()) {
+		if ( false === $model->create() ) {
 			$this->error ( $model->getError () );
 		}
 		//保存当前数据对象
-		$list=$model->add ();
-		if ($list!==false) { //保存成功
+		$list = $model->add ();
+		if ($list !== false) { //保存成功
 			$this->assign ( 'jumpUrl', Cookie::get ( '_currentUrl_' ) );
 			$this->success ('新增成功!');
 		} else {
@@ -193,20 +193,20 @@ class CommonAction extends Action {
 
 	function update() {
 		//B('FilterString');
-		$name=$this->getActionName();
+		$name = $this->getActionName();
 		$model = D ( $name );
-		if (false === $model->create ()) {
+		if ( false === $model->create() ) {
 			$this->error ( $model->getError () );
 		}
 		// 更新数据
-		$list=$model->save ();
-		if (false !== $list) {
+		$list = $model->save ();
+		if ( false !== $list ) {
 			//成功提示
 			$this->assign ( 'jumpUrl', Cookie::get ( '_currentUrl_' ) );
 			$this->success ('编辑成功!');
 		} else {
 			//错误提示
-			$this->error ('编辑提示!');
+			$this->error ($model);
 		}
 	}
 	/**
