@@ -1,12 +1,6 @@
 <include file="Public:header" />
 <div id="main" class="main" >
 <div class="content">
-<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Js/editor/kindeditor.js"></script>
-<script type="text/javascript">
-    KE.show({
-        id : 'content_1' //TEXTAREA输入框的ID
-   });
-</script>
 <div align="center">
 <div class="title" align="center" style="width:50%"><div align="center">编辑作文——{$vo.title} [ <a href="__URL__">返回列表</a> ]</div></div>
 </div>
@@ -18,7 +12,8 @@
 <div class="row" align="center"> 
 	
 
-<form method='post' id="form1" name="form1"action="__URL__/update"  enctype="multipart/form-data">
+<form method='post' id="form1" name="form1" action="__URL__/update" enctype="multipart/form-data">
+
 <div class="row" align="center">
 	<div class="column grid_1">作品コード：</div> 
 	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="aid" value="{$vo.aid}"/></div> 
@@ -38,11 +33,13 @@
 	
 </div>
 <br/><br/>
+
 <div class="row" align="center">
-	<div class="column grid_1">文章内容：(建议切换到代码模式)</div> 
-	<div class="column grid_8"><textarea id="content_1" name="text" style="width:99%;height:450px;">{$vo.text}</textarea></div> 
+	<div class="column grid_1">文章内容：</div> 
+	<div class="column grid_8"><textarea name="text" style="width:99%;height:450px;">{$vo.text}</textarea></div> 
 </div>
 <br/><br/>
+
 <div class="row" align="center">
 	<div class="column grid_1">執筆日：</div> 
 	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="time" value="{$vo.time}"/></div> 
@@ -55,35 +52,40 @@
 </div>
 <br/><br/>
 <div class="row" align="center">
-	<div class="column grid_1">学习时间数</div> 
+	<div class="column grid_1">学習時間数</div> 
 	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="semestertime" value="{$vo.semestertime}"/></div> 
-	<div class="column grid_1">完成时间：</div> 
-	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="finishedday" value="{$vo.finishedday}"/></div> 	
 	<div class="column grid_1">字数：</div> 
 	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="wordnum" value="{$vo.wordnum}"/></div> 
+	<div class="column grid_1">添削者：</div> 
+	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="modifiedby" value="{$vo.modifiedby}"/></div> 
 </div>
 <br/><br/>
 <div class="row" align="center">	
-	<div class="column grid_1">添削者：</div> 
-	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="modifiedby" value="{$vo.modifiedby}"/></div> 
 	
 	<div class="column grid_1">タグ付者：</div> 
 	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="markedby" value="{$vo.markedby}"/></div> 
 	
 	<div class="column grid_1">タグ付項目：</div> 
 	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="mark" value="{$vo.mark}"/></div> 
+
+	<div class="column grid_1">タグ付完成日：</div> 
+	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="finishedday" value="{$vo.finishedday}"/></div> 
 </div>
 <br/><br/>
 <div class="row" align="center">	
-	<div class="column grid_1">タグ付完成日：</div> 
-	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="finishedday" value="{$vo.finishedday}"/></div> 
 	
 	<div class="column grid_1">入力者：</div> 
 	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="inputed" value="{$vo.inputed}"/></div> 
 	
 	<div class="column grid_1">入力完成日：</div> 
 	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="inputedday" value="{$vo.inputedday}"/></div> 
+
+	<div class="column grid_1">文章ID：</div> 
+	<div class="column grid_2">{$vo.id}</div> 
+
+	<input type="hidden" class="huge bLeftRequire" name="id" value="{$vo.id}">
 </div>
+
 
 <br/><br/>
 <div class="row" align="center">	
