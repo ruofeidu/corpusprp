@@ -19,7 +19,7 @@
 <div class="fRig">
 <form method='post' action="__URL__">
 <div class="fLeft"><span id="key"><input type="text" name="name" title="组名" class="medium" ></span></div>
-<html:imageBtn type="submit" name="search" value="按标题查询" style="impBtn hMargin fLeft shadow" />
+<html:imageBtn type="submit" name="search" value="查ID" style="impBtn hMargin fLeft shadow" />
 </div>
 <!-- 高级查询区域 -->
 <div  id="searchM" class=" none search cBoth" >
@@ -30,7 +30,7 @@
 
 <!-- 列表显示区域  -->
 <div class="list" >
-<html:list id="checkList" name="user" style="list" checkbox="true" action="true" datasource="list" show="aid:文章编号,uid:作者编号|8%,title:标题:edit,semester:写作学期,time:发表时间,status|getStatus:状态" actionlist="status|showStatus=$user['id'],edit:编辑:id" />
+<html:list id="checkList" name="user" style="list" checkbox="true" action="true" datasource="list" show="aid:文章编号,uid:作者编号|8%,title:标题:edit,semester:写作学期,time:发表时间,status|getStatus:是否有正文" actionlist="status|showStatus=$user['id'],edit:编辑:id" />
 </div>
 <!--  分页显示区域 -->
 <div class="page">{$page}</div>
