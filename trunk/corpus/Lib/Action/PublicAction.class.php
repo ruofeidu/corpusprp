@@ -98,6 +98,9 @@ class PublicAction extends Action {
 	// 用户登录页面
 	public function login() {
 		if (!isset($_SESSION[C('USER_AUTH_KEY')])) {
+			$News = M('form'); 
+			$a = $News->getById(1); 
+			$this->assign("news", $a);
 			$this->display();
 		}
 		else{
@@ -107,6 +110,13 @@ class PublicAction extends Action {
 				$this->redirect('Search/index');
 			}
 		}
+	}
+	
+	public function news(){
+		$News = M('form'); 
+		$a = $News->getById(1); 
+		$this->assign("news", $a);
+		$this->display();
 	}
 
 	public function index()
