@@ -3,8 +3,8 @@
 <script language="JavaScript">
 <!--
 function resetPwd(){
-var pass	 =	 $F('resetPwd');
-ThinkAjax.send('__URL__/resetPwd/','ajax=1&id={$vo.id}&password='+encodeURIComponent(pass));
+var pass	 =	 document.getElementById('pwdreset');
+ThinkAjax.send('__URL__/resetPwd/','ajax=1&id={$vo.id}&password='+encodeURIComponent(pass.value));
 }
 //-->
 </script>
@@ -13,7 +13,7 @@ ThinkAjax.send('__URL__/resetPwd/','ajax=1&id={$vo.id}&password='+encodeURICompo
 <table cellpadding=3 cellspacing=3>
 <tr>
 	<td class="tRight">重置密码：</td>
-	<td class="tLeft" ><input type="text" name="resetPwd" > <INPUT type="button" value="重置密码" onclick="resetPwd()" class="submit" style="height:25px"></td>
+	<td class="tLeft" ><input type="text" id="pwdreset" name="resetPwd" > <input type="button" value="重置密码" onclick="resetPwd()" class="submit" style="height:25px"></td>
 </tr>
 <tr>
 	<td class="tRight" colspan="2"><hr></td>
