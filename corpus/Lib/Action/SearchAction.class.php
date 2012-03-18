@@ -15,6 +15,14 @@ class SearchAction extends CommonAction {
         header("Content-Type:text/html; charset=utf-8");
         $article = M('article');
 		$articles = $article->select();
+		
+		$News = M('form'); 
+		$a = $News->getById(14); 
+		$this->assign("newsInfo", $a);
+		$a = $News->getById(15); 
+		$this->assign("newsAbout", $a);
+		$this->display();
+			
 		$this->assign("hasResult", -1); 
 		$this->assign("articles", $articles);
 		$this->assign("admin_user", $admin_user);
