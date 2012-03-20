@@ -1,0 +1,51 @@
+<include file="Public:header" />
+<div id="main" class="main" >
+<div class="content">
+<div align="center">
+<div class="title" align="center" style="width:50%"><div align="center">编辑附码信息——{$vo.title} [ <a href="__URL__">返回列表</a> ]</div></div>
+</div>
+
+<div class="fRig"><neq name="vo.image" value=''><img src="__PUBLIC__/Uploads/{$vo.image}"  width="160" height="120" style="border:1px solid silver;padding:1px" /></neq></div>
+<div id="result" class="result none"></div>
+
+<div class="main">
+<div class="row" align="center"> 
+	
+
+<form method='post' id="form1" name="form1" action="__URL__/update" enctype="multipart/form-data">
+
+<div class="row" align="center">
+	<div class="column grid_1">附码コード：</div> 
+	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="eid" value="{$vo.eid}"/></div> 
+	
+	<div class="column grid_1">附码类型</div> 
+	<div class="column grid_5"><input type="text" style="width:95%" class="huge bLeftRequire" name="type" value="{$vo.type}"/></div> 
+</div>
+<br/><br/>
+
+<div class="row" align="center">
+	<div class="column grid_1">附码解释：</div> 
+	<div class="column grid_8"><textarea name="msg" style="width:99%;height:450px;">{$vo.msg}</textarea></div> 
+</div>
+<br/><br/>
+
+<div class="row" align="center">
+	<div class="column grid_1">附码例子：</div> 
+	<div class="column grid_8"><textarea name="example" style="width:99%;height:450px;">{$vo.example}</textarea></div> 
+</div>
+<br/><br/>
+
+<br/><br/>
+<div class="row" align="center">	
+	<input type="hidden" class="huge bLeftRequire" name="id" value="{$vo.id}">
+	<input type="hidden" name="status" value="1">
+	<div class="column grid_6"><input type="submit" value="更新附码信息" class="button medium" style="width:90%; height:30px"/></div> 
+	<div class="column grid_1">管理员ID：</div> 
+	<div class="column grid_2"><?php echo $_SESSION[C('USER_AUTH_KEY')] ?></div> 
+</div>
+</form>
+</div>
+</div>
+
+
+</div>
