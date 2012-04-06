@@ -1,12 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="description" content="Janpanese Corpus, 日语学习者语料库, 容纳数千篇精心批改的学生作文，方便日语语料库研究者做学术研究, 友情链接：www.duruofei.com, www.yepyao.info, www.todict.com, www.douniwan.info" />
-<meta name="keywords" content="Corpus, 日语学习者语料库, 语料库" />
-<meta name="author" content="杜若飞,Du Ruofei,幺恩鹏, Yao Enpeng, 陈博, Chen Bo, 张建华, Zhang Jianhua, ACM班, ACM Honered Class,SJTU" />
-<meta name="copyright" content="上海交通大学, Shanghai Jiao Tong University">
-<title>日本語学習者の書き言葉コーパスのログで</title>
+<title>日本語学習者書き言葉コーパス会員登録</title>
 <link href="../Public/css/grid.css" rel="stylesheet" />	
 <load href='__PUBLIC__/Css/style.css' />
 <load href="__PUBLIC__/Js/Base.js" />
@@ -19,11 +15,11 @@
 <!--
 var PUBLIC	 =	 '__PUBLIC__';
 ThinkAjax.image = [	 '__PUBLIC__/Images/loading2.gif', '__PUBLIC__/Images/ok.gif','__PUBLIC__/Images/update.gif' ]
-ThinkAjax.updateTip	=	'登录中～';
+ThinkAjax.updateTip	=	'登録中～';
 function loginHandle(data,status){
 if (status==1)
 {
-$('result').innerHTML	=	'<span style="color:blue"><img SRC="__PUBLIC__/Images/ok.gif" WIDTH="20" HEIGHT="20" BORDER="0" ALT="" align="absmiddle" > 登录成功！3 秒后跳转～</span>';
+$('result').innerHTML	=	'<span style="color:blue"><img SRC="__PUBLIC__/Images/ok.gif" WIDTH="20" HEIGHT="20" BORDER="0" ALT="" align="absmiddle" > 登録は済みました!少々お待ちください～</span>';
 $('form1').reset();
 window.location = '__URL__';
 }
@@ -49,8 +45,8 @@ $('verifyImg').src= '__URL__/verify/'+timenow;
 //-->
 </script>
 </head>
-<!-- <body onLoad="document.login.account.focus()"  oncontextmenu="return false;" oncopy="return false;" onselectstart="return false;" oncut="return false;"> -->
 <body onLoad="document.login.account.focus()" oncontextmenu="return false;" oncopy="return false;" onselectstart="return false;" oncut="return false;">
+
 <div id="superheader">
 <div class="row" align="left">
 	<div class="column grid_5"><img src="__PUBLIC__/images/logo.gif"/></div>
@@ -59,8 +55,8 @@ $('verifyImg').src= '__URL__/verify/'+timenow;
 	Corpus
 	</div>
 	<div class="column grid_4" align="right" style="color:#006fbb">
-	<a href="?t=default" style="color:#006fbb"><img SRC="__PUBLIC__/images/zh_CN.jpg" BORDER="0" ALT="" align="absmiddle">中&nbsp;&nbsp;&nbsp;文</a>
-	<a href="?t=japan" style="color:#006fbb"><img SRC="__PUBLIC__/images/ja_JP.jpg" BORDER="0" ALT="" align="absmiddle">日本語</a>
+	<a href="?t=default&l=zh-cn" style="color:#006fbb"><img SRC="__PUBLIC__/images/zh_CN.jpg" BORDER="0" ALT="" align="absmiddle">中&nbsp;&nbsp;&nbsp;文</a>
+	&nbsp;&nbsp;<a href="?t=japan&l=ja-jp" style="color:#006fbb"><img SRC="__PUBLIC__/images/ja_JP.jpg" BORDER="0" ALT="" align="absmiddle">日本語</a>
 	</div>
 </div>
 </div>
@@ -70,20 +66,31 @@ $('verifyImg').src= '__URL__/verify/'+timenow;
 		<div class="tCenter hMargin">
 			<table id="checkList" class="login shadow" cellpadding=0 cellspacing=0 >
 			<tr><td height="5" colspan="2" class="topTd" ></td></tr>
-			<tr class="row" ><th colspan="2" class="tCenter space" >日本語学習者の書き言葉コーパス</th></tr>
+			<tr class="row" ><th colspan="2" class="tCenter space" >日本語学習者書き言葉コーパス</th></tr>
 			<tr><td height="5" colspan="2" class="topTd" ></td></tr>
 			<tr class="row" ><td colspan="2" class="tCenter"><div id="result" class="result none"></div></td></tr>
-			<tr class="row" ><td class="tRight" width="30%">アカウント：</td><td><input type="text" class="medium bLeftRequire" check="Require" warning="アカウントを入力してください。" name="account"></td></tr>
+			<tr class="row" ><td class="tRight" width="30%">ユーザー名：</td><td><input type="text" class="medium bLeftRequire" check="Require" warning="ユーザー名を入力してください" name="account"></td></tr>
 			<tr class="row" ><td class="tRight">パスワード：</td><td><input type="password" class="medium bLeftRequire" check="Require" warning="パスワードを入力してください" name="password"></td></tr>
-			<tr class="row" ><td class="tRight">確認コード：</td><td><input type="text" onKeyDown="keydown(event)" class="small bLeftRequire" check="Require" warning="確認コードを入力してください。" name="verify"> <img id="verifyImg" SRC="__URL__/verify/" onClick="fleshVerify()" BORDER="0" ALT="リフレッシュ検証コードをクリックしてください" style="cursor:pointer" align="absmiddle"></td></tr>
+			<tr class="row" ><td class="tRight">検証コード：</td><td><input type="text" onKeyDown="keydown(event)" class="small bLeftRequire" check="Require" warning="検証コードを入力してください" name="verify"> <img id="verifyImg" SRC="__URL__/verify/" onClick="fleshVerify()" BORDER="0" ALT="検証コード変更" style="cursor:pointer" align="absmiddle"></td></tr>
 			<tr class="row" ><td class="tCenter" align="justify" colspan="2">
 			<input type="hidden" name="ajax" value="1">
-			<input type="button" value="サインイン" onClick="ThinkAjax.sendForm('form1','__URL__/checkLogin/',loginHandle,'result')" class="submit medium hMargin">
-			<input type="button" value="はじめに" onClick="window.location='__APP__/Public/news'" class="medium hMargin submit">
+			<input type="button" value="ログイン" onClick="ThinkAjax.sendForm('form1','__URL__/checkLogin/',loginHandle,'result')" class="submit medium hMargin">
+			<input type="button" value="このコーパスについて" onClick="window.location='__APP__/Public/news'" class="medium hMargin submit">
 			</td></tr>
 			<tr><td height="5" colspan="2" class="bottomTd" ></td></tr> 
 			</table>
 		</div>
 	</form>
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+<div id="superfooter">
+	<div class="row t-l">
+        <div class="b-info">
+            <div class="b-info-logo">Corpus</div>
+            <div class="b-info-copyright">Copyright (c) 2011-2012 School of Foreign Languages, Shanghai Jiao Tong University. <br/>All rights reserved. Powered By PRP Group.</div>
+		</div>
+    </div>
+</div>
+	
 </body>
 </html>

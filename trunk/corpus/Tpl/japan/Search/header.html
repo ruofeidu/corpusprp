@@ -11,11 +11,11 @@
 	<script type="text/javascript" src="../Public/js/jquery.faded.js"></script>
 	<script type="text/javascript" src="../Public/js/script.js"></script>
 	<script type="text/javascript" src="../Public/js/tabs.js"></script>
-	<script type="text/javascript" src="../Public/js/error.js"></script>
+	<script type="text/javascript" src="../Public/js/errorjan.js"></script>
 	<script type="text/javascript" src="../Public/js/thickbox-compressed.js" ></script>	
     <link href="../Public/css/grid.css" rel="stylesheet" />
     <link href="../Public/css/style.css" rel="stylesheet" />
-	<title>上海交通大学日语学习者书面语料库</title>
+	<title>日本語学習者書き言葉コーパス</title>
 </head>
 <eq name="admin_user" value="1">
 <body>
@@ -25,17 +25,21 @@
 
 <div id="superheader">
 <div class="row" align="right">
+	<div class="column grid_9">
 	<eq name="admin_user" value="1">
-	<div class="column grid_3" style="color:#006fbb">Corpus</div>
-	<div class="column grid_1"><a href="{:U("Public/index")}"><img src="__PUBLIC__/images/admin.gif" width="20" height="20" border="0" alt="" align="absmiddle">后台管理</a></div>
-	<div class="column grid_1"><a href="{:U("Article/Add")}" target="_blank"><img src="__PUBLIC__/images/add.gif" width="20" height="20" border="0" alt="" align="absmiddle">新增文章</a></div>
+	<a href="{:U("Public/index")}"><img src="__PUBLIC__/images/admin.gif" width="20" height="20" border="0" alt="" align="absmiddle">コーパス管理</a>&nbsp;&nbsp;
+	<a href="{:U("Article/Add")}" target="_blank"><img src="__PUBLIC__/images/add.gif" width="20" height="20" border="0" alt="" align="absmiddle">文章追加</a>&nbsp;&nbsp;
+	<a href="?t=default"><img src="__PUBLIC__/images/zh_CN.jpg" border="0" alt="" align="absmiddle">&nbsp;中文</a>&nbsp;&nbsp;
+	<a href="{:U("Public/password")}"><img src="__PUBLIC__/images/pw.gif" width="20" height="20" border="0" alt="" align="absmiddle">パスワード変更</a>&nbsp;&nbsp;
+	<a href="{:U("Public/profile")}"><img SRC="__PUBLIC__/images/write.gif" WIDTH="20" HEIGHT="20" BORDER="0" ALT="" align="absmiddle">個人設定</a>&nbsp;&nbsp;
+	<a href="{:U("Public/logout")}"><img SRC="__PUBLIC__/images/error.gif" WIDTH="20" HEIGHT="20" BORDER="0" ALT="" align="absmiddle">ログアウト</a>
 	<else/>
-	<div class="column grid_5" style="color:#006fbb">Corpus</div>
+	<a href="?t=default"><img src="__PUBLIC__/images/zh_CN.jpg" border="0" alt="" align="absmiddle">&nbsp;中文</a>&nbsp;&nbsp;
+	<a href="{:U("Public/password")}"><img src="__PUBLIC__/images/pw.gif" width="20" height="20" border="0" alt="" align="absmiddle">パスワード変更</a>&nbsp;&nbsp;
+	<a href="{:U("Public/profile")}"><img SRC="__PUBLIC__/images/write.gif" WIDTH="20" HEIGHT="20" BORDER="0" ALT="" align="absmiddle">個人設定</a>&nbsp;&nbsp;
+	<a href="{:U("Public/logout")}"><img SRC="__PUBLIC__/images/error.gif" WIDTH="20" HEIGHT="20" BORDER="0" ALT="" align="absmiddle">ログアウト</a>
 	</eq>
-	<div class="column grid_1"><a href="?t=default"><img src="__PUBLIC__/images/zh_CN.jpg" border="0" alt="" align="absmiddle">&nbsp;中&nbsp;&nbsp;&nbsp;文</a></div>
-	<div class="column grid_1"><a href="{:U("Public/password")}"><img src="__PUBLIC__/images/pw.gif" width="20" height="20" border="0" alt="" align="absmiddle">修改密码</a></div>
-	<div class="column grid_1"><a href="{:U("Public/profile")}"><img SRC="__PUBLIC__/images/write.gif" WIDTH="20" HEIGHT="20" BORDER="0" ALT="" align="absmiddle">修改资料</a></div>
-	<div class="column grid_1"><a href="{:U("Public/logout")}"><img SRC="__PUBLIC__/images/error.gif" WIDTH="20" HEIGHT="20" BORDER="0" ALT="" align="absmiddle">退出系统</a></div>
+	</div>
 </div>
 </div>
 

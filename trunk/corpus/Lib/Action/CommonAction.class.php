@@ -167,10 +167,10 @@ class CommonAction extends Action {
 		$list = $model->add ();
 		if ($list !== false) { //保存成功
 			$this->assign ( 'jumpUrl', Cookie::get ( '_currentUrl_' ) );
-			$this->success ('新增成功!');
+			$this->success (L('add_success'));
 		} else {
 			//失败提示
-			$this->error ('新增失败!');
+			$this->error (L('add_fail'));
 		}
 	}
 
@@ -203,7 +203,7 @@ class CommonAction extends Action {
 		if ( false !== $list ) {
 			//成功提示
 			$this->assign ( 'jumpUrl', Cookie::get ( '_currentUrl_' ) );
-			$this->success ('编辑成功!');
+			$this->success (L('edit_success'));
 		} else {
 			//错误提示
 			$this->error ($model);
@@ -231,12 +231,12 @@ class CommonAction extends Action {
 				$condition = array ($pk => array ('in', explode ( ',', $id ) ) );
 				$list=$model->where ( $condition )->setField ( 'status', - 1 );
 				if ($list!==false) {
-					$this->success ('删除成功！' );
+					$this->success (L('del_success') );
 				} else {
-					$this->error ('删除失败！');
+					$this->error (L('del_fail'));
 				}
 			} else {
-				$this->error ( '非法操作' );
+				$this->error ( L('illegal_oper'));
 			}
 		}
 	}
@@ -251,12 +251,12 @@ class CommonAction extends Action {
 				$condition = array ($pk => array ('in', explode ( ',', $id ) ) );
 				if (false !== $model->where ( $condition )->delete ()) {
 					//echo $model->getlastsql();
-					$this->success ('删除成功！');
+					$this->success ('del_success');
 				} else {
-					$this->error ('删除失败！');
+					$this->error ('del_fail');
 				}
 			} else {
-				$this->error ( '非法操作' );
+				$this->error ( 'illegal_oper' );
 			}
 		}
 		$this->forward ();
@@ -393,7 +393,7 @@ function saveSort() {
 			$model->commit ();
 			if ($result!==false) {
 				//采用普通方式跳转刷新页面
-				$this->success ( '更新成功' );
+				$this->success ( L('update_success') );
 			} else {
 				$this->error ( $model->getError () );
 			}

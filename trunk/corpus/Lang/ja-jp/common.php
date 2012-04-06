@@ -1,0 +1,38 @@
+<?php
+return array(
+	'no_login'			=>	'没有登录',
+	'log_in_success'	=>	'登录成功！',
+	'log_out_success'	=>	'登出成功！',
+	'log_out_already'	=>	'已经登出！',
+	'account_wrong'		=>	'帐号错误！',
+	'password_must'		=>	'密码必须！',
+	'password_wrong'	=>	'密码错误！',
+	'code_must'			=>	'验证码必须填写！',
+	'code_wrong'		=>	'検証コードが間違っています。',
+	'account_no_exist'	=>	'帐号不存在或已禁用！',
+	'password_error'	=>	'旧密码不符或者用户名错误！',
+	'password_success'	=>	'密码修改成功！',
+	'profile_success'	=>	'资料修改成功！',
+	'profile_fail'		=>	'资料修改失败！',
+	
+	'add_success'		=>	'新增成功',
+	'add_fail'			=>	'新增失败',
+	'edit_success'		=>	'编辑成功',
+	'edit_fail'			=>	'编辑失败',
+	'del_success'		=>	'删除成功',
+	'update_success'	=>	'更新成功',
+	'del_fail'			=>	'删除失败',
+	'illegal_oper'		=>	'非法操作',
+	
+	'sorry_no_pic'		=>	'对不起，该作文目前没有参考扫描件！',
+	'para_wrong'		=>	'参数错误',
+	'article_no_exist'	=>	'此文章不存在',
+	'please_right_key'	=>	'<b style="color:red;">キーワードを入力してください</b>',
+	'work_id'			=>	'作品コード',
+	'author_id'			=>	'執筆者コード',
+	'title'				=>	'題目',
+	'semester'			=>	'学期',
+	'date'				=>	'写作日',
+	'context'			=>	'关键字上下文',
+);
+?>

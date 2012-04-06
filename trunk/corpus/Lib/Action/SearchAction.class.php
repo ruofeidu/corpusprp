@@ -47,21 +47,21 @@ class SearchAction extends CommonAction {
 			
 		} while (true); 
 		
-		if ($i == 1) echo "对不起，该作文目前没有参考扫描件"; 
+		if ($i == 1) echo L("sorry_no_pic"); 
 		$this->assign("txtid", $txtid); 
 		$this->assign("picture", $a); 
 		$this->display();
 	}
 	//浏览作文详细内容
 	public function view(){
-		if (!isset($_GET['txtid']) || !isset($_GET['id'])) $this->error('参数错误');		
+		if (!isset($_GET['txtid']) || !isset($_GET['id'])) $this->error(L('para_wrong'));		
 		if ($_SESSION['_ACCESS_LIST']['CORPUS']['INDEX']['MAIN'] != null){ $admin_user = true; } else { $admin_user = false;  }
 		$this->assign("admin_user", $admin_user);
 		
 		$article = M('article');
 		$find = $article->where("id='{$_GET['id']}'")->find();
 		
-		if ($find['text'] == null) $this->error('此文章不存在');
+		if ($find['text'] == null) $this->error(L('article_no_exist'));
 		$content = $find['text'];
 		//echo $data;
 		$content = substr($content,strpos($content,"\n"));
@@ -117,7 +117,7 @@ class SearchAction extends CommonAction {
 			//管理员允许拖库，调试方便
 			if ($_SESSION['_ACCESS_LIST']['CORPUS']['INDEX']['MAIN'] == null) {
 				if (strlen($_POST['keywords'])<2 || $_POST['keywords']=='ss'){
-					echo '<b style="color:red;">请输入正确的关键词</b>';
+					echo L('please_right_key');
 					exit();
 				}
 			}
@@ -228,17 +228,27 @@ class SearchAction extends CommonAction {
 		
 		if ($download == 1){
 			$name = "result_".$keywords.".csv"; 
-			$title = Array('作品コード','執筆者コード','題目','学期','執筆日','关键字上下文');
+			$title = Array(L('work_id'), L('author_id'), L('title'),L('semester'), L('date'), L('context'));
 			return $this->exportCSV($name, $title, $array);
 		} else {
 			if (count($list) != 0) $hasResult = 1; else $hasResult = 0; 
 			$this->assign("articles", $list);
-			if (count($list) == $listnum)
+			if (count($list) == $listnum){
 				$this->assign("nextpage", 1); 
-			else
+				$endnum = $page + 1; 
+			} else {
 				$this->assign("nextpage", 0);  
+				$endnum = $page;
+			}
+			$startnum = max(1, $page-5); 
+			
+			$allpage = array();
+			for ($i = $startnum; $i <= $endnum; ++$i){
+				$allpage[] = $i; 
+			}
 			
 			$this->assign("hasResult", $hasResult); 
+			$this->assign("allpage", $allpage); 
 			$this->assign("error", $error); 
 			$this->assign("page", $page); 
 			$this->assign("listnum", $listnum); 
