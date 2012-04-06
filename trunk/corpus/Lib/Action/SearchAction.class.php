@@ -240,7 +240,7 @@ class SearchAction extends CommonAction {
 				$this->assign("nextpage", 0);  
 				$endnum = $page;
 			}
-			$startnum = max(1, $page-5); 
+			$startnum = max(1, $page-4); 
 			
 			$allpage = array();
 			for ($i = $startnum; $i <= $endnum; ++$i){

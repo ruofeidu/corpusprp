@@ -33,15 +33,15 @@ $(document).ready(function(){
 <div class="page column grid_1" id="firstpage"><a>无上页</a></div>
 </neq>
 
-<div class="page column grid_2">
+<div class="page column grid_3">
 <gt name="page" value="7">
 <a id="previous">...</a>
 <else/>
 
 </gt>
 <volist name="allpage" id="a">
-<eq name="a" value="page">
-<a>|</a><a class="goto" style="color:green" rel="{$i}">&nbsp;{$a}&nbsp;</a>
+<eq name="a" value="$page">
+<a>|</a><a class="goto" style="color:brown" rel="{$i}">&nbsp;{$a}&nbsp;</a>
 <else/>
 <a>|</a><a class="goto" rel="{$i}">&nbsp;{$a}&nbsp;</a>
 </eq>
