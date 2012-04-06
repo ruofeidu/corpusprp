@@ -324,3 +324,49 @@ div.titlev{float:none; background:#FBFAF8; border:1px solid #d4d4d4; padding-top
 
 .table_border td{border-top:1px #DDD solid;border-right:1px #DDD solid;}
 .table_border{border-bottom:1px #DDD solid;border-left:1px #DDD solid;}
+
+
+#superheader {
+    padding: 5px 0 3px 0;
+    font-size: 13px;
+    color: #ddd;
+    background: #FFFFFF; 
+	border-bottom: 6px solid #005188;
+    border-top: 1px solid #007ed5;
+}
+
+#superheader a {
+    color: white;
+}
+
+#superfooter {
+	float:bottom; 
+    padding: 5px 0 3px 0;
+    font-size: 13px;
+    background: #FFFFFF; 
+	border-top: 6px solid #005188;
+    border-bottom: 1px solid #007ed5;
+	height: 70px; 
+	position:relative;
+	bottom:2px
+}
+
+.b-info-logo,
+.b-info-copyright {
+    margin: 5px;
+    float: left;
+}
+.b-info-logo {
+    font-size: 24px;
+    font-family: Helvetica, "Lucida Grande",微软雅黑;
+    font-weight: bold;
+    padding: 5px 0;
+    /* color: #990000; */
+}
+.b-info-copyright {
+    border-left : 1px solid #aaa;
+    padding: 5px;
+    width: 500px;
+    font-size: 12px;
+    color: grey;
+}

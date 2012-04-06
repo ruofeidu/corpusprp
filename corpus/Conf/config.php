@@ -1,10 +1,14 @@
 ﻿<?php
 return array(
 	//'配置项'=>'配置值'
-	'APP_DEBUG'		=>	false, 			// 开启调试模式 
-    'TMPL_SWITCH_ON'			=>	true,	// 启用多模版支持
-	 'TMPL_DETECT_THEME'     => true,      // 自动侦测模板主题
-	'URL_MODEL'		=>	1,
+	'APP_DEBUG'				=>	false, 			// 开启调试模式 
+    'TMPL_SWITCH_ON'		=>	true,	// 启用多模版支持
+	 'TMPL_DETECT_THEME'    => true,      // 自动侦测模板主题
+	'URL_MODEL'				=>	1,
+	'LANG_SWITCH_ON' 		=>	true,			// 启动多语言支持
+    'LANG_AUTO_DETECT'  	=>  true,    	 	// 自动侦测语言
+	'LANG_LIST'				=>	'zh-cn,ja-jp',  // 必须写可允许的语言列表
+	'DEFAULT_LANG'			=>  'zh-cn',     	// 项目默认语言为汉语 
 	'DB_TYPE'		=>	'mysql', 		// 数据库类型
 	'DB_HOST'		=>	'127.0.0.1', 	// 数据库服务器地址
 	'DB_NAME'		=>	'corpus', 		// 数据库名称 

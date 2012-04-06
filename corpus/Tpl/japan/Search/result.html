@@ -17,26 +17,26 @@ $(document).ready(function(){
 	});
 }); 
 </script>
-<div style="margin-bottom: 10px;">
+<div style="margin-bottom: 10px;" align="center">
 <div class="row" align="center">
 <neq name="page" value="1">
-<div class="page column grid_1" id="previous"><a>上一页</a></div>
+<div class="page column grid_2" id="previous"><a>前へ</a></div>
 <else/>
-<div class="page column grid_1" id="firstpage"><a>无上页</a></div>
+<div class="page column grid_2" id="firstpage"><a>前のページ無し</a></div>
 </neq>
-<div class="page column grid_1"><a>当前第{$page}页</a></div>
+<div class="page column grid_2"><a>現在第{$page}ページ</a></div>
 <eq name="nextpage" value="1">
-<div class="page column grid_1" id="nextpage"><a>下一页</a></div>
+<div class="page column grid_2" id="nextpage"><a>次へ</a></div>
 <else/>
-<div class="page column grid_1" id="lastpage"><a>无下页</a></div>
+<div class="page column grid_2" id="lastpage"><a>次のページ無し</a></div>
 </eq>
 </div>
 </div>
 <div class="column grid_9">
-<!--<p class="articletitle">"{$keywords}"的搜索结果</p>-->
+<!--<p class="articletitle">"{$keywords}"検索結果</p>-->
 	<table width="100%">
 		<tr>
-			<th>作品コード</th><th>執筆者コード</th><th>題目</th><th>学期</th><th>執筆日</th><th>字数</th>
+			<th>作文番号</th><th>執筆者番号</th><th>タイトル</th><th>作成学期</th><th>作成日</th><th>字数</th>
 		</tr>
 		<volist name='articles' id='a'>
 			<tr class="striped">
@@ -57,7 +57,7 @@ $(document).ready(function(){
 </div>
 </case>
 <case value="0">
-对不起，没有找到任何结果。
+検索条件に合致する結果は見つかりませんでした。
 </case>
 <default/>
 </switch>

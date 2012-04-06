@@ -1,7 +1,7 @@
-<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+﻿<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html>
 <head>
-<title>页面提示</title>
+<title>ページ・プロンプト</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv='Refresh' content='{$waitSecond};URL={$jumpUrl}'>
 <load href ="__PUBLIC__/Css/style.css" />
@@ -27,12 +27,12 @@
 	</present>
 	<present name="closeWin" >
 		<tr class="row">
-		<td>系统将在 <span style="color:blue;font-weight:bold">{$waitSecond}</span> 秒后自动关闭，如果不想等待,直接点击 <a href="{$jumpUrl}">这里</a> 关闭</td>
+		<td>システムはあと<span style="color:blue;font-weight:bold">{$waitSecond}</span>秒に終了することになります。すぐに終了させたい場合、<a href="{$jumpUrl}">こちら</a> をクリックしてください。</td>
 	</tr>
 	</present>
 	<notpresent name="closeWin" >
 	<tr class="row">
-		<td>系统将在 <span style="color:blue;font-weight:bold">{$waitSecond}</span> 秒后自动跳转,如果不想等待,直接点击 <a href="{$jumpUrl}">这里</a> 跳转</td>
+		<td>システムはあと<span style="color:blue;font-weight:bold">{$waitSecond}</span>秒にシャンプします。すぐに終了させたい場合、<a href="{$jumpUrl}">こちら</a>をクリックしてください。</td>
 	</tr>
 	</notpresent>
 	<tr>

@@ -1,12 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="description" content="Janpanese Corpus, 日语学习者语料库, 容纳数千篇精心批改的学生作文，方便日语语料库研究者做学术研究, 友情链接：www.duruofei.com, www.yepyao.info, www.todict.com, www.douniwan.info" />
-<meta name="keywords" content="Corpus, 日语学习者语料库, 语料库" />
-<meta name="author" content="杜若飞,Du Ruofei,幺恩鹏, Yao Enpeng, 陈博, Chen Bo, 张建华, Zhang Jianhua, ACM班, ACM Honered Class,SJTU" />
-<meta name="copyright" content="上海交通大学, Shanghai Jiao Tong University">
-<title>日语学习者书面语语料库新闻系统</title>
+<title>日本語学習者書き言葉コーパス最新情報</title>
 <link href="../Public/css/grid.css" rel="stylesheet" />	
 <load href='__PUBLIC__/Css/style.css' />
 <load href="__PUBLIC__/Js/Base.js" />
@@ -19,11 +15,11 @@
 <!--
 var PUBLIC	 =	 '__PUBLIC__';
 ThinkAjax.image = [	 '__PUBLIC__/Images/loading2.gif', '__PUBLIC__/Images/ok.gif','__PUBLIC__/Images/update.gif' ]
-ThinkAjax.updateTip	=	'登录中～';
+ThinkAjax.updateTip	=	'登録中～';
 function loginHandle(data,status){
 if (status==1)
 {
-$('result').innerHTML	=	'<span style="color:blue"><img SRC="__PUBLIC__/Images/ok.gif" WIDTH="20" HEIGHT="20" BORDER="0" ALT="" align="absmiddle" > 登录成功！3 秒后跳转～</span>';
+$('result').innerHTML	=	'<span style="color:blue"><img SRC="__PUBLIC__/Images/ok.gif" WIDTH="20" HEIGHT="20" BORDER="0" ALT="" align="absmiddle" >ログイン成功!3秒の後にジャンプします…</span>';
 $('form1').reset();
 window.location = '__URL__';
 }
@@ -49,8 +45,21 @@ $('verifyImg').src= '__URL__/verify/'+timenow;
 //-->
 </script>
 </head>
-<!-- <body onLoad="document.login.account.focus()"  oncontextmenu="return false;" oncopy="return false;" onselectstart="return false;" oncut="return false;"> -->
-<body onLoad="document.login.account.focus()">
+<body onLoad="document.login.account.focus()"  oncontextmenu="return false;" oncopy="return false;" onselectstart="return false;" oncut="return false;">
+
+<div id="superheader">
+<div class="row" align="left">
+	<div class="column grid_5"><img src="__PUBLIC__/images/logo.gif"/></div>
+	<div class="column grid_1" style="color:#ffffff">Corpus</div>
+	<div class="column grid_3" align="right" style="color:#ffffff">
+	Corpus
+	</div>
+	<div class="column grid_4" align="right" style="color:#006fbb">
+	<a href="?t=default" style="color:#006fbb"><img SRC="__PUBLIC__/images/zh_CN.jpg" BORDER="0" ALT="" align="absmiddle">中&nbsp;&nbsp;&nbsp;文</a>
+	&nbsp;&nbsp;<a href="?t=japan" style="color:#006fbb"><img SRC="__PUBLIC__/images/ja_JP.jpg" BORDER="0" ALT="" align="absmiddle">日本語</a>
+	</div>
+</div>
+</div>
 <img src="__PUBLIC__/images/bg.jpg" width="100%" height="100%" style="position:absolute;top:0;left:0;right:100;bottom:500;z-index:-1">
 	<form method='post' name="login" id="form1" width="100">
 		<div class="tCenter hMargin">
@@ -61,7 +70,7 @@ $('verifyImg').src= '__URL__/verify/'+timenow;
 			<tr class="row" ><td class="tLeft">{$news.content}</td></td></tr>
 			
 			<tr class="row" ><td class="tCenter" align="justify" colspan="2">
-			<input type="button" value="回到登录系统" onClick="window.location='__APP__/Public/login'" class="medium hMargin submit">
+			<input type="button" value="登録ページヘ戻る" onClick="window.location='__APP__/Public/login'" class="medium hMargin submit">
 			</td></tr>
 			
 			<tr><td height="5" colspan="2" class="bottomTd" ></td></tr>

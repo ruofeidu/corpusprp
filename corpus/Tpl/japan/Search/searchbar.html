@@ -2,12 +2,6 @@
 onerror = handleError; 
 
 function handleError(msg, url, line){
-	var message = "本页存在错误。\n";
-	message += "错误：" + msg + "\n";
-	message += "URL：" + url + "\n"; 
-	message += "行号：" + line + "\n"; 
-	message += "点击确定继续";
-	//alert(message);
 	return true; 
 }
 var searchMode = 1; 
@@ -17,11 +11,14 @@ $("#errorSearch").hide();
 $("#infoView").hide();
 $("#aboutView").hide();
 $("#mysubmit").hide();
+$("#clearall").hide(); 
 
 $("#orgTab").click(function(){
 	$("#aboutView").hide();
 	$("#infoView").hide();
 	$("#errorSearch").hide("normal"); 
+	$("#keywords")[0].value = ""; 
+	$("#clearall").click(); 
 	searchMode = 1; 
 }); 
 
@@ -29,6 +26,7 @@ $("#errorTab").click(function(){
 	$("#aboutView").hide();
 	$("#infoView").hide();
 	$("#errorSearch").show("normal"); 
+	$("#clearall").click(); 
 	searchMode = 2; 
 });
 
@@ -36,7 +34,7 @@ $("#infoTab").click(function(){
 	$("#infoView").hide();
 	$("#errorSearch").hide(); 
 	$("#aboutView").hide();
-
+	$("#clearall").click(); 
 	$("#infoView").show("normal");
 });
 
@@ -58,7 +56,7 @@ $("#aboutTab").click(function(){
 	$("#infoView").hide();
 	$("#errorSearch").hide(); 
 	$("#aboutView").hide();
-
+	$("#clearall").click(); 
 	$("#aboutView").show("normal");
 });
 
@@ -82,11 +80,9 @@ $(".submit").click(function(){
 	var dl = 0; 
 	if (this.id == "dlbutton") {
 		dl = 1;
-		//alert("下载");
-		$("#resultList").html("&nbsp;&nbsp;&nbsp;系统正在为您生成Excel文件...请您耐心等待..."); 
+		$("#resultList").html("&nbsp;&nbsp;&nbsp;Excelファイルを作成中です…少々お待ちください。"); 
 	} else {
-		//alert("搜索");
-		$("#resultList").html("&nbsp;&nbsp;&nbsp;系统正在为您检索中...请您耐心等待..."); 
+		$("#resultList").html("&nbsp;&nbsp;&nbsp;検索中です…少々お待ちください。"); 
 	}
 	$('#download')[0].value = dl; 
 	var kw = $('#keywords')[0].value;
@@ -123,18 +119,11 @@ $(".submit").click(function(){
 			}
 		}
 	} else {
-			//$("#myForm").submit();
-			//alert("已经提交");
 		$("#mysubmit").click();
-		//if (searchMode == 1){
-		//	$.ajax({ type: "POST", url: "__URL__/search", data:  { keywords: kw, school: sc, gender: gd, studytime: st, firstlang:fl, year:yr, uid:ud, page:pg, listnum:ln, download:dl},  success: function(str_response) {  var obj = window.open("about:blank");  obj.document.write(str_response);  } });  
-		//} else { 
-		//	$.ajax({  type: "POST", url: "__URL__/search",  data: { keywords: kw, school: sc, gender: gd, studytime: st, firstlang:fl, year:yr, uid:ud, error:er, page:pg, listnum:ln, download:dl},  success: function(str_response) {  var obj = window.open("about:blank");  obj.document.write(str_response);  }  });  
-		//}
 	}
 	$('#samepage')[0].value = 0; 
 	if (this.id == "dlbutton ") {
-		$("#resultList").html("&nbsp;&nbsp;&nbsp;系统已经为您生成了Excel文件，请到您的下载目录中查看。"); 
+		$("#resultList").html("&nbsp;&nbsp;&nbsp;Excelファイルができました。ダウンロードの保存先でご覧ください。"); 
 	} 
 }); 
 }); 
@@ -148,10 +137,10 @@ $(".submit").click(function(){
 	</div>
 	<div class="column grid_1">&nbsp; </div>		
 	<ul class="tabs">
-		<li class="first"><a href="#tab1" id="orgTab">作文検索</a></li>
-		<li><a href="#tab2" id="errorTab">错误検索</a></li>
-		<li><a href="#tab3" id="infoTab">コーパスの情報</a></li>
-		<li><a href="#tab4" id="aboutTab">关于</a></li>
+		<li class="first"><a href="#tab1" id="orgTab">全文検索</a></li>
+		<li><a href="#tab2" id="errorTab">誤用検索</a></li>
+		<li><a href="#tab3" id="infoTab">お知らせ</a></li>
+		<li><a href="#tab4" id="aboutTab">利用方法</a></li>
 	</ul>
 </div>
 </div>
@@ -168,36 +157,36 @@ $(".submit").click(function(){
  
 <div class="row" id="errorSearch">
 	<br/>
-	<div class="column grid_1"> コードの検索： </div>			
+	<div class="column grid_1"> 誤用検索：</div>			
 	<div class="column grid_2">
 		<select id="baseError" style="width:130px">
-			<option value="所有类型">不限</option>
-			<option value="书写错误">书写错误</option>
-			<option value="词语错误">词语错误</option>
-			<option value="词组错误">词组错误</option>
-			<option value="句子错误">句子错误</option>
-			<option value="文章格式">文章格式</option>
+			<option value="指定なし">指定なし</option>
+			<option value="表記の誤用">表記の誤用</option>
+			<option value="語の誤り">語の誤り</option>
+			<option value="フレーズの誤り">フレーズの誤り</option>
+			<option value="文の誤りタイプ">文の誤りタイプ</option>
+			<option value="文章構成の誤り">文章構成の誤り</option>
 		</select> 
 	</div>
  
 	<div class="column grid_1">  </div>			
 	<div class="column grid_2">
 		<select id="nextError" class="sError" style="width:130px">
-			<option value="">不限</option>
+			<option value="">指定なし</option>
 		</select>
 	</div>
 	
 	<div class="column grid_1">  </div>			
 	<div class="column grid_2">
 		<select id="tempError" class="sError" style="width:130px">
-			<option value="">不限</option>
+			<option value="">指定なし</option>
 		</select>
 	</div>
 	
 	<div class="column grid_1">  </div>			
 	<div class="column grid_2">
 		<select id="realError" class="sError" style="width:130px">
-			<option value="">不限</option>
+			<option value="">指定なし</option>
 		</select>
 	</div>
 </div>
@@ -212,10 +201,10 @@ $(".submit").click(function(){
  
 <div id="seperate" class="row b-l"></div>
 <div class="row">
-	<div class="column grid_1">学校 </div>			
-	<div class="column grid_2">
-		<select id="school" name="school" style="width:130px">
-			<option value="">不限</option>
+	<div class="column grid_2">執筆者の在籍学校： </div>			
+	<div class="column grid_1">
+		<select id="school" name="school" style="width:80px">
+			<option value="">指定なし</option>
 			<option value="j">j</option>
 			<option value="d">d</option>
 			<option value="s">s</option>
@@ -224,19 +213,19 @@ $(".submit").click(function(){
 		</select>
 	</div>
 
-	<div class="column grid_1">性別： </div>			
-	<div class="column grid_2">
-		<select id="gender" name="gender" style="width:130px">
-			<option value="">不限</option>
+	<div class="column grid_2">執筆者の性別： </div>			
+	<div class="column grid_1">
+		<select id="gender" name="gender" style="width:80px">
+			<option value="">指定なし</option>
 			<option value="男">男</option>
 			<option value="女">女</option>
 		</select>
 	</div>
 	
-	<div class="column grid_1">学習時間： </div>			
-	<div class="column grid_2">
-		<select id="studytime" name="studytime" style="width:132px">
-			<option value="0">不限</option>
+	<div class="column grid_2">日本語学習時間数： </div>			
+	<div class="column grid_1">
+		<select id="studytime" name="studytime" style="width:80px">
+			<option value="0">指定なし</option>
 			<option value="700">700-850</option>
 			<option value="850">850-900</option>
 			<option value="1000">1000-1150</option>
@@ -251,21 +240,21 @@ $(".submit").click(function(){
 		</select>
 	</div>
 	
-	<div class="column grid_1">学生の母国語： </div>			
-	<div class="column grid_2">
-		<select id="firstlang" name="firstlang" style="width:130px">
-			<option value="">不限</option>
-			<option value="中国語">中国语</option>
-			<option value="朝鮮語">朝鲜语</option>
-			<option value="モンゴル語">蒙古语</option>
-			<option value="英語">英语</option>
+	<div class="column grid_2">執筆者の母語： </div>			
+	<div class="column grid_1">
+		<select id="firstlang" name="firstlang" style="width:80px">
+			<option value="">指定なし</option>
+			<option value="中国语">中国語</option>
+			<option value="朝鲜语">朝鮮語</option>
+			<option value="蒙古语">モンゴル語</option>
+			<option value="英语">英語</option>
 		</select>
 	</div>
 	
-	<div class="column grid_1">学期を書く：</div>			
-	<div class="column grid_2">
-		<select id="year" name="year" style="width:130px">
-			<option value="">不限</option>
+	<div class="column grid_2">作成学期：</div>			
+	<div class="column grid_1">
+		<select id="year" name="year" style="width:80px">
+			<option value="">指定なし</option>
 			<option value="x3">x3</option>
 			<option value="x4">x4</option>
 			<option value="x5">x5</option>
@@ -275,15 +264,15 @@ $(".submit").click(function(){
 		</select>
 	</div>
 	
-	<div class="column grid_1">作者コード：</div>			
-	<div class="column grid_2">
-		<input type="text" id="uid" name="uid" style="width:130px" class="large bLeft">
+	<div class="column grid_2">執筆者番号：</div>			
+	<div class="column grid_1">
+		<input type="text" id="uid" name="uid" style="width:75px" class="large bLeft">
 	</div>
 </div>
 <div class="row">
-	<div class="page column grid_1">每页条目：</div>
-	<div class="column grid_2">
-		<input type="number" value="30" id="listnum" name="listnum" style="width:130px" class="large bLeft" min="3" max="90"/>
+	<div class="page column grid_2">1ページの表示件数：</div>
+	<div class="column grid_1">
+		<input type="number" value="30" id="listnum" name="listnum" style="width:75px" class="large bLeft" min="3" max="90"/>
 		<input id="error" name="error" type="hidden" value=""/>
 		<input id="page" name="page" type="hidden" value="1"/>
 		<input id="samepage" name="samepage" type="hidden" value="1"/>
@@ -293,7 +282,8 @@ $(".submit").click(function(){
 	</div>
 	
 	<div class="column grid_3">
-		<input type="submit" id="mysubmit" value="输出excel文件（utf8转gb2312）"/>
+		<input type="submit" id="mysubmit" value="excelファイル出力（utf8转gb2312）"/>
+		<input type="reset" id="clearall"/>
 	</div>
 </div>
 

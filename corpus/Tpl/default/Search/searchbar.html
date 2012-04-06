@@ -17,11 +17,13 @@ $("#errorSearch").hide();
 $("#infoView").hide();
 $("#aboutView").hide();
 $("#mysubmit").hide();
+$("#clearall").hide(); 
 
 $("#orgTab").click(function(){
 	$("#aboutView").hide();
 	$("#infoView").hide();
 	$("#errorSearch").hide("normal"); 
+	$("#clearall").click();
 	searchMode = 1; 
 }); 
 
@@ -29,6 +31,7 @@ $("#errorTab").click(function(){
 	$("#aboutView").hide();
 	$("#infoView").hide();
 	$("#errorSearch").show("normal"); 
+	$("#clearall").click();
 	searchMode = 2; 
 });
 
@@ -36,7 +39,7 @@ $("#infoTab").click(function(){
 	$("#infoView").hide();
 	$("#errorSearch").hide(); 
 	$("#aboutView").hide();
-
+	$("#clearall").click();
 	$("#infoView").show("normal");
 });
 
@@ -58,7 +61,7 @@ $("#aboutTab").click(function(){
 	$("#infoView").hide();
 	$("#errorSearch").hide(); 
 	$("#aboutView").hide();
-
+	$("#clearall").click();
 	$("#aboutView").show("normal");
 });
 
@@ -294,6 +297,7 @@ $(".submit").click(function(){
 	
 	<div class="column grid_3">
 		<input type="submit" id="mysubmit" value="输出excel文件（utf8转gb2312）"/>
+		<input type="reset" id="clearall"/>
 	</div>
 </div>
 

@@ -15,19 +15,44 @@ $(document).ready(function(){
 		++pg.value; 
 		$("#submit").click(); 
 	});
+	
+	$(".goto").click(function(){
+		alert($(this).attr('rel'));
+		$('#page')[0].value = $(this).attr('rel');
+		pg = $('#page')[0];
+		$('#samepage')[0].value = 1; 
+		$("#submit").click(); 
+	});
 }); 
 </script>
-<div style="margin-bottom: 10px;">
+<div style="margin-bottom: 10px;" align="center">
 <div class="row" align="center">
 <neq name="page" value="1">
 <div class="page column grid_1" id="previous"><a>上一页</a></div>
 <else/>
 <div class="page column grid_1" id="firstpage"><a>无上页</a></div>
 </neq>
-<div class="page column grid_1"><a>当前第{$page}页</a></div>
-<eq name="nextpage" value="1">
-<div class="page column grid_1" id="nextpage"><a>下一页</a></div>
+
+<div class="page column grid_2">
+<gt name="page" value="7">
+<a id="previous">...</a>
 <else/>
+
+</gt>
+<volist name="allpage" id="a">
+<eq name="a" value="page">
+<a>|</a><a class="goto" style="color:green" rel="{$i}">&nbsp;{$a}&nbsp;</a>
+<else/>
+<a>|</a><a class="goto" rel="{$i}">&nbsp;{$a}&nbsp;</a>
+</eq>
+</volist>
+
+
+<eq name="nextpage" value="1">
+<a id="previous">...</a></div>
+<div class="page column grid_1" id="nextpage"><a>&nbsp;下一页</a></div>
+<else/>
+<a>|</a></div>
 <div class="page column grid_1" id="lastpage"><a>无下页</a></div>
 </eq>
 </div>
