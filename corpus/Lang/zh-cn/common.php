@@ -15,6 +15,14 @@ return array(
 	'profile_success'	=>	'资料修改成功！',
 	'profile_fail'		=>	'资料修改失败！',
 	
+	'add_success'		=>	'新增成功',
+	'add_fail'			=>	'新增失败',
+	'edit_success'		=>	'编辑成功',
+	'edit_fail'			=>	'编辑失败',
+	'del_success'		=>	'删除成功',
+	'update_success'	=>	'更新成功',
+	'del_fail'			=>	'删除失败',
+	'illegal_oper'		=>	'非法操作',
 	
 	'sorry_no_pic'		=>	'对不起，该作文目前没有参考扫描件！',
 	'para_wrong'		=>	'参数错误',

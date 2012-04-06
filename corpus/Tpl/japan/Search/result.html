@@ -15,20 +15,45 @@ $(document).ready(function(){
 		++pg.value; 
 		$("#submit").click(); 
 	});
+	
+	$(".goto").click(function(){
+		alert($(this).attr('rel'));
+		$('#page')[0].value = $(this).attr('rel');
+		pg = $('#page')[0];
+		$('#samepage')[0].value = 1; 
+		$("#submit").click(); 
+	});
 }); 
 </script>
 <div style="margin-bottom: 10px;" align="center">
 <div class="row" align="center">
 <neq name="page" value="1">
-<div class="page column grid_2" id="previous"><a>前へ</a></div>
+<div class="page column grid_1" id="previous"><a>前へ</a></div>
 <else/>
-<div class="page column grid_2" id="firstpage"><a>前のページ無し</a></div>
+<div class="page column grid_1" id="firstpage"><a>前のページ無し</a></div>
 </neq>
-<div class="page column grid_2"><a>現在第{$page}ページ</a></div>
-<eq name="nextpage" value="1">
-<div class="page column grid_2" id="nextpage"><a>次へ</a></div>
+
+<div class="page column grid_3">
+<gt name="page" value="7">
+<a id="previous">...</a>
 <else/>
-<div class="page column grid_2" id="lastpage"><a>次のページ無し</a></div>
+
+</gt>
+<volist name="allpage" id="a">
+<eq name="a" value="$page">
+<a>|</a><a class="goto" style="color:brown" rel="{$i}">&nbsp;{$a}xxx&nbsp;</a>
+<else/>
+<a>|</a><a class="goto" rel="{$i}">&nbsp;{$a}&nbsp;</a>
+</eq>
+</volist>
+
+
+<eq name="nextpage" value="1">
+<a id="previous">...</a></div>
+<div class="page column grid_1" id="nextpage"><a>&nbsp;次へ</a></div>
+<else/>
+<a>|</a></div>
+<div class="page column grid_1" id="lastpage"><a>次のページ無し</a></div>
 </eq>
 </div>
 </div>
