@@ -15,7 +15,7 @@ function format_text($content , $keywords="", $errorcode="", $notitle = 0){
 		preg_match_all('|\[([^\]\,]*),([^\]\,]*),([^\]\,]*)\]|', $content, $matches);
 		//print_r($matches);
 		//echo '<div style="background-color:green">';
-
+		$oldcontent = $content;
 		for ($i = 0; $i < count($matches[0]); $i++){
 			//echo $matches[0][$i].$matches[1][$i].$matches[2][$i].$matches[3][$i]."<br/>";
 			//if ($matches[1][$i]=='' && $matches[2][$i]!='')
@@ -45,14 +45,18 @@ function format_text($content , $keywords="", $errorcode="", $notitle = 0){
 				if ($keywords!="")
 					$matches[1][$i] = str_replace($keywords, '<span style="background-color:#FFFF6F">'.$keywords.'</span>', $matches[1][$i]);
 				else {
-					$matches[1][$i] = '<span style="background-color:#6FFF6F">'.$matches[1][$i].'</span>';
-					$matches[2][$i] = '<span style="background-color:#6FFF6F">'.$matches[2][$i].'</span>';
+					if (!$notitle || mygetpos($oldcontent,$matches[0][$i])==9){
+						$matches[1][$i] = '<span style="background-color:#6FFF6F">'.$matches[1][$i].'</span>';
+						$matches[2][$i] = '<span style="background-color:#6FFF6F">'.$matches[2][$i].'</span>';
+					}
 				}
 				
 				//echo $matches[1][$i];
 			}
-			if ($notitle)
-			$content = str_replace($matches[0][$i], '&nbsp;<b class="tip"><b><S>'.$matches[1][$i].'</S></b>'.'<b>'.$matches[2][$i].'</b></b>',$content);
+			if ($notitle){
+				$content = str_replace_once($matches[0][$i], '&nbsp;<b class="tip"><b><S>'.$matches[1][$i].'</S></b>'.'<b>'.$matches[2][$i].'</b></b>',$content);
+				$oldcontent = str_replace_once($matches[0][$i], '[,,]',$oldcontent);
+			}
 			else
 			$content = str_replace($matches[0][$i], '&nbsp;<b class="tip" title="'.$errormsg.'"><b><S>'.$matches[1][$i].'</S></b>'.'<b>'.$matches[2][$i].'</b></b>',$content);
 			
@@ -62,7 +66,13 @@ function format_text($content , $keywords="", $errorcode="", $notitle = 0){
 			
 		return $content;
 }
-
+function str_replace_once($needle, $replace, $haystack) {
+	$pos = strpos($haystack, $needle);
+	if ($pos === false) {
+		return $haystack;
+	}
+	return substr_replace($haystack, $replace, $pos, strlen($needle));
+}
 function my_substr($string,  $start = 0 ,$sublen=10) 
 { 
 
@@ -78,7 +88,16 @@ function my_substr($string,  $start = 0 ,$sublen=10)
 	//echo join('', array_slice($t_string[0], $pos-$sublen, $sublen*2));
 	return join('', array_slice($t_string[0], $pos-$sublen, $sublen*2)); 
 
-} 
+}
+function mygetpos($string,$find){
+	$pa = "/\[[^\[\]]*\]|[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|\xe0[\xa0-\xbf][\x80-\xbf]|[\xe1-\xef][\x80-\xbf][\x80-\xbf]|\xf0[\x90-\xbf][\x80-\xbf][\x80-\xbf]|[\xf1-\xf7][\x80-\xbf][\x80-\xbf][\x80-\xbf]/"; 
+	preg_match_all($pa, $string, $t_string); 
+	//print_r($t_string);
+	$pos=0;
+	$sum=0;
+	while ($t_string[0][$pos]!=$find && $pos<count($t_string[0])-1) $pos++;
+	return $pos;
+}
 
 //公共函数
 function toDate($time, $format = 'Y-m-d H:i:s') {
