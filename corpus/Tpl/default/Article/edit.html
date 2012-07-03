@@ -1,4 +1,9 @@
 <include file="Public:header" />
+
+<script type="text/javascript" src="../Public/js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="../Public/js/error.js"></script>
+<script type="text/javascript" src="../Public/js/edit.js"></script>
+
 <div id="main" class="main" >
 <div class="content">
 <div align="center">
@@ -30,13 +35,58 @@
 	<div class="column grid_5"><input type="text" style="width:98%" class="huge bLeftRequire" name="title" value="{$vo.title}"/></div> 
 	<div class="column grid_1">文体：</div> 
 	<div class="column grid_2"><input type="text" style="width:95%" class="huge bLeftRequire" name="type" value="{$vo.type}"/></div> 
-	
 </div>
+
+<br/><br/>
+<div class="row" align="center">
+<div class="column grid_1">附码前：</div> <div class="column grid_2"><input id="before" style="width:95%" type="text" value=""/></div> 
+<div class="column grid_1">附码后：</div> <div class="column grid_2"><input id="after" style="width:95%" type="text" value=""/></div> 
+<div class="column grid_1">类型：</div> <div class="column grid_1"><input id="error" style="width:88%" type="text" value=""/></div> 
+<div class="column grid_1"><input id="encode" type="button" style="width:98%" value="附码"/></div> 
+</div>
+
+<br/><br/>
+
+<div class="row" align="center">
+
+
+<div class="column grid_1">附码类别：</div>		
+<div class="column grid_2">
+	<select id="baseError" style="width:130px">
+		<option value="所有类型">不限</option>
+		<option value="书写错误">书写错误</option>
+		<option value="词语错误">词语错误</option>
+		<option value="词组错误">词组错误</option>
+		<option value="句子错误">句子错误</option>
+		<option value="文章格式">文章格式</option>
+	</select> 
+</div>
+<div class="column grid_2">
+	<select id="nextError" class="sError" style="width:130px">
+		<option value="">不限</option>
+	</select>
+</div>
+
+	<div class="column grid_1">  </div>			
+<div class="column grid_2">
+	<select id="tempError" class="sError" style="width:130px">
+		<option value="">不限</option>
+	</select>
+</div>
+
+<div class="column grid_1">  </div>			
+<div class="column grid_2">
+	<select id="realError" class="sError" style="width:130px">
+		<option value="">不限</option>
+	</select>
+</div>
+</div>
+	
 <br/><br/>
 
 <div class="row" align="center">
 	<div class="column grid_1">文章内容：</div> 
-	<div class="column grid_8"><textarea name="text" style="width:99%;height:450px;">{$vo.text}</textarea></div> 
+	<div class="column grid_8"><textarea name="text" id="article" style="width:99%;height:450px;">{$vo.text}</textarea></div> 
 </div>
 <br/><br/>
 

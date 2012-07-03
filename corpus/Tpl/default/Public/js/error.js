@@ -1,12 +1,12 @@
 onerror = handleError; 
 
 function handleError(msg, url, line){
-	//var message = "本页存在错误。\n";
-	//message += "错误：" + msg + "\n";
-	//message += "URL：" + url + "\n"; 
-	//message += "行号：" + line + "\n"; 
-	//message += "点击确定继续";
-	//alert(message);
+	var message = "本页存在错误。\n";
+	message += "错误：" + msg + "\n";
+	message += "URL：" + url + "\n"; 
+	message += "行号：" + line + "\n"; 
+	message += "点击确定继续";
+	alert(message);
 	return true; 
 }
 
