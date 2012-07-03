@@ -223,7 +223,7 @@ class SearchAction extends CommonAction {
 			}			
 			++$ind; 
 			//90条截止，防止拖库
-			if ($ind > 90) break; 
+			if ($_SESSION['_ACCESS_LIST']['CORPUS']['INDEX']['MAIN'] == null && $ind > 120) break; 
 		}
 		
 		if ($download == 1){
