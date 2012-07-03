@@ -43,7 +43,20 @@ $(document).ready(function(){
 var advanced = false; 
 
 $("#article").select(function(){
-	var str = window.getSelection().toString();
+	var str; 
+	
+	if (window.getSelection){
+		str = window.getSelection();
+    } else if (document.getSelection) {
+		str = document.getSelection();
+		foundIn = 'document.getSelection()';
+	} else if(document.selection) {
+		str = document.selection.createRange().text;
+		foundIn = 'document.selection.createRange()';
+    } else {
+        str = ""; 
+	}
+
 	var n = str.length; 
 	var comma = 0; var p1 = 0; var p2 = 0; 
 	for (var i = 0; i < n; ++i) if (str[i] == ',') {
