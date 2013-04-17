@@ -111,6 +111,11 @@ class PublicAction extends Action {
 		}
 	}
 	
+	public function register()
+	{
+		$this->display(); 
+	}
+	
 	public function news(){
 		$News = M('form'); 
 		$a = $News->getById(1); 
@@ -137,9 +142,62 @@ class PublicAction extends Action {
         }
     }
 
+	//新用户注册
+	public function reg()
+	{
+		//dump($_REQUEST['account']);
+/*		
+		if (empty($_REQUEST['account'])) {
+			$this->error(L('account_wrong'));
+		} elseif (empty($_REQUEST['password'])){
+			$this->error(L('password_must'));
+		};
+*/
+		//$account = $_REQUEST['account'];
+		$User = M('User');
+		//$user = $User->where('account='.$account)->select(); 
+		
+		/*
+		if (!empty($user)) {
+			$this->error(L('user_exist'));
+		}
+		*/
+		
+		$data = array(); 
+		$data['account'] = $_REQUEST['account'];
+		$data['nickname'] = $_REQUEST['nickname'];
+		
+		$data['email'] = $_REQUEST['email'];
+		$data['remark'] = $_REQUEST['nickname'] ."；". $_REQUEST['occupation']."；". $_REQUEST['school']."；". $_REQUEST['reason']; 
+		$data['info'] = $_REQUEST['nickname']; 
+		$data['password'] = md5($_REQUEST['password']);
+		$data['status'] = 1;
+		
+		$data['create_time'] = time(); 
+		$data['update_time'] = time(); 
+		
+		$rid = $User->add($data); 
+		
+		if ($rid)
+		{
+			$uid = $User->where('account="'.$_REQUEST['account'].'"')->getField('id');
+			$RoleUser = M('role_user');
+			$rel = array(); 
+			$rel['role_id'] = 3; 
+			$rel['user_id'] = $uid;
+			$RoleUser->add($rel); 
+		
+			$this->success(L('reg_success'));
+		}
+		else
+		{
+			$this->error(L('reg_error'));
+		}
+	}
+	
 	// 登录检测
 	public function checkLogin() {
-		if(empty($_POST['account'])) {
+		if (empty($_POST['account'])) {
 			$this->error(L('account_wrong'));
 		}elseif (empty($_POST['password'])){
 			$this->error(L('password_must'));
@@ -150,7 +208,7 @@ class PublicAction extends Action {
         $map            =   array();
 		// 支持使用绑定帐号登录
 		$map['account']	= $_POST['account'];
-        $map["status"]	=	array('gt',0);
+        $map["status"]	=	array('gt', 0);
 		if($_SESSION['verify'] != md5($_POST['verify'])) {
 			$this->error(L('code_wrong'));
 		}
@@ -172,6 +230,8 @@ class PublicAction extends Action {
             	$_SESSION['corpusAdmin']	=	true;
 				$_SESSION['_ACCESS_LIST']['CORPUS']['INDEX']['MAIN'] = '50';
             }
+			$_SESSION['user'] = M('User');
+			
             //保存登录信息
 			$User							=	M('User');
 			$ip								=	get_client_ip();
@@ -188,6 +248,7 @@ class PublicAction extends Action {
 			$this->success(L('log_in_success'));
 		}
 	}
+	
     // 更换密码
     public function changePwd()
     {
@@ -213,14 +274,16 @@ class PublicAction extends Action {
 			$this->success(L('password_success'));
          }
     }
-public function profile() {
+	
+	public function profile() {
 		$this->checkUser();
 		$User	 =	 M("User");
 		$vo	=	$User->getById($_SESSION[C('USER_AUTH_KEY')]);
 		$this->assign('vo',$vo);
 		$this->display();
 	}
-	 public function verify()
+	
+	public function verify()
     {
 		$type	 =	 isset($_GET['type'])?$_GET['type']:'gif';
         import("@.ORG.Image");

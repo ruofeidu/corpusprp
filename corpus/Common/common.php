@@ -66,6 +66,11 @@ function format_text($content , $keywords="", $errorcode="", $notitle = 0){
 			
 		return $content;
 }
+
+function filt(&$value){
+    $value = htmlspecialchars($value);
+}
+
 function str_replace_once($needle, $replace, $haystack) {
 	$pos = strpos($haystack, $needle);
 	if ($pos === false) {
@@ -73,9 +78,9 @@ function str_replace_once($needle, $replace, $haystack) {
 	}
 	return substr_replace($haystack, $replace, $pos, strlen($needle));
 }
+
 function my_substr($string,  $start = 0 ,$sublen=10) 
 { 
-
 	$pa = "/\[[^\[\]]*\]|[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|\xe0[\xa0-\xbf][\x80-\xbf]|[\xe1-\xef][\x80-\xbf][\x80-\xbf]|\xf0[\x90-\xbf][\x80-\xbf][\x80-\xbf]|[\xf1-\xf7][\x80-\xbf][\x80-\xbf][\x80-\xbf]/"; 
 	preg_match_all($pa, $string, $t_string); 
 	//print_r($t_string);
@@ -87,8 +92,38 @@ function my_substr($string,  $start = 0 ,$sublen=10)
 	}
 	//echo join('', array_slice($t_string[0], $pos-$sublen, $sublen*2));
 	return join('', array_slice($t_string[0], $pos-$sublen, $sublen*2)); 
-
 }
+
+// added by zdq
+function my_substr_context($string, $start, $sublen, &$context_above, &$context_below)
+{
+	$pa = "/\[[^\[\]]*\]|[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|\xe0[\xa0-\xbf][\x80-\xbf]|[\xe1-\xef][\x80-\xbf][\x80-\xbf]|\xf0[\x90-\xbf][\x80-\xbf][\x80-\xbf]|[\xf1-\xf7][\x80-\xbf][\x80-\xbf][\x80-\xbf]/"; 
+	preg_match_all($pa, $string, $t_string); 
+	//print_r($t_string);
+	$pos=0;
+	$sum=0;
+	while ($sum<$start){
+		$sum+=strlen($t_string[0][$pos]);
+		$pos++;
+	}
+	$context_above = join('', array_slice($t_string[0], $pos-$sublen, $sublen));
+	$context_below = join('', array_slice($t_string[0], $pos+1, $sublen-1));
+	return join('', array_slice($t_string[0], $pos, 1));
+}
+
+	// added by zdq
+	function split_context($s, $keywords, &$above, &$below)
+	{
+		$p = strpos($s, $keywords);
+		if ($p == false)
+			return false;
+		$len = strlen($keywords);
+		$above = substr($s, 0, $p);
+		$below = substr($s, $p+$len);
+		return true;
+	}
+
+
 function mygetpos($string,$find){
 	$pa = "/\[[^\[\]]*\]|[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|\xe0[\xa0-\xbf][\x80-\xbf]|[\xe1-\xef][\x80-\xbf][\x80-\xbf]|\xf0[\x90-\xbf][\x80-\xbf][\x80-\xbf]|[\xf1-\xf7][\x80-\xbf][\x80-\xbf][\x80-\xbf]/"; 
 	preg_match_all($pa, $string, $t_string); 

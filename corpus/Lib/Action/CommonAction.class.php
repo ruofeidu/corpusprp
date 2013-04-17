@@ -165,7 +165,8 @@ class CommonAction extends Action {
 		}
 		//保存当前数据对象
 		$list = $model->add ();
-		if ($list !== false) { //保存成功
+		if ($list !== false) { 
+			//保存成功
 			$this->assign ( 'jumpUrl', Cookie::get ( '_currentUrl_' ) );
 			$this->success (L('add_success'));
 		} else {

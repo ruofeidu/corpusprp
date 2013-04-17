@@ -182,7 +182,7 @@ table.list{margin:3px 0px; padding:8px; border-collapse:collapse; border:1px sol
 
 table.select{margin:3px 0px; padding:3px; border-collapse:collapse; border:1px solid gray; text-align:left; width:500px; clear:both}
 table.order{margin:3px 0px; padding:3px; border-collapse:collapse; border:1px solid gray; text-align:left; width:260px; clear:both}
-table.login{margin:15% auto 0% auto; padding:3px; border-collapse:collapse; border:1px solid gray; text-align:left; width:350px; max-width:350px; clear:both}
+table.login{margin:15% auto 0% auto; padding:3px; border-collapse:collapse; border:1px solid gray; text-align:left; width:800px; max-width:800px; clear:both}
 table.message{margin:10% auto 0px auto; padding:3px; border-collapse:collapse; border:1px solid gray; text-align:center; width:55%}
 table.error{margin:12px 0px; border-collapse:collapse; border:2px groove #d4d4d4; padding:5px; text-align:left; line-height:165%; width:90%}
 table td.topTd{background:url(../Images/bgline.gif) repeat-x; border-bottom:1pt solid gray}

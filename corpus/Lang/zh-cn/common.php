@@ -1,19 +1,19 @@
 <?php
 return array(
 	'no_login'			=>	'没有登录',
-	'log_in_success'	=>	'登录成功！',
-	'log_out_success'	=>	'登出成功！',
-	'log_out_already'	=>	'已经登出！',
-	'account_wrong'		=>	'帐号错误！',
-	'password_must'		=>	'密码必须！',
-	'password_wrong'	=>	'密码错误！',
-	'code_must'			=>	'验证码必须填写！',
-	'code_wrong'		=>	'验证码错误！',
-	'account_no_exist'	=>	'帐号不存在或已禁用！',
-	'password_error'	=>	'旧密码不符或者用户名错误！',
-	'password_success'	=>	'密码修改成功！',
-	'profile_success'	=>	'资料修改成功！',
-	'profile_fail'		=>	'资料修改失败！',
+	'log_in_success'	=>	'成功登录~',
+	'log_out_success'	=>	'成功登出~',
+	'log_out_already'	=>	'您已经登出~',
+	'account_wrong'		=>	'帐号填错了，请仔细检查~',
+	'password_must'		=>	'密码不能为空哦~',
+	'password_wrong'	=>	'密码验证失败，请检查是否大小写有误，Caps Lock是否锁定~',
+	'code_must'			=>	'别忘了填写验证码~',
+	'code_wrong'		=>	'验证码验证失败，请仔细检查~',
+	'account_no_exist'	=>	'帐号不存在或已禁用 >_<b',
+	'password_error'	=>	'旧密码不符或者用户名错误~',
+	'password_success'	=>	'密码修改成功~',
+	'profile_success'	=>	'资料修改成功~',
+	'profile_fail'		=>	'资料修改失败~',
 	
 	'add_success'		=>	'新增成功',
 	'add_fail'			=>	'新增失败',
@@ -34,7 +34,14 @@ return array(
 	'semester'			=>	'学期',
 	'date'				=>	'写作日',
 	'context'			=>	'关键字上下文',
+	'context_above'		=>	'关键字上文',
+	'context_key'		=>	'关键字',
+	'context_below' 	=>	'关键字下文',
 	
-	
+	'user_exist'		=>	'用户已经存在',
+	'reg_success'		=>	'注册成功，请用您注册的用户名和密码登陆~',
+	'reg_error'			=>	'注册失败，用户已存在或者信息含有非法字符>_<b',
+	'search0_error'		=>	'您是新注册用户，需要等待管理员审核通过后才能进行检索，谢谢！若审核失败，请主动联系 zhjianhuaster [at] gmail [dot] com 说明情况。',
+	'download_error'	=>	'您没有下载权限，如学术需要，请联系管理员 zhjianhuaster [at] gmail [dot] com 升级到VIP 3或以上进行下载，谢谢！',
 );
 ?>

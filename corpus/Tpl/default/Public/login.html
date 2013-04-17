@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="description" content="Janpanese Corpus, 日语学习者语料库, 容纳数千篇精心批改的学生作文，方便日语语料库研究者做学术研究, 友情链接：www.duruofei.com, www.yepyao.info, www.todict.com, www.douniwan.info" />
-<meta name="keywords" content="Corpus, 日语学习者语料库, 语料库" />
-<meta name="author" content="杜若飞,Du Ruofei,幺恩鹏, Yao Enpeng, 陈博, Chen Bo, 张建华, Zhang Jianhua, ACM班, ACM Honered Class,SJTU" />
+<meta name="description" content="上海交通大学日语学习者语料库" />
+<meta name="keywords" content="上海交通大学, 日语学习者语料库, 语料库" />
+<meta name="author" content="张建华, Zhang Jianhua, 杜若飞,Du Ruofei,幺恩鹏, Yao Enpeng, 陈博, Chen Bo, 张东擎, Dongqing Zhang" />
 <meta name="copyright" content="上海交通大学, Shanghai Jiao Tong University">
 <title>日语学习者书面语语料库登录系统</title>
 <link href="../Public/css/grid.css" rel="stylesheet" />	
@@ -50,7 +50,10 @@ $('verifyImg').src= '__URL__/verify/'+timenow;
 </script>
 </head>
 <!-- <body onLoad="document.login.account.focus()"  oncontextmenu="return false;" oncopy="return false;" onselectstart="return false;" oncut="return false;"> -->
+<!--
 <body onLoad="document.login.account.focus()" oncontextmenu="return false;" oncopy="return false;" onselectstart="return false;" oncut="return false;">
+-->
+<body>
 <div id="superheader">
 <div class="row" align="left">
 	<div class="column grid_5"><img src="__PUBLIC__/images/logo.gif"/></div>
@@ -66,32 +69,47 @@ $('verifyImg').src= '__URL__/verify/'+timenow;
 </div>
 
 <img src="__PUBLIC__/images/bg.jpg" width="100%" height="100%" style="position:absolute;top:0;left:0;right:100;bottom:500;z-index:-1">
-	<form method='post' name="login" id="form1" >
-		<div class="tCenter hMargin">
-			<table id="checkList" class="login shadow" cellpadding=0 cellspacing=0 >
-			<tr><td height="5" colspan="2" class="topTd" ></td></tr>
-			<tr class="row" ><th colspan="2" class="tCenter space" >日语学习者书面语语料库</th></tr>
-			<tr><td height="5" colspan="2" class="topTd" ></td></tr>
-			<tr class="row" ><td colspan="2" class="tCenter"><div id="result" class="result none"></div></td></tr>
-			<tr class="row" ><td class="tRight" width="25%">帐 号：</td><td><input type="text" class="medium bLeftRequire" check="Require" warning="请输入帐号" name="account"></td></tr>
-			<tr class="row" ><td class="tRight">密 码：</td><td><input type="password" class="medium bLeftRequire" check="Require" warning="请输入密码" name="password"></td></tr>
-			<tr class="row" ><td class="tRight">验证码：</td><td><input type="text" onKeyDown="keydown(event)" class="small bLeftRequire" check="Require" warning="请输入验证码" name="verify"> <img id="verifyImg" SRC="__URL__/verify/" onClick="fleshVerify()" BORDER="0" ALT="点击刷新验证码" style="cursor:pointer" align="absmiddle"></td></tr>
-			<tr class="row" ><td class="tCenter" align="justify" colspan="2">
-			<input type="hidden" name="ajax" value="1">
-			<input type="button" value="登 录" onClick="ThinkAjax.sendForm('form1','__URL__/checkLogin/',loginHandle,'result')" class="submit medium hMargin">
-			<input type="button" value="介 绍" onClick="window.location='__APP__/Public/news'" class="medium hMargin submit">
-			</td></tr>
-			<tr><td height="5" colspan="2" class="bottomTd" ></td></tr> 
-			</table>
-		</div>
-	</form>
-	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	
+	<table width="80%" border="0" align="center" style="background-color:transparent; margin:12% auto 12% auto;">
+	<tr>
+		<td width="50%">
+			<font color="white">{$news.content} </font>
+		</td>
+		<td width="50%">
+			<form method='post' name="login" id="form1">
+				<div class="tCenter hMargin">
+				<table id="checkList" class="login shadow" cellpadding=0 cellspacing=0 >
+					<tr><td height="5" colspan="2" class="topTd" ></td></tr>
+					<tr class="row" ><th colspan="2" class="tCenter space" >日语学习者书面语语料库</th></tr>
+					<tr><td height="5" colspan="2" class="topTd" ></td></tr>
+					<tr class="row" ><td colspan="2" class="tCenter"><div id="result" class="result none"></div></td></tr>
+					<tr class="row" ><td class="tRight" width="25%">帐 号：</td><td><input type="text" class="medium bLeftRequire" check="Require" warning="请输入帐号" name="account"></td></tr>
+					<tr class="row" ><td class="tRight">密 码：</td><td><input type="password" class="medium bLeftRequire" check="Require" warning="请输入密码" name="password"></td></tr>
+					<tr class="row" ><td class="tRight">验证码：</td><td><input type="text" onKeyDown="keydown(event)" class="small bLeftRequire" check="Require" warning="请输入验证码" name="verify"> <img id="verifyImg" SRC="__URL__/verify/" onClick="fleshVerify()" BORDER="0" ALT="点击刷新验证码" style="cursor:pointer" align="absmiddle"></td></tr>
+					<tr class="row" ><td class="tCenter" align="justify" colspan="2">
+					<input type="hidden" name="ajax" value="1">
+					<input type="button" value="登 录" onClick="ThinkAjax.sendForm('form1','__URL__/checkLogin/',loginHandle,'result')" class="submit medium hMargin">
+					<input type="button" value="注 册" onClick="window.location='__APP__/Public/register'" class="medium hMargin submit">
+					
+					</td></tr>
+					
+					<tr class="row" ><td class="tCenter" align="justify" colspan="2" style="text-align:left">
+					
+					</td></tr>
+					<tr><td height="5" colspan="2" class="bottomTd" ></td></tr> 
+				</table>
+				</div>
+			</form>
+		</td>
+	</tr>
+	</table>
 
+	
 <div id="superfooter">
 	<div class="row t-l">
         <div class="b-info">
-            <div class="b-info-logo">Corpus</div>
-            <div class="b-info-copyright">Copyright (c) 2011-2012 School of Foreign Languages, Shanghai Jiao Tong University. <br/>All rights reserved. Powered By PRP Group.</div>
+		<div class="b-info-logo">Corpus</div>
+            <div class="b-info-copyright">Copyright (c) 2011-2013 School of Foreign Languages, Shanghai Jiao Tong University. <br/>All rights reserved. Powered By PRP Group.</div>
 		</div>
     </div>
 </div>
