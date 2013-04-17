@@ -1,41 +1,41 @@
-ï»¿<?php
+<?php
 return array(
-	//'é…ç½®é¡¹'=>'é…ç½®å€¼'
-	'APP_DEBUG'				=>	false, 			// å¼€å¯è°ƒè¯•æ¨¡å¼ 
-    'TMPL_SWITCH_ON'		=>	true,	// å¯ç”¨å¤šæ¨¡ç‰ˆæ”¯æŒ
-	 'TMPL_DETECT_THEME'    => true,      // è‡ªåŠ¨ä¾¦æµ‹æ¨¡æ¿ä¸»é¢˜
-	'URL_MODEL'				=>	1,
-	'LANG_SWITCH_ON' 		=>	true,			// å¯åŠ¨å¤šè¯­è¨€æ”¯æŒ
-    'LANG_AUTO_DETECT'  	=>  true,    	 	// è‡ªåŠ¨ä¾¦æµ‹è¯­è¨€
-	'LANG_LIST'				=>	'zh-cn,ja-jp',  // å¿…é¡»å†™å¯å…è®¸çš„è¯­è¨€åˆ—è¡¨
-	'DEFAULT_LANG'			=>  'zh-cn',     	// é¡¹ç›®é»˜è®¤è¯­è¨€ä¸ºæ±‰è¯­ 
-	'DB_TYPE'		=>	'mysql', 		// æ•°æ®åº“ç±»åž‹
-	'DB_HOST'		=>	'127.0.0.1', 	// æ•°æ®åº“æœåŠ¡å™¨åœ°å€
-	'DB_NAME'		=>	'corpus', 		// æ•°æ®åº“åç§° 
-	'DB_USER'		=>	'root', 		// æ•°æ®åº“ç”¨æˆ·å 
-	'DB_PWD'		=>	'',				// æ•°æ®åº“å¯†ç  
-	'DB_PORT'		=>	'3306', 		// æ•°æ®åº“ç«¯å£  
-	'DB_PREFIX'		=>	'corpus_', 		// æ•°æ®è¡¨å‰ç¼€
+	//'ÅäÖÃÏî'=>'ÅäÖÃÖµ'
+	'APP_DEBUG'				=>	false, 			// ¿ªÆôµ÷ÊÔÄ£Ê½ 
+    'TMPL_SWITCH_ON'		=>	true,	// ÆôÓÃ¶àÄ£°æÖ§³Ö
+	'TMPL_DETECT_THEME'     => true,      // ×Ô¶¯Õì²âÄ£°åÖ÷Ìâ
+	'LANG_SWITCH_ON' 		=>	true,			// Æô¶¯¶àÓïÑÔÖ§³Ö
+    'LANG_AUTO_DETECT'  	=>  true,    	 	// ×Ô¶¯Õì²âÓïÑÔ
+	'LANG_LIST'				=>	'zh-cn,ja-jp',  // ±ØÐëÐ´¿ÉÔÊÐíµÄÓïÑÔÁÐ±í
+	'DEFAULT_LANG'			=>  'zh-cn',     	// ÏîÄ¿Ä¬ÈÏÓïÑÔÎªººÓï 
+	'URL_MODEL'		=>	1,
+	'DB_TYPE'		=>	'mysql', 		// Êý¾Ý¿âÀàÐÍ
+	'DB_HOST'		=>	'127.0.0.1', 	// Êý¾Ý¿â·þÎñÆ÷µØÖ·
+	'DB_NAME'		=>	'corpus', 		// Êý¾Ý¿âÃû³Æ 
+	'DB_USER'		=>	'root', 		// Êý¾Ý¿âÓÃ»§Ãû 
+	'DB_PWD'		=>	'',				// Êý¾Ý¿âÃÜÂë 
+	'DB_PORT'		=>	'3306', 		// Êý¾Ý¿â¶Ë¿Ú  
+	'DB_PREFIX'		=>	'corpus_', 		// Êý¾Ý±íÇ°×º
 	
 	'USER_AUTH_ON'			=>	true,
-	'USER_AUTH_TYPE'		=>	1,				// é»˜è®¤è®¤è¯ç±»åž‹ 1 ç™»å½•è®¤è¯ 2 å®žæ—¶è®¤è¯
-	'USER_AUTH_KEY'			=>	'corpusUser',	// ç”¨æˆ·è®¤è¯SESSIONæ ‡è®°
-    'ADMIN_AUTH_KEY'		=>	'corpusAdmin',	// ç®¡ç†å‘˜è®¤è¯SESSIONæ ‡è®°ï¼Œå¿…é¡»ä¸Ž PublicAction åŒæ­¥ï¼Œå¦åˆ™BUGï¼Œä¸çŸ¥ä¸ºä½•ï¼Œè€Œä¸”ä¸èƒ½ç”¨ADMIN_AUTH_KEYä»£æ›¿ã€‚
-	'USER_AUTH_MODEL'		=>	'User',			// é»˜è®¤éªŒè¯æ•°æ®è¡¨æ¨¡åž‹
-	'AUTH_PWD_ENCODER'		=>	'md5',			// ç”¨æˆ·è®¤è¯å¯†ç åŠ å¯†æ–¹å¼
-	'USER_AUTH_GATEWAY'		=>	'/Public/login',// é»˜è®¤è®¤è¯ç½‘å…³
-	'NOT_AUTH_MODULE'		=>	'Public',		// é»˜è®¤æ— éœ€è®¤è¯æ¨¡å—
-	'REQUIRE_AUTH_MODULE'	=>	'',				// é»˜è®¤éœ€è¦è®¤è¯æ¨¡å—
-	'NOT_AUTH_ACTION'		=>	'',				// é»˜è®¤æ— éœ€è®¤è¯æ“ä½œ
-	'REQUIRE_AUTH_ACTION'	=>	'',				// é»˜è®¤éœ€è¦è®¤è¯æ“ä½œ
-    'GUEST_AUTH_ON'			=>	false,    		// æ˜¯å¦å¼€å¯æ¸¸å®¢æŽˆæƒè®¿é—®
-    'GUEST_AUTH_ID'         =>	0,     			// æ¸¸å®¢çš„ç”¨æˆ·ID
+	'USER_AUTH_TYPE'		=>	1,				// Ä¬ÈÏÈÏÖ¤ÀàÐÍ 1 µÇÂ¼ÈÏÖ¤ 2 ÊµÊ±ÈÏÖ¤
+	'USER_AUTH_KEY'			=>	'corpusUser',	// ÓÃ»§ÈÏÖ¤SESSION±ê¼Ç
+    'ADMIN_AUTH_KEY'		=>	'corpusAdmin',	// ¹ÜÀíÔ±ÈÏÖ¤SESSION±ê¼Ç£¬±ØÐëÓë PublicAction Í¬²½£¬·ñÔòBUG£¬²»ÖªÎªºÎ£¬¶øÇÒ²»ÄÜÓÃADMIN_AUTH_KEY´úÌæ¡£
+	'USER_AUTH_MODEL'		=>	'User',			// Ä¬ÈÏÑéÖ¤Êý¾Ý±íÄ£ÐÍ
+	'AUTH_PWD_ENCODER'		=>	'md5',			// ÓÃ»§ÈÏÖ¤ÃÜÂë¼ÓÃÜ·½Ê½
+	'USER_AUTH_GATEWAY'		=>	'/Public/login',// Ä¬ÈÏÈÏÖ¤Íø¹Ø
+	'NOT_AUTH_MODULE'		=>	'Public',		// Ä¬ÈÏÎÞÐèÈÏÖ¤Ä£¿é
+	'REQUIRE_AUTH_MODULE'	=>	'',				// Ä¬ÈÏÐèÒªÈÏÖ¤Ä£¿é
+	'NOT_AUTH_ACTION'		=>	'',				// Ä¬ÈÏÎÞÐèÈÏÖ¤²Ù×÷
+	'REQUIRE_AUTH_ACTION'	=>	'',				// Ä¬ÈÏÐèÒªÈÏÖ¤²Ù×÷
+    'GUEST_AUTH_ON'			=>	false,    		// ÊÇ·ñ¿ªÆôÓÎ¿ÍÊÚÈ¨·ÃÎÊ
+    'GUEST_AUTH_ID'         =>	0,     			// ÓÎ¿ÍµÄÓÃ»§ID
 	
-	'SHOW_RUN_TIME'			=>	true,			// è¿è¡Œæ—¶é—´æ˜¾ç¤º
-	'SHOW_ADV_TIME'			=>	true,			// æ˜¾ç¤ºè¯¦ç»†çš„è¿è¡Œæ—¶é—´
-	'SHOW_DB_TIMES'			=>	true,			// æ˜¾ç¤ºæ•°æ®åº“æŸ¥è¯¢å’Œå†™å…¥æ¬¡æ•°
-	'SHOW_CACHE_TIMES'		=>	true,			// æ˜¾ç¤ºç¼“å­˜æ“ä½œæ¬¡æ•°
-	'SHOW_USE_MEM'			=>	true,			// æ˜¾ç¤ºå†…å­˜å¼€é”€
+	'SHOW_RUN_TIME'			=>	true,			// ÔËÐÐÊ±¼äÏÔÊ¾
+	'SHOW_ADV_TIME'			=>	true,			// ÏÔÊ¾ÏêÏ¸µÄÔËÐÐÊ±¼ä
+	'SHOW_DB_TIMES'			=>	true,			// ÏÔÊ¾Êý¾Ý¿â²éÑ¯ºÍÐ´Èë´ÎÊý
+	'SHOW_CACHE_TIMES'		=>	true,			// ÏÔÊ¾»º´æ²Ù×÷´ÎÊý
+	'SHOW_USE_MEM'			=>	true,			// ÏÔÊ¾ÄÚ´æ¿ªÏú
 	
     'DB_LIKE_FIELDS'		=>	'title|remark',
 	

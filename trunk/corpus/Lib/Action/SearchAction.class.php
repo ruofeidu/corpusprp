@@ -82,13 +82,9 @@ class SearchAction extends CommonAction {
 	}
 	
 	public function exportCSV($name, $title, $array){
-	//内容的类型
 		header("Content-Type:text/plain; charset=utf-8");    
-	// 以附件形式保存  $name 默认保存时的文件名 
 		header("Content-Disposition:attachment;filename=$name"); 
-	// 不缓存
 		header("Pragma:no-cache");     
-	// 浏览器不缓存的时间 
 		header("Expires:0"); 
 
 		//iconv("utf-8", "ansi", $name);   
@@ -111,22 +107,33 @@ class SearchAction extends CommonAction {
 		}
 	}
 	
-	//搜索
 	public function search(){
+		if ($_SESSION['_ACCESS_LIST']['CORPUS']['INDEX']['MAIN'] != null){ $admin_user = true; } else { $admin_user = false;  }
+		$this->assign("admin_user", $admin_user);
+		
+		if (!$admin_user && $_SESSION['_ACCESS_LIST']['CORPUS']['SEARCH']['SEARCH0'] == null)
+		{
+			echo L('search0_error');
+			exit();
+		}
+		if (!$admin_user && $download == 1 && $_SESSION['_ACCESS_LIST']['CORPUS']['SEARCH']['exportCSV'] == null)
+		{
+			echo L('download_error');
+			exit();
+		}
+		//dump( $_SESSION['_ACCESS_LIST']);
+	
 		if ( (!isset($_POST['keywords'])||$_POST['keywords']==""||$_POST['keywords']=='ss'||strlen($_POST['keywords'])<2) && (!isset($_POST['error'])||$_POST['error']=="") ) {
-			//管理员允许拖库，调试方便
-			if ($_SESSION['_ACCESS_LIST']['CORPUS']['INDEX']['MAIN'] == null) {
-				if (strlen($_POST['keywords'])<2 || $_POST['keywords']=='ss'){
+			if ($_SESSION['_ACCESS_LIST']['CORPUS']['INDEX']['MAIN'] == null) { // Admin is not limited by keyword length
+				if (strlen($_POST['keywords']) < 2 || $_POST['keywords'] == 'ss'){
 					echo L('please_right_key');
 					exit();
 				}
 			}
 		}
-		if ($_SESSION['_ACCESS_LIST']['CORPUS']['INDEX']['MAIN'] != null){ $admin_user = true; } else { $admin_user = false;  }
-		$this->assign("admin_user", $admin_user);
 		
 		$keywords = $_POST['keywords'];
-		if (!isset($_POST['error'])) $error="";	else $error = $_POST['error']; 
+		if (!isset($_POST['error'])) $error = "";	else $error = $_POST['error']; 
 		if (isset($_POST['page'])) $page = $_POST['page']; else $page = 1;
 		if (isset($_POST['listnum'])) $listnum = $_POST['listnum']; else $listnum = 30;
 		if (isset($_POST['download'])) $download = $_POST['download']; else $download = 0;
@@ -134,19 +141,15 @@ class SearchAction extends CommonAction {
 		
 		$school = $_POST['school'];
 		$gender = $_POST['gender'];  
-		//$studytime = $_POST['studytime'];
 		$firstlang = $_POST['firstlang'];
 		$semester = $_POST['year'];
 		$uid = $_POST['uid'];
-		
 		$timemin = $_POST['timemin'];
 		$timemax = $_POST['timemax'];
 		
 		$condition = "";
-		//if ($school!="") $condition .="corpus_student.school='$school' AND ";
 		if ($school!="") $condition .="corpus_article.aid LIKE '$school%' AND ";
 		if ($gender!="") $condition .="corpus_student.gender='$gender' AND ";
-		//if ($studytime!="") $condition .="corpus_student.studytime='$studytime' AND ";
 		if ($firstlang!="") $condition .="corpus_student.firstlang='$firstlang' AND ";
 		if ($semester!="") $condition .="corpus_article.semester='$semester' AND ";
 		if ($uid!="") $condition .="corpus_article.uid='$uid' AND ";
@@ -157,11 +160,38 @@ class SearchAction extends CommonAction {
 		$article = M('article');
 		$student = M('student'); 
 				
+		// limit rule added by zdq
+		$selectnum = $listnum;
+		
+		if (!$admin_user && $_SESSION['_ACCESS_LIST']['CORPUS']['SEARCH']['SEARCH2'] == null)
+		{
+			$page = 1;
+			$selectnum = 20;
+		}
+		else
+		if ($_SESSION['_ACCESS_LIST']['CORPUS']['SEARCH']['SEARCH3'] == null)
+		{
+			if ($page * $listnum > 100)
+			{
+				$page = (int)(100 / $listnum) + 1; 
+				$selectnum = 100 % $listnum; 
+			}
+		}
+		else
+		if (!$admin_user && $_SESSION['_ACCESS_LIST']['CORPUS']['SEARCH']['SEARCH4'] == null)
+		{
+			if ($page * $listnum > 200)
+			{
+				$page = (int)(100 / $listnum) + 1; 
+				$selectnum = 100 % $listnum; 
+			}
+		}
+				
 		if ($download == 0) {
 			if ($error=="")
-				$list = $article->field('corpus_article.*')->join('corpus_student ON corpus_article.uid = corpus_student.uid')->where($condition."text RLIKE '.*".$keywords.".*'")->page($page.','.$listnum)->select();
+				$list = $article->field('corpus_article.*')->join('corpus_student ON corpus_article.uid = corpus_student.uid')->where($condition."text RLIKE '.*".$keywords.".*'")->page($page.','.$selectnum)->select();
 			else
-				$list = $article->field('corpus_article.*')->join('corpus_student ON corpus_article.uid = corpus_student.uid')->where($condition."text RLIKE '.*\[[^\]]*".$keywords."[^\]]*\,[^\]]*\,[^\]]*".$error."[^\]]*\].*'")->page($page.','.$listnum)->select();
+				$list = $article->field('corpus_article.*')->join('corpus_student ON corpus_article.uid = corpus_student.uid')->where($condition."text RLIKE '.*\[[^\]]*".$keywords."[^\]]*\,[^\]]*\,[^\]]*".$error."[^\]]*\].*'")->page($page.','.$selectnum)->select();
 		} else {
 			if ($error=="")
 				$list = $article->field('corpus_article.*')->join('corpus_student ON corpus_article.uid = corpus_student.uid')->where($condition."text RLIKE '.*".$keywords.".*'")->select();
@@ -172,63 +202,69 @@ class SearchAction extends CommonAction {
 		//$list = $article->where("text RLIKE '.*\[[^\]\,]*".$keywords."[^\]\,]*\,[^\]\,]*\,[^\]\,]*".$error."[^\]\,]*\].*'")->page($page.','.$listnum)->select();
 		//print_r($list);
 				
-				
 		$array = array(); 
 		$ind = 0; 
+		
 		foreach ($list as &$item){
 			$num = 0;
-			$point=0;
+			$point = 0;
 			$item['detail']="";
 			
-			while ($pos=strpos($item['text'], $keywords, $point)){
-				//echo $pos.' ';
-				$point = $pos+1;
-				$sub = my_substr( $item['text'], $pos );
-				$matchsub = my_substr( $item['text'], $pos,1 );
-				if ($error=="" ){
-					if ($download == 1) {
-						$item['detail'] .= "...".$sub."...;\n\n ";
-					} else {
-						$item['detail'] .= "...".format_text( $sub,$keywords, $error, 1)."...<br/>";
-					}
-				}
-				else{
-					if (preg_match('|\[[^\]]*'.$keywords.'[^\]]*\,[^\]]*\,[^\]]*'.$error.'[^\]]*\]|', $matchsub, $matches)) {
-						if ($download == 1){
-							$item['detail'] .= "...".$sub."...; \n\n";
-						} else {
-							$item['detail'] .= "...".format_text( $sub,$keywords, $error, 1 )."...<br/>";
-						}
-					}
-				}
-			}
-			if($keyword==""){
-				while ($pos=strpos($item['text'], $error, $point)){
-					//echo $pos.' ';
-					$point = $pos+1;
-					$sub = my_substr( $item['text'], $pos );
-					$matchsub = my_substr( $item['text'], $pos,1 );
-					if (preg_match('|\[[^\]]*\,[^\]]*\,[^\]]*'.$error.'[^\]]*\]|', $matchsub, $matches)) {
-							if ($download == 1){
-								$item['detail'] .= "...".$sub."...;\n\n ";
-							} else {
-								$item['detail'] .= "...".format_text( $sub,$keywords, $error, 1 )."...<br/>";
-							}
+			$iterwords = $keywords;
+			if ($iterwords=="") $iterwords = $error;
+			
+			while ($pos = strpos($item['text'], $iterwords, $point))
+			{
+				$point = $pos + 1;
+				$sub = my_substr($item['text'], $pos);
+				$matchsub = my_substr($item['text'], $pos, 1);
+				
+				$sub_above = "";
+				$sub_below = "";
+				split_context($sub, $iterwords, $sub_above, $sub_below);
+				
+				$filt_words   = array("\r\n", "\n", "\r");
+				$sub_above = str_replace($filt_words, "", $sub_above);
+				$sub_below = str_replace($filt_words, "", $sub_below);
+				
+				$error_match = false;
+				if ($error == "")
+					$error_match = true;
+				else if ($keyword == "")
+					$error_match = preg_match('|\[[^\]]*\,[^\]]*\,[^\]]*'.$error.'[^\]]*\]|', $matchsub, $matches);
+				else
+					$error_match = preg_match('|\[[^\]]*'.$keywords.'[^\]]*\,[^\]]*\,[^\]]*'.$error.'[^\]]*\]|', $matchsub, $matches);
+				if ($error_match)
+				{
+					if ($download == 1)
+					{
+						$item['detail'] .= "...".$sub."...; \n\n";
+						// $item['detail_single'] = "...".$sub."...";
+						// array_push($array, Array($item['aid'],$item['uid'],$item['title'],$item['semester'],$item['time'],$item['detail_single']) );
+						$item['detail_key'] = $iterwords;
+						$item['detail_above'] = "...".$sub_above;
+						$item['detail_below'] = $sub_below."...";
+						array_push($array, Array($item['aid'],$item['uid'],$item['title'],$item['semester'],$item['time'],$item['detail_above'],$item['detail_key'],$item['detail_below']) );
+					} else
+					{
+						$item['detail'] .= "...".format_text( $sub,$keywords, $error, 1 )."...<br/>";
 					}
 				}
 			}
 			
-			if ($download == 1) {
-				array_push($array, Array($item['aid'],$item['uid'],$item['title'],$item['semester'],$item['time'],$item['detail']) );
-			}			
 			++$ind; 
 			//90条截止，防止拖库
 			if ($_SESSION['_ACCESS_LIST']['CORPUS']['INDEX']['MAIN'] == null && $ind > 120) break; 
-		}
+			//if ($ind > 10000) break; 
+		} 
 		
 		if ($download == 1){
+		
+			
+		
 			$name = "result_".$keywords.".csv"; 
-			$title = Array(L('work_id'), L('author_id'), L('title'),L('semester'), L('date'), L('context'));
+			// $title = Array(L('work_id'), L('author_id'), L('title'),L('semester'), L('date'), L('context'));
+			$title = Array(L('work_id'), L('author_id'), L('title'),L('semester'), L('date'), L('context_above'), L('context_key'), L('context_below'));
 			return $this->exportCSV($name, $title, $array);
 		} else {
 			if (count($list) != 0) $hasResult = 1; else $hasResult = 0; 
@@ -240,7 +276,7 @@ class SearchAction extends CommonAction {
 				$this->assign("nextpage", 0);  
 				$endnum = $page;
 			}
-			$startnum = max(1, $page-4); 
+			$startnum = max(1, $page - 4); 
 			
 			$allpage = array();
 			for ($i = $startnum; $i <= $endnum; ++$i){

@@ -34,5 +34,15 @@ return array(
 	'semester'			=>	'学期',
 	'date'				=>	'作成日',
 	'context'			=>	'キーワードの前文と後文',
+	'context_above'		=>	'キーワードの前文',
+	'context_key'		=>	'キーワード',
+	'context_below' 	=>	'キーワードの後文',
+	
+	'user_exist'		=>	'用户已经存在',
+	'reg_success'		=>	'注册成功，请用您注册的用户名和密码登陆~',
+	'reg_error'			=>	'注册失败，用户已存在或者信息含有非法字符>_<b',
+	'search0_error'		=>	'您是新注册用户，需要等待管理员审核通过后才能进行检索，谢谢！若审核失败，请主动联系 zhjianhuaster [at] gmail [dot] com 说明情况。',
+	'download_error'	=>	'您没有下载权限，如学术需要，请联系管理员 zhjianhuaster [at] gmail [dot] com 升级到VIP 3或以上进行下载，谢谢！',
+
 );
 ?>
